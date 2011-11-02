@@ -1,6 +1,6 @@
 %\documentclass[a4paper,10pt]{article}
 \documentclass[draftcls, onecolumn, 11pt]{IEEEtran}
-%\documentclass[journal]{../bib/IEEEtran}
+%\documentclass[journal]{IEEEtran}
 %\documentclass[correspondence,9pt]{../bib/IEEEtran}
 
 
@@ -20,10 +20,7 @@
 \maketitle
 
 \begin{abstract}
-We consider the root lattice $A_n$ and derive explicit formulae for
-the moments of its Voronoi cell.  We then show that these formulae
-enable accurate prediction of the error probability performance of
-lattice codes constructed from $A_n$.
+We consider the root lattice $A_n$ and derive explicit formulae for the moments of its Voronoi cell.  We then show that these formulae enable accurate prediction of the error probability performance of lattice codes constructed from $A_n$.
 \end{abstract}
 
 \begin{keywords}
@@ -32,153 +29,47 @@ Lattices, lattice decoding, root lattice, probability of error, Voronoi cell.
 
 \section{Introduction}\label{sec:introduction}
 
-The \emph{root lattices} $A_n$, $D_n$, $E_6$, $E_7$ and $E_8$ have
-attracted particular attention as structured codes for the AWGN
-channel~\cite{SPLAG}. The highly symmetric structure of these lattices
-provides the grounds for extremely efficient decoding algorithms.  In
-this paper we consider codes constructed from the root lattice $A_n$
-and derive formulae for accurately predicting the performance of these
-codes.  This is achieved by deriving formulae for the \emph{moments}
-of the \emph{Voronoi cell} of $A_n$.  Conway and Sloane suggested this
-approach to compute the quantizing constants (second order moments) of
-the root lattices,~\cite{Conway1982VoronoiRegions}.  In this paper we
-extend their technique to compute the moments of any order for lattice
-$A_n$.
+The \emph{root lattices} $A_n$, $D_n$, $E_6$, $E_7$ and $E_8$ have attracted particular attention as structured codes for the AWGN channel~\cite{SPLAG}. The highly symmetric structure of these lattices provides the grounds for extremely efficient decoding algorithms.  In this paper we consider codes constructed from the root lattice $A_n$ and derive formulae for accurately predicting the performance of these codes.  This is achieved by deriving formulae for the \emph{moments} of the \emph{Voronoi cell} of $A_n$.  Conway and Sloane suggested this approach to compute the quantizing constants (second order moments) of the root lattices,~\cite{Conway1982VoronoiRegions}.  In this paper we extend their technique to compute the moments of any order for lattice $A_n$.
 
-In two dimensions $A_2$ is the hexagonal lattice and in three
-dimensions $A_3$ is the face-centered cubic lattice.  These are the
-densest known sphere packings in dimensions two and three and our
-results automatically include low dimensional codes constructed using
-these packings.  In general, the lattice $A_n$ does not produce
-asymptotically good codes in large dimensions, but still offer a
-significant coding gain in small dimensions.  For these cases, we
-provide a error probability expression which can be computed to any
-degree of accuracy at any finite signal-to-noise ratio.
+In two dimensions $A_2$ is the hexagonal lattice and in three dimensions $A_3$ is the face-centered cubic lattice.  These are the densest known sphere packings in dimensions two and three and our results automatically include low dimensional codes constructed using these packings.  In general, the lattice $A_n$ does not produce asymptotically good codes in large dimensions, but still offer a significant coding gain in small dimensions.  For these cases, we provide a error probability expression which can be computed to any degree of accuracy at any finite signal-to-noise ratio.
 %We are hopeful that the techniques developed here may be applied to other lattices that do produce good codes.  In particular our techniques might apply to the Coxeter lattices $A_n^m$ of which the root lattice $E_8 \simeq A_8^3$ is a member~\cite{Coxeter1951,Martinet2003,McKilliam2009CoxeterLattices}.
 
-This paper is organised as follows.  In Section~\ref{sec:latt-latt-codes} we give a brief overview of lattices
-and codes constructed from them, i.e., \emph{lattice codes}.  We
-describe lattice decoding and show how the probability of coding error
-can be expressed in terms of the moments of the \emph{Voronoi cell} of
-the lattice used.  Section~\ref{sec:main-result} states the main
-result (without proof), which gives recursive formula to compute the
-moments of the Voronoi cell of $A_n$.  Section~\ref{sec:lattice-a_n}
-describes the lattice $A_n$ and some of its properties.  An important
-property for our purposes is that the Voronoi cell of $A_n$ is
-precisely the projection of a $n+1$-dimensional hypercube orthogonal
-to one of its vertices~\cite{McKilliam2009CoxeterLattices,McKilliam2010thesis}.
+This paper is organised as follows.  In Section~\ref{sec:latt-latt-codes} we give a brief overview of lattices and codes constructed from them, i.e., \emph{lattice codes}.  We describe lattice decoding and show how the probability of coding error can be expressed in terms of the moments of the \emph{Voronoi cell} of the lattice used.  Section~\ref{sec:main-result} states the main result (without proof), which gives recursive formula to compute the moments of the Voronoi cell of $A_n$.  Section~\ref{sec:lattice-a_n} describes the lattice $A_n$ and some of its properties.  An important property for our purposes is that the Voronoi cell of $A_n$ is precisely the projection of a $n+1$-dimensional hypercube orthogonal to one of its vertices~\cite{McKilliam2009CoxeterLattices,McKilliam2010thesis}.
  %This result was previously known~\cite{McKilliam2009CoxeterLattices,McKilliam2010thesis}.  The proof is short and we give it again here so that this paper is self contained.
-In Section~\ref{sec:integr-funct-over} we use this property to show
-how integrals over the Voronoi cell of $A_n$ can be expressed as
-integrals over the $n$-dimensional hypercube. These integrals are
-solvable and we use them to obtain the moments of the Voronoi cell in
-Section~\ref{sec:powers-eucl-norm}.  In
-Section~\ref{sec:results-simulations} we plot the probability of error
-versus signal to noise ratio for codes constructed from the lattices
-$A_1 \simeq \ints$, $A_2$, $A_3 \simeq D_3$ and $A_4$.  We also plot
-the results of Monte-Carlo to  corroborate our analytical results.
+In Section~\ref{sec:integr-funct-over} we use this property to show how integrals over the Voronoi cell of $A_n$ can be expressed as integrals over the $n$-dimensional hypercube. These integrals are solvable and we use them to obtain the moments of the Voronoi cell in Section~\ref{sec:powers-eucl-norm}.  In Section~\ref{sec:results-simulations} we plot the probability of error versus signal to noise ratio for codes constructed from the lattices $A_1 \simeq \ints$, $A_2$, $A_3 \simeq D_3$ and $A_4$.  We also plot the results of Monte-Carlo to  corroborate our analytical results.
 %An advantage of the analytical results is that the probability of error can calculated at high SNR, when the probabilty of error is small.  This is in contrast to Monte-Carlo simulations that are computationally infeasible at when the probability of error is small.  We display the performance of these lattice codes
 
 
 \section{Lattices, lattice codes, and lattice decoding} \label{sec:latt-latt-codes}
 
-
-A \term{lattice}\index{lattice}, $\Lambda$, is a set of points in
-$\reals^m$ such that
+A \term{lattice}\index{lattice}, $\Lambda$, is a set of points in $\reals^m$ such that
 \[
   \Lambda = \{\xbf = \Bbf\ubf \mid \ubf \in \ints^n \}
- \]
- where $\Bbf$ is an $m \times n$ matrix of rank $n$ called the
-\term{generator matrix} or \term{basis matrix} or simply generator or
-basis.  If the generator is square, i.e. $m = n$, then the lattice
-points span $\reals^n$ and we say that the lattice is \term{full
-rank}. If $\Bbf$ has more rows than columns, i.e. $m > n$, then the
-lattice points lie in a $n$-dimensional subspace of $\reals^m$. The
-set of integers $\ints^n$ is a lattice (a generator is the identity
-matrix) and we call this the~\emph{integer lattice}.
+ \] 
+where $\Bbf$ is an $m \times n$ matrix of rank $n$ called the \term{generator matrix} or \term{basis matrix} or simply generator or basis.  If the generator is square, i.e. $m = n$, then the lattice points span $\reals^n$ and we say that the lattice is \term{full rank}. If $\Bbf$ has more rows than columns, i.e. $m > n$, then the lattice points lie in a $n$-dimensional subspace of $\reals^m$. The set of integers $\ints^n$ is a lattice (a generator is the identity matrix) and we call this the~\emph{integer lattice}.
 
-The (open) \term{Voronoi cell}, denoted $\vor(\Lambda)$, of a lattice
-$\Lambda$ in $\reals^n$ is the subset of $\reals^n$ containing all
-points nearer (in Euclidean distance) the lattice point at the origin
-than any other lattice point. The Voronoi cell is an $n$-dimensional
-convex polytope that is symmetric about the origin.  It is convenient
-to modify this definition of the Voronoi cell slightly so that the
-union of translated Voronoi cells $\cup_{\xbf \in
-\Lambda}\vor(\Lambda) + \xbf$ is equal to  $\reals^n$.  That is, the
-Voronoi cell tessellates space when translated by points in $\Lambda$.
- To ensure this we require that if a face of $\vor(\Lambda)$ is open,
-then its opposing face is closed. Specifically, if $\xbf \in
-\vor(\Lambda)$ is on the boundary of $\vor(\Lambda)$ then $-\xbf
-\notin \vor(\Lambda)$.  We wont specifically define which opposing
-face is open and which is closed as the results that follow hold for
-any choice of open and closed opposing faces. 
+The (open) \term{Voronoi cell}, denoted $\vor(\Lambda)$, of a lattice $\Lambda$ in $\reals^n$ is the subset of $\reals^n$ containing all points nearer (in Euclidean distance) the lattice point at the origin than any other lattice point. The Voronoi cell is an $n$-dimensional convex polytope that is symmetric about the origin.  It is convenient to modify this definition of the Voronoi cell slightly so that the union of translated Voronoi cells $\cup_{\xbf \in \Lambda}\vor(\Lambda) + \xbf$ is equal to  $\reals^n$.  That is, the Voronoi cell tessellates space when translated by points in $\Lambda$.  To ensure this we require that if a face of $\vor(\Lambda)$ is open, then its opposing face is closed. Specifically, if $\xbf \in \vor(\Lambda)$ is on the boundary of $\vor(\Lambda)$ then $-\xbf \notin \vor(\Lambda)$.  We wont specifically define which opposing face is open and which is closed as the results that follow hold for any choice of open and closed opposing faces. 
 
-The Voronoi cell encodes many interesting lattice properties such as
-the packing radius, covering radius, kissing number, center density,
-thickness, and the normalized second moment (or quantising
-constant)~\cite{Viterbo_diamond_cutting_1996, SPLAG}. The error
-probability of a lattice code can also be evaluated from the Voronoi
-cell as we will see.  There exist algorithms to completely describe
-the Voronoi cell of an arbitrary
-lattice~\cite{Viterbo_diamond_cutting_1996,Sikiric_complex_algs_vor_cells_2009,Sikiric_vor_reduction_covering_2008,Valentin2003_coverings_tilings_low_dimension}.
- In general these algorithms are only computationally feasible when
-the dimension is small (approximately $n \leq 9$).  Even with a
-complete description of the Voronoi cell it is not generally easy to
-compute the probability of error of a lattice in an additive white
-Gaussian noise (AWGN) channel.
+The Voronoi cell encodes many interesting lattice properties such as the packing radius, covering radius, kissing number, center density, thickness, and the normalized second moment (or quantising constant)~\cite{Viterbo_diamond_cutting_1996, SPLAG}. The error probability of a lattice code can also be evaluated from the Voronoi cell as we will see.  There exist algorithms to completely describe the Voronoi cell of an arbitrary lattice~\cite{Viterbo_diamond_cutting_1996,Sikiric_complex_algs_vor_cells_2009,Sikiric_vor_reduction_covering_2008,Valentin2003_coverings_tilings_low_dimension}. In general these algorithms are only computationally feasible when the dimension is small (approximately $n \leq 9$).  Even with a complete description of the Voronoi cell it is not generally easy to compute the probability of error of a lattice in an additive white Gaussian noise (AWGN) channel.
 
-The Voronoi cell is linked with the problem of \emph{lattice
-decoding}.  Given some point $\ybf \in \reals^n$ a \emph{lattice
-decoder} (or \emph{nearest lattice point algorithm}) returns the
-lattice point in $\Lambda$ that is nearest to
-$\ybf$~\cite{Agrell2002}.  Equivalently it returns the lattice point
-$\xbf$ such that the translated Voronoi cell $\vor(\Lambda) + \xbf$
-contains $\ybf$.  Computationally lattice decoding is known to be
-NP-hard under certain conditions when the lattice itself, or rather a
-basis thereof, is considered as an additional input
-parameter~\cite{micciancio_hardness_2001,
-Jalden2005_sphere_decoding_complexity}. Nevertheless, algorithms exist
-that can compute the nearest lattice point in reasonable time if the
-dimension is small (approximately $n \leq 60$). One such algorithm is
-the \term{sphere decoder}~\cite{Viterbo_sphere_decoder_1999,Pohst_sphere_decoder_1981,Agrell2002}.
+The Voronoi cell is linked with the problem of \emph{lattice decoding}.  Given some point $\ybf \in \reals^n$ a \emph{lattice decoder} (or \emph{nearest lattice point algorithm}) returns the lattice point in $\Lambda$ that is nearest to $\ybf$~\cite{Agrell2002}.  Equivalently it returns the lattice point $\xbf$ such that the translated Voronoi cell $\vor(\Lambda) + \xbf$ contains $\ybf$.  Computationally lattice decoding is known to be NP-hard under certain conditions when the lattice itself, or rather a basis thereof, is considered as an additional input parameter~\cite{micciancio_hardness_2001, Jalden2005_sphere_decoding_complexity}. Nevertheless, algorithms exist that can compute the nearest lattice point in reasonable time if the dimension is small (approximately $n \leq 60$). One such algorithm is the \term{sphere decoder}~\cite{Viterbo_sphere_decoder_1999,Pohst_sphere_decoder_1981,Agrell2002}.
  %Kannan~\cite{Kannan1987_fast_general_np} suggested a different approach that is known to be asymptotically faster than the sphere decoder. 
-A good overview of these techniques is given by~\cite{Agrell2002}.
-Fast nearest point algorithms are known for specific
-lattices~\cite{Conway1982FastQuantDec, McKilliam2008,
-McKilliam2009CoxeterLattices,Vardy1993_leech_lattice_MLD}. For
-example, the root lattices $D_n$ and $A_n$ and their dual lattices
-$D_n^*$ and $A_n^*$ can be decoded in linear-time, i.e. in a number of
-operations of order $O(n)$~\cite{Conway1982FastQuantDec,McKilliam2009CoxeterLattices}.
+A good overview of these techniques is given by~\cite{Agrell2002}. Fast nearest point algorithms are known for specific lattices~\cite{Conway1982FastQuantDec, McKilliam2008,McKilliam2009CoxeterLattices,Vardy1993_leech_lattice_MLD}. For example, the root lattices $D_n$ and $A_n$ and their dual lattices $D_n^*$ and $A_n^*$ can be decoded in linear-time, i.e. in a number of operations of order $O(n)$~\cite{Conway1982FastQuantDec,McKilliam2009CoxeterLattices}.
 
 %Approximate algorithms for computing the nearest point have also been studied.  A classic example is \term{Babai's nearest plane algorithm}~\citep{Babai1986}\index{Babai's nearest plane algorithm}, which requires $O(n^4)$ arithmetic operations in the worst case where $n$ is the dimension of the lattice and only $O(n^2)$ if the lattice basis is \term{Lov\'asz reduced}~\citep{Lenstra1982}\index{Lov\'asz reduced}. Recently, various approximate techniques for solving the nearest lattice point problem have been motivated by applications to MIMO communications.  An example is the \term{$K$-best algorithm}\index{K-best algorithm}~\citep{Zhan2006_K_best_sphere_decoder} that works similarly to the sequential $M$-algorithm~\citep{Anderson1984_seq_coding_alg} used in coding theory. Yet another example is the \term{fixed sphere decoder}~\citep{Jalden2009_error_prob_fixed_sphere_decoder,Barbero2008_fixed_sphere_decoder}. In this thesis we will make use of Babai's nearest plane algorithm, the sphere decoder and the $K$-best algorithm.  We will not detail the workings of these algorithms as excellent descriptions already exist in the literature cited above.
 
 
 %For each lattice point $\ybf \in \Lambda$ there exists a Voronoi cell containing those point from $\reals^n$ nearer to $\ybf$ that any other lattice point.  Due to the structure of the lattice the Voronoi cell of each lattice point is the same shape.  Denote by $\vor(\Lambda)$ the Vornoi cell of the lattice point at the origin. NEAREST POINT PROBLEM.
 \newcommand{\calX}{\mathcal X}
-Lattices can be used to construct \emph{signal space codes}.  A signal
-space code $\calX$ of dimension $n$ is a finite set of vectors (or
-points) in the Euclidean space $\reals^n$.  Each vector in $\calX$ is
-called a \emph{codeword} and represents a particular signal.  The
-number of codewords is denoted by $\abs{\calX}$.  If each codeword is
-transmitted with equal probability then the rate of the code is $R =
-\frac{1}{n}\log_2\abs{\calX}$ bits per codeword.
-The average power of the code is given by $P =
-\frac{1}{\abs{\calX}}\sum_{\xbf \in \calX}\|\xbf\|^2$.  In the AWGN
-channel the received signal takes the form
+Lattices can be used to construct \emph{signal space codes}.  A signal space code $\calX$ of dimension $n$ is a finite set of vectors (or points) in the Euclidean space $\reals^n$.  Each vector in $\calX$ is called a \emph{codeword} and represents a particular signal.  The number of codewords is denoted by $\abs{\calX}$.  If each codeword is transmitted with equal probability then the rate of the code is $R = \frac{1}{n}\log_2\abs{\calX}$ bits per codeword. The average power of the code is given by $P = \frac{1}{\abs{\calX}}\sum_{\xbf \in \calX}\|\xbf\|^2$.  In the AWGN channel the received signal takes the form
 \[
 \ybf = \xbf + \wbf
 \]
-where $\ybf \in \reals^n$, $\xbf \in \calX$ and $\wbf$ is a vector of
-independent and identically distributed Gaussian random variables with
-variance $\sigma^2$.  If the receiver employs maximum likelihood
-decoding then the estimator of $\xbf$ given $\ybf$ at the receiver is
+where $\ybf \in \reals^n$, $\xbf \in \calX$ and $\wbf$ is a vector of independent and identically distributed Gaussian random variables with variance $\sigma^2$.  If the receiver employs maximum likelihood decoding then the estimator of $\xbf$ given $\ybf$ at the receiver is
 \begin{equation}\label{eq:mldecoder}
 \hat{\xbf} = \mbox{arg~}\min_{\xbf \in \calX} \| \ybf - \xbf \|^2.
 \end{equation}
-That is, the receiver computes the codeword in $\calX$ nearest in
-Euclidean distance to the received signal $\ybf$.  Assuming that each
-codeword is transmitted with equal probability then the probability of
-correct decoding is
+That is, the receiver computes the codeword in $\calX$ nearest in Euclidean distance to the received signal $\ybf$.  Assuming that each codeword is transmitted with equal probability then the probability of correct decoding is
 \[
 P_C =\frac{1}{\abs{\calX}}\sum_{\xbf \in \calX} \prob( \hat{\xbf} = \xbf ).
 \]
@@ -191,31 +82,14 @@ P_E = 1 - \frac{1}{\abs{\calX}} \sum_{\xbf \in \calX} \prob(
 
 %A problem with randomly generated codes and maximum likelihood decoding is that there are no computationally efficient methods for encoding and decoding.  For encoding the transmitter must store a list of size $\abs{\calX} \approx 2^{nR/B}$ and for decoding the receiver must compute $\hat{\xbf}$ requiring a search over all $\abs{\calX} \approx 2^{nR/B}$ codewords.  As $n$ gets large this becomes infeasible.  To avoid this computational complexity it is preferable for a code to have some type of `structure' that is exploitable for efficient encoding and decoding.  One way of enforcing structure is to choose codewords from a lattice.  The idea being that encoding and decoding can now be performed efficiently by \emph{lattice decoding}, i.e. by finding a nearest point in a lattice.
 
-A \emph{lattice code} is a signal space code with codewords taken from
-a finite subset of points of some lattice $\Lambda$ in $\reals^n$.
-There are infinitely many ways to choose a finite subset from a
-lattice, but common approaches make use of a bounded subset of
-$\reals^n$, called a \emph{shaping region} $S \subset \reals^n$ and
+A \emph{lattice code} is a signal space code with codewords taken from a finite subset of points of some lattice $\Lambda$ in $\reals^n$. There are infinitely many ways to choose a finite subset from a lattice, but common approaches make use of a bounded subset of $\reals^n$, called a \emph{shaping region} $S \subset \reals^n$ and
 \[
 \calX = S \cap \Lambda.
 \]
-Possible choices of shaping region are $n$-dimensional spheres,
-spherical shells, hypercubes or the Voronoi cell of a
-\emph{sublattice} of
-$\Lambda$~\cite{Buda1989_some_opt_codes_structure,Erex2004_lattice_decoding,Conway1983VoronoiCodes}.
-A consequence of the finiteness of a lattice code is that the maximum
-likelihood decoder~\eqref{eq:mldecoder} is \emph{not} equivalent to
-lattice decoding.  Computing a nearest lattice point will not in
-general return a lattice point from the code (the decoded lattice
-point might lie outside the shaping region).
+Possible choices of shaping region are $n$-dimensional spheres, spherical shells, hypercubes or the Voronoi cell of a \emph{sublattice} of $\Lambda$~\cite{Buda1989_some_opt_codes_structure,Erex2004_lattice_decoding,Conway1983VoronoiCodes}.  A consequence of the finiteness of a lattice code is that the maximum likelihood decoder~\eqref{eq:mldecoder} is \emph{not} equivalent to lattice decoding.  Computing a nearest lattice point will not in general return a lattice point from the code (the decoded lattice point might lie outside the shaping region).
  %A question that remained open for some time was whether lattice codes employing lattice decoding could achieve channel capacity.  This question was answered in the affirmative by Erez and Zamir~\cite{Erex2004_lattice_decoding}.
 
-
-Let $\calX$ be a lattice code constructed from a lattice $\Lambda$.
-Assuming that each codeword $\xbf \in \calX$ has an equal probability
-of being transmitted and that the receiver employs lattice decoding,
-then the average probability of correct decoding in the AWGN channel
-is
+Let $\calX$ be a lattice code constructed from a lattice $\Lambda$.  Assuming that each codeword $\xbf \in \calX$ has an equal probability of being transmitted and that the receiver employs lattice decoding, then the average probability of correct decoding in the AWGN channel is
 %\footnote{In order to approach capacity Erez and Zamir~\cite{Erex2004_lattice_decoding} employ a uniform dither and also a minimum mean square error scaling parameter $\alpha$ (the so called \emph{modulo-lattice additive noise channel}).  A result of this is that that observed noise distribution is no longer Gaussian. However, for large signal to noise ratio $\alpha \approx 1$ and the observed noise is very close to Gaussian.  In this case~\eqref{eq:PEgaussian} is a reasonable approximation.}
 \begin{align}
 P_C &\leq P_C(\Lambda) = \lim_{\abs{\calX}\rightarrow \infty}
@@ -225,11 +99,7 @@ P_C &\leq P_C(\Lambda) = \lim_{\abs{\calX}\rightarrow \infty}
 &=   \frac{1}{(\sqrt{2\pi}\sigma)^n} \int_{\vor(\Lambda)}
 e^{-\|\xbf\|^2 / 2\sigma^2 } d\xbf. \label{eq:PEgaussian}
 \end{align}
-The probability of error is $P_E \leq 1 - P_C(\Lambda)$, where the
-upper bound is asymptotically tight for large constellations (the
-contribution of the signal set points on near the bounding region
-boarder can be assumed negligible).  By expanding $e^x = 1  + x +
-\frac{x^2}{2} + \dots$ we obtain
+The probability of error is $P_E \leq 1 - P_C(\Lambda)$, where the upper bound is asymptotically tight for large constellations (the contribution of the signal set points on near the bounding region boarder can be assumed negligible).  By expanding $e^x = 1  + x + \frac{x^2}{2} + \dots$ we obtain
 \begin{align}
 P_C(\Lambda)  &= \frac{1}{(\sqrt{2\pi}\sigma)^n}\int_{\vor(\Lambda)} 1
 - \frac{\|\xbf\|^2}{2\sigma^2} + \frac{\left(\|\xbf\|^2\right)^2}{
@@ -238,13 +108,7 @@ P_C(\Lambda)  &= \frac{1}{(\sqrt{2\pi}\sigma)^n}\int_{\vor(\Lambda)} 1
 \frac{(-1)^m}{2^m\sigma^{2m}m!} \int_{\vor(\Lambda)} \|\xbf\|^{2m}
 d\xbf.  \label{eq:summomentproberror}
 \end{align}
-So, to obtain arbitrarily accurate approximations to the probability
-of error it is enough to know the values of $\int_{\vor(\Lambda)}
-\|\xbf\|^{2m} d\xbf$ for $m=1,2\dots$ for some sufficiently large $m$.
-The number of terms required will increase as the noise variance gets
-smaller. This implies that the bound with a fixed number of terms is
-not asymptotically tight but is very accurate up to a finite
-signal-to-noise ratio.
+So, to obtain arbitrarily accurate approximations to the probability of error it is enough to know the values of $\int_{\vor(\Lambda)} \|\xbf\|^{2m} d\xbf$ for $m=1,2\dots$ for some sufficiently large $m$.  The number of terms required will increase as the noise variance gets smaller.  This implies that the bound with a fixed number of terms is not asymptotically tight but is very accurate up to a finite signal-to-noise ratio.
 
 
 In this paper we focus on $n$-dimensional lattice codes constructed from the family of lattices called $A_n$ and  we will derive expressions for the $m$th \emph{moment}s
