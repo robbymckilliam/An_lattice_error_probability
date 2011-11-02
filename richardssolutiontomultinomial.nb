@@ -1,0 +1,256 @@
+(* Content-type: application/mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 7.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       145,          7]
+NotebookDataLength[      7936,        247]
+NotebookOptionsPosition[      7309,        223]
+NotebookOutlinePosition[      7648,        238]
+CellTagsIndexPosition[      7605,        235]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell["Richard's solution", "Text",
+ CellChangeTimes->{{3.513975399742883*^9, 3.513975408262048*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"multiint", "[", 
+   RowBox[{"n_", ",", "m_", ",", "a_", ",", "b_"}], "]"}], " ", ":=", " ", 
+  RowBox[{"Sum", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"-", "1"}], ")"}], "^", "r"}], "*", 
+     RowBox[{"Binomial", "[", 
+      RowBox[{"n", ",", "r"}], "]"}], "*", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"b", "*", "r"}], " ", "+", " ", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"n", "-", "r"}], ")"}], "*", "a"}]}], ")"}], "^", 
+       RowBox[{"(", 
+        RowBox[{"m", "+", "n"}], ")"}]}], ")"}], "*", 
+     RowBox[{
+      RowBox[{"m", "!"}], "/", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"n", "+", "m"}], ")"}], "!"}]}]}], ",", 
+    RowBox[{"{", 
+     RowBox[{"r", ",", "0", ",", "n"}], "}"}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.513975055708814*^9, 3.513975184736716*^9}, {
+  3.51397530430153*^9, 3.513975310100133*^9}, {3.513975355194993*^9, 
+  3.513975372109947*^9}, {3.513976367176405*^9, 3.513976373728592*^9}}],
+
+Cell["Tests", "Text",
+ CellChangeTimes->{{3.513976430494778*^9, 3.513976431286235*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"Expand", "[", 
+    RowBox[{"Integrate", "[", 
+     RowBox[{
+      RowBox[{"Integrate", "[", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"x", "+", "y"}], ")"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"x", ",", "b", ",", "a"}], "}"}]}], "]"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"y", ",", "b", ",", "a"}], "}"}]}], "]"}], "]"}], "  ", 
+   "\[Equal]", " ", 
+   RowBox[{"Expand", "[", 
+    RowBox[{"multiint", "[", 
+     RowBox[{"2", ",", "1", ",", "a", ",", "b"}], "]"}], "]"}]}], 
+  " "}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Expand", "[", 
+    RowBox[{"Integrate", "[", 
+     RowBox[{
+      RowBox[{"Integrate", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"x", "+", "y"}], ")"}], "^", "2"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"x", ",", "b", ",", "a"}], "}"}]}], "]"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"y", ",", "b", ",", "a"}], "}"}]}], "]"}], "]"}], "  ", 
+   "\[Equal]", " ", 
+   RowBox[{"Expand", "[", 
+    RowBox[{"multiint", "[", 
+     RowBox[{"2", ",", "2", ",", "a", ",", "b"}], "]"}], "]"}]}], 
+  " "}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Expand", "[", 
+    RowBox[{"Integrate", "[", 
+     RowBox[{
+      RowBox[{"Integrate", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"x", "+", "y"}], ")"}], "^", "3"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"x", ",", "b", ",", "a"}], "}"}]}], "]"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"y", ",", "b", ",", "a"}], "}"}]}], "]"}], "]"}], "  ", 
+   "\[Equal]", " ", 
+   RowBox[{"Expand", "[", 
+    RowBox[{"multiint", "[", 
+     RowBox[{"2", ",", "3", ",", "a", ",", "b"}], "]"}], "]"}]}], 
+  " "}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Expand", "[", 
+   RowBox[{"Integrate", "[", 
+    RowBox[{
+     RowBox[{"Integrate", "[", 
+      RowBox[{
+       RowBox[{"Integrate", "[", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"x", "+", "y", "+", "z"}], ")"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"x", ",", "b", ",", "a"}], "}"}]}], "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"y", ",", "b", ",", "a"}], "}"}]}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"z", ",", "b", ",", "a"}], "}"}]}], "]"}], "]"}], " ", 
+  "\[Equal]", " ", 
+  RowBox[{"Expand", "[", 
+   RowBox[{"multiint", "[", 
+    RowBox[{"3", ",", "1", ",", "a", ",", "b"}], "]"}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Expand", "[", 
+   RowBox[{"Integrate", "[", 
+    RowBox[{
+     RowBox[{"Integrate", "[", 
+      RowBox[{
+       RowBox[{"Integrate", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"x", "+", "y", "+", "z"}], ")"}], "^", "2"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"x", ",", "b", ",", "a"}], "}"}]}], "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"y", ",", "b", ",", "a"}], "}"}]}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"z", ",", "b", ",", "a"}], "}"}]}], "]"}], "]"}], " ", 
+  "\[Equal]", " ", 
+  RowBox[{"Expand", "[", 
+   RowBox[{"multiint", "[", 
+    RowBox[{"3", ",", "2", ",", "a", ",", "b"}], "]"}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Expand", "[", 
+   RowBox[{"Integrate", "[", 
+    RowBox[{
+     RowBox[{"Integrate", "[", 
+      RowBox[{
+       RowBox[{"Integrate", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"x", "+", "y", "+", "z"}], ")"}], "^", "3"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"x", ",", "b", ",", "a"}], "}"}]}], "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"y", ",", "b", ",", "a"}], "}"}]}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"z", ",", "b", ",", "a"}], "}"}]}], "]"}], "]"}], " ", 
+  "\[Equal]", " ", 
+  RowBox[{"Expand", "[", 
+   RowBox[{"multiint", "[", 
+    RowBox[{"3", ",", "3", ",", "a", ",", "b"}], "]"}], "]"}]}]}], "Input",
+ CellChangeTimes->{{3.51397519400008*^9, 3.513975217683961*^9}, {
+  3.513975275828441*^9, 3.513975284107688*^9}, {3.513976382617448*^9, 
+  3.513976420507809*^9}, {3.513976489249573*^9, 3.513976507991082*^9}}],
+
+Cell[BoxData["True"], "Output",
+ CellChangeTimes->{
+  3.513975220310905*^9, {3.513975278132339*^9, 3.513975313603264*^9}, 
+   3.513975376176048*^9, {3.513976377195876*^9, 3.513976404487439*^9}, 
+   3.513976509630906*^9}],
+
+Cell[BoxData["True"], "Output",
+ CellChangeTimes->{
+  3.513975220310905*^9, {3.513975278132339*^9, 3.513975313603264*^9}, 
+   3.513975376176048*^9, {3.513976377195876*^9, 3.513976404487439*^9}, 
+   3.513976510042849*^9}],
+
+Cell[BoxData["True"], "Output",
+ CellChangeTimes->{
+  3.513975220310905*^9, {3.513975278132339*^9, 3.513975313603264*^9}, 
+   3.513975376176048*^9, {3.513976377195876*^9, 3.513976404487439*^9}, 
+   3.513976510367451*^9}],
+
+Cell[BoxData["True"], "Output",
+ CellChangeTimes->{
+  3.513975220310905*^9, {3.513975278132339*^9, 3.513975313603264*^9}, 
+   3.513975376176048*^9, {3.513976377195876*^9, 3.513976404487439*^9}, 
+   3.513976510907486*^9}],
+
+Cell[BoxData["True"], "Output",
+ CellChangeTimes->{
+  3.513975220310905*^9, {3.513975278132339*^9, 3.513975313603264*^9}, 
+   3.513975376176048*^9, {3.513976377195876*^9, 3.513976404487439*^9}, 
+   3.513976514528292*^9}],
+
+Cell[BoxData["True"], "Output",
+ CellChangeTimes->{
+  3.513975220310905*^9, {3.513975278132339*^9, 3.513975313603264*^9}, 
+   3.513975376176048*^9, {3.513976377195876*^9, 3.513976404487439*^9}, 
+   3.513976519644367*^9}]
+}, Open  ]]
+},
+WindowSize->{640, 750},
+WindowMargins->{{159, Automatic}, {126, Automatic}},
+FrontEndVersion->"7.0 for Linux x86 (32-bit) (November 10, 2008)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[545, 20, 100, 1, 31, "Text"],
+Cell[648, 23, 1080, 31, 77, "Input"],
+Cell[1731, 56, 87, 1, 31, "Text"],
+Cell[CellGroupData[{
+Cell[1843, 61, 4112, 123, 275, "Input"],
+Cell[5958, 186, 220, 4, 31, "Output"],
+Cell[6181, 192, 220, 4, 31, "Output"],
+Cell[6404, 198, 220, 4, 31, "Output"],
+Cell[6627, 204, 220, 4, 31, "Output"],
+Cell[6850, 210, 220, 4, 31, "Output"],
+Cell[7073, 216, 220, 4, 31, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

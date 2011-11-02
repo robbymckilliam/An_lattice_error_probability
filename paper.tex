@@ -1,0 +1,485 @@
+%\documentclass[a4paper,10pt]{article}
+\documentclass[draftcls, onecolumn, 11pt]{IEEEtran}
+%\documentclass[journal]{../bib/IEEEtran}
+%\documentclass[correspondence,9pt]{../bib/IEEEtran}
+
+
+\usepackage{../bib/mathbf-abbrevs}
+
+\input{defs}
+
+%opening
+\title{Coding with the Lattice $A_n$}
+\author{Robby McKilliam, Ramanan Subramanian, Emanuele Viterbo}
+
+\begin{document}
+
+\newcommand{\calR}{\mathcal{R}}
+\newcommand{\hist}{\operatorname{hist}}
+
+\maketitle
+
+\begin{abstract}
+Lattices can be used to construct block codes.  The special family of root lattices has attracted particular attention for this purpose.  We consider the root lattice $A_n$ and derive formulae for the moments of its Voronoi cell.  These formulae enable accurate prediction of the performance of codes constructed from $A_n$.  In two dimensions $A_2$ is the hexagonal lattice and in three dimensions $A_3$ is the face-centered cubic lattice.  These are the densest known sphere packings in dimensions two and three.  Our results automatically include codes constructed using these packings.
+\end{abstract}
+
+\begin{keywords}
+Lattices, lattice decoding, root lattice, probability of error.
+\end{keywords}
+
+\section{Introduction}\label{sec:introduction}
+
+We consider block codes for the Gaussian channel constructed from a subset of points from a Euclidean lattice using \emph{lattice decoding} (as opposed to maximum likelihood decoding)~\cite{Erex2004_lattice_decoding}.  It is known that such codes can reach the capacity of the Gaussian channel~\cite{Buda1989_some_opt_codes_structure,Erez2005,Erex2004_lattice_decoding}.  These capacity results make use of randomly generated lattices that do not have any obvious exploitable structure for efficient decoding and encoding~\cite{Jalden2005_sphere_decoding_complexity}.  For this reason (and many others) the study of specific lattices with known structure is important.  The \emph{root lattices} $A_n$, $D_n$, $E_6$, $E_7$ and $E_8$ have attracted particular attention for this purpose~\cite{SPLAG}.  In this paper we consider codes constructed from the root lattice $A_n$ and derive formulae for accurately predicting the performance of these codes.  This is achieved by deriving formulae for the \emph{moments} of the \emph{Voronoi cell} of $A_n$.  Conway and Sloane suggested this type of procedure would be possible in~\cite{Conway1982VoronoiRegions}.  This paper can be seen as a continuation of that work focusing particularly on the lattice $A_n$.
+
+In two dimensions $A_2$ is the hexagonal lattice and in three dimensions $A_3$ is the face-centered cubic lattice.  These are the densest known sphere packings in dimensions two and three and our results automatically include low dimensional codes constructed using these packings.  Unfortunately, but not surprisingly, the lattice $A_n$ does not produce good codes in large dimensions.  We are hopeful that the techniques developed here may be applied to other lattices that do produce good codes.  In particular our techniques might apply to the Coxeter lattices $A_n^m$ of which the root lattice $E_8 \simeq A_8^3$ is a member~\cite{Coxeter1951,Martinet2003,McKilliam2009CoxeterLattices}.
+
+This paper is organised as follows.  In Section~\ref{sec:latt-latt-codes} we give a brief overview of lattices and codes constructed from them, i.e. \emph{lattice codes}.  We describe lattice decoding and show how the probability of coding error can be expressed in terms of the moments of the \emph{Voronoi cell} of the lattice used.  Section~\ref{sec:main-result} states the main result without any proof.  We give recursive formula to compute the moments of the Voronoi cell of $A_n$.  Section~\ref{sec:lattice-a_n} describes the lattice $A_n$ and some of its properties.  An important property for our purposes is that the Voronoi cell of $A_n$ is precisely the projection of a $n$-dimensional hypercube orthogonal to one of its vertices~\cite{McKilliam2009CoxeterLattices,McKilliam2010thesis}.  %This result was previously known~\cite{McKilliam2009CoxeterLattices,McKilliam2010thesis}.  The proof is short and we give it again here so that this paper is self contained.  
+In Section~\ref{sec:integr-funct-over} we use this property to show how integrals over the Voronoi cell of $A_n$ can be expressed as integrals over the $n$-dimensional hypercube. These integrals are solvable and we use them to obtain the moments of the Voronoi cell in Section~\ref{sec:powers-eucl-norm}.  In  Section~\ref{sec:results-simulations} we plot the probability of error versus signal to noise ratio for codes constructed from the lattices $A_1 \simeq \ints$, $A_2$, $A_3 \simeq D_3$ and $A_4$.  We also plot the results of Monte-Carlo simulations.  These simulations corroborate with our analytical results.  %An advantage of the analytical results is that the probability of error can calculated at high SNR, when the probabilty of error is small.  This is in contrast to Monte-Carlo simulations that are computationally infeasible at when the probability of error is small.  We display the performance of these lattice codes   
+
+
+
+\section{Lattices, lattice codes, and lattice decoding} \label{sec:latt-latt-codes}
+
+
+A \term{lattice}\index{lattice}, $\Lambda$, is a set of points in $\reals^m$ such that
+\[ 
+   \Lambda = \{\xbf = \Bbf\ubf \mid \ubf \in \ints^n \}
+ \]
+ where $\Bbf$ is an $m \times n$ matrix of rank $n$ called the \term{generator matrix} or \term{basis matrix} or simply generator or basis.  If the generator is square, i.e. $m = n$, then the lattice points span $\reals^n$ and we say that the lattice is \term{full rank}. If $\Bbf$ has more rows than columns, i.e. $m > n$, then the lattice points lie in a $n$-dimensional subspace of $\reals^m$. The set of integers $\ints^n$ is a lattice (a generator is the identity matrix) and we call this the~\emph{integer lattice}.  
+
+The (open) \term{Voronoi cell}, denoted $\vor(\Lambda)$, of a lattice $\Lambda$ in $\reals^n$ is the subset of $\reals^n$ containing all points nearer (in Euclidean distance) the lattice point at the origin than any other lattice point. The Voronoi cell is an $n$-dimensional convex polytope that is symmetric about the origin.  It is convenient to modify this definition of the Voronoi cell slightly so that the union of translated Voronoi cells $\cup_{\xbf \in \Lambda}\vor(\Lambda) + \xbf$ is equal to  $\reals^n$.  That is, the Voronoi cell tessellates space when translated by points in $\Lambda$.  To ensure this we require that if a face of $\vor(\Lambda)$ is open, then its opposing face is closed. Specifically, if $\xbf \in \vor(\Lambda)$ is on the boundary of $\vor(\Lambda)$ then $-\xbf \notin \vor(\Lambda)$.  We wont specifically define which opposing face is open and which is closed as the results that follow hold for any choice of open and closed opposing faces.  
+
+The Voronoi cell encodes many interesting lattice properties such as the packing radius, covering radius, kissing number, center density, thickness, and the normalized second moment (or quantising constant)~\cite{Viterbo_diamond_cutting_1996, SPLAG}. The error probability of a lattice code can also be evaluated from the Voronoi cell as we will see.  There exist algorithms to completely enumerate the Voronoi cell of an arbitrary lattice~\cite{Viterbo_diamond_cutting_1996,Sikiric_complex_algs_vor_cells_2009,Sikiric_vor_reduction_covering_2008,Valentin2003_coverings_tilings_low_dimension}.  In general these algorithms are only computationally feasible when the dimension is small (approximately $n \leq 9$).  Even with a complete description of the Voronoi cell it is not necessarily easy to compute the probability of coding error.  
+
+The Voronoi cell is linked with the problem of \emph{lattice decoding}.  Given some point $\ybf \in \reals^n$ a \emph{lattice decoder} (or \emph{nearest lattice point algorithm}) returns the lattice point in $\Lambda$ that is nearest to $\ybf$~\cite{Agrell2002}.  Equivalently it returns the lattice point $\xbf$ such that the translated Voronoi cell $\vor(\Lambda) + \xbf$ contains $\ybf$.  Computationally lattice decoding is known to be NP-hard under certain conditions when the lattice itself, or rather a basis thereof, is considered as an additional input parameter~\cite{micciancio_hardness_2001, Jalden2005_sphere_decoding_complexity}. Nevertheless, algorithms exist that can compute the nearest lattice point in reasonable time if the dimension is small (approximately $n \leq 60$). One such algorithm is the \term{sphere decoder}~\cite{Viterbo_sphere_decoder_1999,Pohst_sphere_decoder_1981,Agrell2002}.   %Kannan~\cite{Kannan1987_fast_general_np} suggested a different approach that is known to be asymptotically faster than the sphere decoder. A good overview of these techniques is given by~\cite{Agrell2002}.
+Fast nearest point algorithms are known for specific lattices~\citep{Conway1982FastQuantDec, McKilliam2008, McKilliam2009CoxeterLattices,Vardy1993_leech_lattice_MLD}. For example, the root lattices $D_n$ and $A_n$ and their dual lattices $D_n^*$ and $A_n^*$ can be decoded in linear-time, i.e. in a number of operations of order $O(n)$~\cite{Conway1982FastQuantDec,McKilliam2009CoxeterLattices}.
+
+%Approximate algorithms for computing the nearest point have also been studied.  A classic example is \term{Babai's nearest plane algorithm}~\citep{Babai1986}\index{Babai's nearest plane algorithm}, which requires $O(n^4)$ arithmetic operations in the worst case where $n$ is the dimension of the lattice and only $O(n^2)$ if the lattice basis is \term{Lov\'asz reduced}~\citep{Lenstra1982}\index{Lov\'asz reduced}. Recently, various approximate techniques for solving the nearest lattice point problem have been motivated by applications to MIMO communications.  An example is the \term{$K$-best algorithm}\index{K-best algorithm}~\citep{Zhan2006_K_best_sphere_decoder} that works similarly to the sequential $M$-algorithm~\citep{Anderson1984_seq_coding_alg} used in coding theory. Yet another example is the \term{fixed sphere decoder}~\citep{Jalden2009_error_prob_fixed_sphere_decoder,Barbero2008_fixed_sphere_decoder}. In this thesis we will make use of Babai's nearest plane algorithm, the sphere decoder and the $K$-best algorithm.  We will not detail the workings of these algorithms as excellent descriptions already exist in the literature cited above.
+
+
+%For each lattice point $\ybf \in \Lambda$ there exists a Voronoi cell containing those point from $\reals^n$ nearer to $\ybf$ that any other lattice point.  Due to the structure of the lattice the Voronoi cell of each lattice point is the same shape.  Denote by $\vor(\Lambda)$ the Vornoi cell of the lattice point at the origin. NEAREST POINT PROBLEM.
+\newcommand{\calX}{\mathcal X}
+Lattices can be used to construct \emph{block codes}.  A block code $\calX$ of length $n$ is a finite set of vectors from $\reals^n$.  Each vector in $\calX$ is called a \emph{codeword}.  The number of codewords is denoted by $\abs{\calX}$.  %If each codeword is transmitted with equal probability then the rate of the code is $R = B\frac{1}{n}\log_2\abs{\calX}$ where $B$ is the symbol rate or bandwidth, i.e. the rate in Hertz at which the elements (or symbols) in a codeword are transmitted.  
+The average power of the code is given by $P = \frac{1}{\abs{\calX}}\sum_{\xbf \in \calX}\|\xbf\|^2$.  In the additive white Gaussian channel the received signal takes the form
+\[
+\ybf = \xbf_0 + \wbf
+\]
+where $\ybf \in \reals^n$, $\xbf_0 \in \calX$ and $\wbf$ is a vector of independent and identically distributed Gaussian random variables with variance $\sigma^2$.  If the receiver employs maximum likelihood decoding then the estimator of $\xbf$ given $\ybf$ at the receiver is
+\begin{equation}\label{eq:mldecoder}
+\hat{\xbf} = \min_{\xbf \in \calX} \| \ybf - \xbf \|^2.
+\end{equation}
+That is, the receiver computes the codeword in $\calX$ nearest in Euclidean distance to the received signal $\ybf$.  Assuming that each codeword is transmitted with equal probability then the probability of correct decoding is
+\[
+\sum_{\xbf \in \calX} \frac{\prob( \hat{\xbf} = \xbf )}{\abs{\calX}}.
+\]
+The probability of error is $1 - \frac{1}{\abs{\calX}} \sum_{\xbf \in \calX} \prob( \hat{\xbf} = \xbf )$.  %The maximum possible rate of reliable communications in this channel is given by the channel capacity $B\log_2\left(1 + \frac{P}{\sigma^2}\right)$.  If the codewords are chosen uniformly randomly on a sphere of radius $\sqrt{P}$ then as $n$ gets large the rate of the code can be made arbitrarily close to the channel capacity while simultaneously the probability of error can be made arbitrarily small.  Another way of stating this is that we can choose close to  $2^{nR/B}$ codewords uniformly randomly on a sphere of radius $\sqrt{P}$ and as $n$ gets large the probability of error decreases to zero. 
+
+%A problem with randomly generated codes and maximum likelihood decoding is that there are no computationally efficient methods for encoding and decoding.  For encoding the transmitter must store a list of size $\abs{\calX} \approx 2^{nR/B}$ and for decoding the receiver must compute $\hat{\xbf}$ requiring a search over all $\abs{\calX} \approx 2^{nR/B}$ codewords.  As $n$ gets large this becomes infeasible.  To avoid this computational complexity it is preferable for a code to have some type of `structure' that is exploitable for efficient encoding and decoding.  One way of enforcing structure is to choose codewords from a lattice.  The idea being that encoding and decoding can now be performed efficiently by \emph{lattice decoding}, i.e. by finding a nearest point in a lattice.
+
+A \emph{lattice code} is a block code with codewords given by a finite subset of points from some lattice $\Lambda$ in $\reals^n$.  There are an infinity of ways to choose a finite subset from a lattice, but common approaches make use of a bounded subset of $\reals^n$ called a \emph{shaping region}.  The lattice points in $\Lambda$ that intersect the shaping region make up the code.  That is, if $S \subset \reals^n$ is a shaping region then our codewords are given by
+\[
+\calX = S \cap \Lambda.
+\]
+Possible choices of shaping region are $n$-dimensional spheres, spherical shells, hypercubes or the Voronoi cell of a \emph{sublattice} of $\Lambda$~\cite{Buda1989_some_opt_codes_structure,Erex2004_lattice_decoding,Conway1983VoronoiCodes}. A consequence of the finiteness of a lattice code is that the maximum likelihood decoder~\eqref{eq:mldecoder} is \emph{not} equivalent to lattice decoding.  Computing a nearest lattice point will not in general return a lattice point from the code (the decoded lattice point might lie outside the shaping region).  A question that remained open for some time was whether lattice codes employing lattice decoding could achieve channel capacity.  This question was answered in the affirmative by Erez and Zamir~\cite{Erex2004_lattice_decoding}.
+
+Let $\calX$ be a lattice code constructed from a lattice $\Lambda$.  Assuming that each codeword $\xbf \in \calX$ has an equal probability of being transmitted and that the receiver employs lattice decoding, then the average probability of correct decoding in the AWGN channel is\footnote{In order to approach capacity Erez and Zamir~\cite{Erex2004_lattice_decoding} employ a uniform dither and also a minimum mean square error scaling parameter $\alpha$ (the so called \emph{modulo-lattice additive noise channel}).  A result of this is that that observed noise distribution is no longer Gaussian.  However, for large signal to noise ratio $\alpha \approx 1$ and the observed noise is very close to Gaussian.  In this case~\eqref{eq:PEgaussian} is a reasonable approximation.}
+\begin{align}
+P_C &= \frac{1}{\abs{\calX}} \sum_{\cbf\in \calX} \prob( \xbf + \wbf \in \vor(\Lambda) + \xbf )  \\
+&= \prob(\xbf \in \vor(\Lambda) ) \nonumber \\
+&=   \frac{1}{(\sqrt{2\pi}\sigma)^n} \int_{\vor(\Lambda)} e^{-\|\xbf\|^2 / 2\sigma^2 } d\xbf. \label{eq:PEgaussian}
+\end{align}
+The probability of error is $P_E = 1 - P_C$.  By expanding $e^x = 1  + x + \frac{x^2}{2} + \dots$ we obtain
+\begin{align}
+P_C &= \frac{1}{(\sqrt{2\pi}\sigma)^n}\int_{\vor(\Lambda)} 1 - \frac{\|\xbf\|^2}{2\sigma^2} + \frac{\left(\|\xbf\|^2\right)^2}{ 4\sigma^42!} - \dots d\xbf \nonumber \\
+&= \frac{1}{(\sqrt{2\pi}\sigma)^n} \sum_{m=0}^\infty \frac{(-1)^m}{2^m\sigma^{2m}m!} \int_{\vor(\Lambda)} \left(\|\xbf\|^2\right)^m d\xbf.  \label{eq:summomentproberror}
+\end{align}
+So, to obtain arbitrarily accurate approximations to the probability of error it is enough to know the values of $\int_{\vor(\Lambda)} \left(\|\xbf\|^2\right)^m d\xbf$ for $m=1,2\dots,M$ for some sufficiently large $M$.  
+
+In this paper we focus on lattice codes constructed from the family of lattices called $A_n$. We will discover expressions for
+\[
+ C_n(m) = \int_{\vor(A_n)} \left(\|\xbf\|^2\right)^m d\xbf.
+\]
+These can be summed to give arbitrarily accurate approximations for the probability of error.  In this paper we call $C_n(m)$ the $m$th \emph{moment} of the lattice $A_n$. 
+
+% We now briefly describe our setting for coding using lattices.  Let $C$ denote an arbitrary set of codewords, each codeword a vector from $\reals^n$.  The rate of this code is $\log_2(\abs{C})$ bits per dimension (or symbol) where $\abs{C}$ is the number of codewords in $C$.  To each codeword $\ybf \in C$ there exists a Voronoi cell, or nearest neighbour region, containing all those points from $\reals^n$ nearer in Euclidean distance to $\ybf$ than any other codeword in $C$.  Denote by ${\mathcal D}(\ybf)$ the Vornoi cell of $\ybf$.  The average probability of correct decoding in the Gaussian channel is
+% \[
+% P_E(C) = \frac{1}{(\sqrt{2\pi}\sigma)^n \abs{C}} \sum_{\ybf \in C} \int_{{\mathcal D}(\ybf)} e^{\|\xbf - \ybf\|^2 / 2\sigma^2 } d\xbf.
+% \] 
+% When $n$ is large it is known that randomly generated codes approach channel capacity.  However, random codes are not practical when $n$ is large as decoding and encoding operations require enumeration over each codeword in $C$ and for a fixed rate the number of codewords grow exponentially in $n$.  For this reason, code with structure are prefered.  
+
+% One way to prescribe structure is to take codewords from a \emph{lattice}.   
+
+% A code is constructed from a lattice $\Lambda$ by taking a finite subset of lattice points.  Typically this is achieved using a region of finite volume $R \subset \reals^n$, called the \emph{shaping region}.  The codewords are all those lattice points that intersect with $R$, i.e. our code is $C = \Lambda \cap R$.  An uncountable number of shaping regions are possible  but spheres, sphereical shells and hypercubes are common.  Another possiblity is to choose as $R$, the Voronoi cell $\vor{\Lambda'}$ where $\Lambda'$ is a sublattice of $\Lambda$.  A specific advantage of this approach is that encoding and decoding can be efficiently performed if there is a fast algorithm for computing a nearest point in $\Lambda$~\cite{Conway1982FastQuantDec}.
+
+% A caveat with this construction is that the Voronoi cells of the codewords in $C$ are no longer nessecarily similar to the Voronoi cell of $\Lambda$.  This is a results of taking only a finite set of lattice points.  Infact some of the codewords will have unbounded Voronoi cells.  The problem is that now
+
+% Given a lattice code $C = \Lambda \cap R$ and a recieved codeword $\ybf = \xbf + \wbf$ where $\xbf \in C$ and $\wbf$ is a vector of independent and identically distributioned Gaussian random variables with variance $\sigma^2$, the maximum likelihood decoder returns the lattice point in $C$ that is nearest to $\ybf$ in Euclidean distance.  A difficult 
+
+
+
+\section{The main result}\label{sec:main-result}
+
+We now state our main result.  The $m$th moment $C_n(m)$ satisfies
+\begin{equation}\label{eq:theCmformula}
+\frac{C_n(m)}{m!} = \frac{n\sqrt{n+1}}{n+2m}\sum_{k=0}^{m}\sum_{a =0}^{k}\sum_{b=0}^{k-a} \frac{G(n-1,a,2k - 2a - b)}{(-1)^{k-a}H(n,m,k,a,b)} 
+\end{equation}
+where the function
+\[
+H(n,m,k,a,b) = \frac{(n+1)^{m-a}a!(m-k)!b! (k-a-b)!}{2^{b} n^{m-k}},
+\]
+and the function $G(n,c,d)$ satisfies the recursion
+\begin{equation}\label{eq:theGrecursion}
+G(n,c,d) = \sum_{c'=0}^{c} \sum_{d'=0}^{d} \binom{c}{c'}\binom{d}{d'} \frac{G(n-1,c-c',d-d')}{2c'+d'+1}
+\end{equation}
+with the initial conditions
+\[
+G(1,c,d) = \frac{1}{2c+d+1} \qquad \text{and} \qquad G(n,0,0) = 1.
+\]
+For fixed $m$ it is possible to solve this recursion in $n$ and obtain formula for the $C_m(n)$ in terms of $n$.  The first four such formula are:
+\begin{align*}
+C_0(n) &= \sqrt{n+1} \qquad \text{the volume of } \vor(A_n),\\
+C_1(n) &= \frac{n(n+3)}{12\sqrt{n+1}} \qquad \text{the second moment of $\vor{A_n}$~ \cite[p. 462]{SPLAG}}, \\
+C_2(n) &=  \frac{50 n + 55 n^2 + 34 n^3 + 5 n^4}{720 (1 + n)^{3/2}}, \\
+C_3(n) &= \frac{1960 n + 2142 n^2 + 2681 n^3 + 1423 n^4 + 399 n^5 + 35 n^6}{60480 (1 + n)^{5/2}}.
+%C_4(n) &= \frac{93744 n + 34356 n^2 + 112172 n^3 + 89343 n^4 + 53224 n^5 + 17246 n^6 + 2940 n^7 + 175 n^8}{3628800 (1 + n)^{7/2}}.
+\end{align*}
+We have tabulated these formula for $m=0$ to $40$.  We derive these results in Section~\ref{sec:powers-eucl-norm}.  First we need some properties of the lattice $A_n$.
+
+\section{The lattice $A_n$}\label{sec:lattice-a_n}
+Let $H$ be the hyperplane orthogonal to the all ones vector of length $n+1$, denoted by $\onebf$, that is
+\[
+\onebf = \left[ \begin{array}{cccc} 1 & 1 & \cdots & 1 \end{array} \right]^\prime,
+\]
+where superscript $^\prime$ indicates the transpose.  Any vector in $H$ has the property that the sum (and therefore the mean) of its elements is zero and for this reason $H$ is often referred to as the \emph{zero-sum plane} or the \emph{zero-mean plane}.  
+The lattice $A_n$ is the intersection of the integer lattice $\ints^{n+1}$ with $H$, that is
+\begin{equation} 
+\label{eq:An_sub_Zn}
+  A_{n} = \ints^{n+1} \cap H = \big\{ \xbf \in \ints^{n+1} \mid \xbf\cdot\onebf = 0  \big\}.
+\end{equation}
+Equivalently, $A_n$ consists of all of those points in $\ints^{n+1}$ with coordinate sum equal to zero.
+% A generator matrix for $A_n$ is the $(n+1)\times n$ matrix
+% \[
+% \left[ \begin{array}{rrrrrrr}
+% 1 & 0 & 0 &  \cdots & 0 & 0 \\
+% -1 & 1 & 0 &  \cdots & 0 & 0 \\
+% 0 & -1 & 1 &  \cdots & 0 & 0 \\
+% 0 & 0 & -1 & \cdots & 0 & 0 \\
+% \vdots & \vdots & \vdots & \ddots & \vdots & \vdots \\
+% 0 & 0 & 0 & \cdots & -1 & 1 \\
+% 0 & 0 & 0 & \cdots & 0 & -1  \\
+% \end{array} \right].
+% \] 
+The lattice has determinant $n+1$ so the volume of the Voronoi cell $\vor(A_n)$ is $\sqrt{n+1}$.  The lattice has $n(n+1)$ minimal vectors, each of norm $2$, so the packing radius is $\frac{1}{\sqrt{2}}$~\cite[p. 108]{SPLAG}.
+
+The Voronoi cell of $A_n$ is closely related to the $n+1$ dimensional hypercube $\vor(\ints^{n+1})$ as the next theorem will show.  This result has appeared previously~\cite{McKilliam2009CoxeterLattices,McKilliam2010thesis}, but we repeat it here so that this paper is self contained.  We denote by 
+\[
+\Qbf = \Ibf - \frac{\onebf\onebf^\prime}{n+1}
+\]
+the projection matrix orthogonal to $\onebf$ (i.e. into $H$) where $\Ibf$ is the $n+1$ by $n+1$ identity matrix.  Given a set $S$ of vectors from $\reals^{n+1}$ we write $\Qbf S$  to denote the set with elements $\Qbf \sbf$ for all $\sbf \in S$, i.e. the set containing the projection of the vectors from $S$.
+  
+\begin{lemma} \label{lem:QVorZnsubsetVorAn}
+The projection of $\vor(\ints^{n+1})$ into H is a subset of $\vor(A_{n}) \cap H$.  That is,
+\[
+\Qbf\vor(\ints^{n+1}) \subseteq \vor(A_{n}).
+\]
+\end{lemma}
+\begin{IEEEproof}
+Let $\ybf \in \vor(\ints^{n+1})$.  Decompose $\ybf$ into orthogonal components so that $\ybf = \Qbf \ybf + t \onebf$ for some $t \in \reals$.  Then $\Qbf\ybf \in \Qbf\vor(\ints^{n+1})$.  Assume that $\Qbf\ybf \notin \vor(A_n)$.  Then there exists some $\xbf \in A_n$ such that
+\begin{align*}
+\|\xbf - \Qbf\ybf\|^2 < \|\zerobf - \Qbf\ybf\|^2 & \Rightarrow \|\xbf - \ybf + t\onebf\|^2 < \|\ybf - t\onebf\|^2 \\
+%& \Rightarrow \|\xbf - \ybf\|^2 + 2t(\xbf - \ybf)'\onebf + t^2\|\onebf\|^2 < \|\ybf\|^2 - 2t\ybf'\onebf + t^2\|\onebf\|^2 \\
+& \Rightarrow \|\xbf - \ybf\|^2 + 2t\xbf'\onebf < \|\ybf\|^2.
+\end{align*}
+By definition \eqref{eq:An_sub_Zn} $\xbf'\onebf = 0$ so $\|\xbf - \ybf\|^2 < \|\ybf\|^2$.  This violates that $\ybf \in \vor(\ints^{n+1})$ and hence $\Qbf\ybf \in \vor(A_n)$.\footnote{This proof can be generalised to show that for any lattice $L$ and hyperplane $P$ such that $P\cap L$ is also a lattice it is true that $p\vor(L) \subseteq \vor(L \cap P) \cap P$ where $p$ indicates the orthogonal projection into $P$~\cite[Lemma~2.1]{McKilliam2010thesis}.}
+\end{IEEEproof}
+
+\begin{theorem}  \label{thm:VorAn=QVorZn1}
+The projection of $\vor(\ints^{n+1})$ into H is equal to $H \cap \vor(A_{n})$. That is,
+\[
+H \cap \vor(A_n) = \Qbf\vor(\ints^{n+1}).
+\]
+\end{theorem}
+\begin{proof}
+The $n$-volume of $H \cap \vor(A_n)$ is given by the square root of the determinant of $A_n$, that is 
+\[
+\sqrt{\det{A_n}} = \sqrt{n + 1}.
+\]  
+From Berger~et.~al.~\cite[Theorem 1.1]{Burger1996} we find that the $n$-volume of the projected hypercube $\Qbf\vor(\ints^{n+1})$ is equal to $\sqrt{n + 1}$ also. It follows from Lemma~\ref{lem:QVorZnsubsetVorAn} that $\Qbf\vor(\ints^{n+1}) \subseteq H \cap \vor(A_n)$, so, because the volumes are the same, and because $H \cap \vor(A_n)$ and $\Qbf\vor(\ints^{n+1})$ are polytopes, we have $H \cap \vor(A_n) = \Qbf\vor(\ints^{n+1})$.
+\end{proof} 
+
+\section{Integrating a function over $\vor(A_n)$}\label{sec:integr-funct-over}
+
+Consider a function $f : \reals^{n+1} \mapsto \reals$.  We would like to be able to solve integrals of the form
+\begin{equation}\label{eq:vorfint}
+\int_{\vor(A_n)} f(\xbf) d\xbf = \int_{\Qbf\vor(\ints^{n+1})} f(\xbf) d\xbf.
+\end{equation}
+It is not immediately clear how an integral over $\vor(A_n)$ should be performed.  Consider the following simpler integral over the hypercube $\vor(\ints^{n+1})$,
+\[
+\int_{\vor(\ints^{n+1})} f(\Qbf\xbf) d\xbf.
+\]
+This integral is not equal to~\eqref{eq:vorfint} because, although $\Qbf\xbf$ is always an element of $\vor(A_n)$, the integral is not uniform over $\vor(A_n)$.  To see this, consider some $\xbf \in \vor(\ints^{n+1})$ and let $x_{\text{max}}$ be the maximum element of $\xbf$ and $x_{\text{min}}$ be the minimum element.  Then $\Qbf\xbf = \Qbf(\xbf + k \onebf)$ for all $k \in \reals$ such that $\xbf +  k \onebf \in \vor(\ints^{n+1})$, i.e. for those $k \in [-\nicefrac{1}{2} - x_{\text{min}}, \nicefrac{1}{2} - x_{\text{max}})$.  The length of this interval is $1 - x_{\text{max}} + x_{\text{min}}$ so the (one dimensional) volume of points in $\vor(\ints^{n+1})$ that, once projected orthogonally to $\onebf$, are equal to $\Qbf\xbf$ is given by 
+\[
+\|\onebf\|(1 - x_{\text{max}} + x_{\text{min}}) = \sqrt{n+1}(1 - x_{\text{max}} + x_{\text{min}}).
+\] 
+The integral~\eqref{eq:vorfint} can now be written as
+\[
+\int_{\vor(A_n)} f(\xbf) d\xbf =  \int_{\vor(\ints^{n+1})} \frac{f(\Qbf\xbf)}{\sqrt{n+1}(1 - x_{\text{max}} + x_{\text{min}})}  d\xbf.
+\]
+The primary advantage of this integral is that the bounds of are given by the hypercube $\vor(\ints^{n+1})$.
+
+Let us now restrict $f(\xbf)$ so that it depends only on the magnitude $\|\xbf\|$, for example $f(\xbf) = \|\xbf\|^{2m}$ could be a power of the Euclidean norm of $\xbf$.  Now $f(\xbf)$ is invariant to permutation of $\xbf$.  Let $\xbf$ be such that $x_1$ is the maximum element and $x_2$ is the minimum element.  Our integral is now equal to
+\[
+\frac{n (n+1)}{\sqrt{n+1}} \int^{1/2}_{-1/2} \int^{x_1}_{-1/2}  \int^{x_1}_{x_2} \cdots \int^{x_1}_{x_2} \frac{f(\Qbf\xbf)}{1 - x_{1} + x_{2}}  dx_{n+1} \, \dots \, dx_2 \, dx_1.
+\]
+The factor $n(n+1)$ arises because there are $n(n+1)$ ways to place two elements (i.e. $x_1$ and $x_2$) into $n+1$ positions.  
+
+We can make further simplifications.  Letting $t = x_1 - x_2$ and $y = x_1 + 1/2$ and changing variables gives
+\[
+n \sqrt{n+1} \int^{1}_{0} \int^{y}_{0}  \int^{y - 1/2}_{y - t - 1/2} \cdots \int^{y-1/2}_{y-t-1/2} \frac{f(\Qbf\xbf )}{1 - t}  dx_{n+1} \, \dots \, dx_3 \, dt \, dy,
+\]
+and letting $w_{i-2} = x_i - y + 1/2 + t$ for $i = 3,\dots,n+1$ gives
+\begin{equation}\label{eq:intwewilluse}
+n \sqrt{n+1} \int^{1}_{0} \int^{y}_{0}  \int^{t}_{0} \cdots \int^{t}_{0} \frac{f(\Qbf\xbf )}{1 - t}  dw_{n-1} \, \dots \, dw_1 \, dt \, dy.
+\end{equation}
+Observe that $\xbf = \wbf + (y - t - \nicefrac{1}{2})\onebf$ where $\wbf$ is the column vector $[t, 0, w_1, w_2, \dots, w_{n-1}]^\prime$.  Projecting orthogonal to $\onebf$ gives $\Qbf\xbf = \Qbf \wbf$.  Interestingly $\wbf$ does not contain $y$ so the term inside the integral does not depend on $y$.  This is the integral we will use to compute the moments of $A_n$. 
+ 
+\begin{example}\emph{\textbf{(The volume of the Voronoi cell)}
+In order to demonstrate this approach we will derive the $0$th moment (i.e. the volume) of the Voronoi cell using~(\ref{eq:intwewilluse}).  Setting $f(\Qbf\wbf) = \|\Qbf\wbf\|^0 = 1$ we obtain,
+\begin{align*}
+C_0 &= n\sqrt{n+1} \int^{1}_{0} \int^{y}_{0} \int^{t}_{0} \cdots \int^{t}_{0} \frac{1}{1 - t} \,dw_{n-1}\dots dw_1 \, dt  \, dy\\
+ &= n\sqrt{n+1} \int^{y}_{0} \int_{0}^{1}  \frac{t^{n-1}}{1 - t} \, dt  \, dy. \\
+&= n\sqrt{n+1}  \int^{1}_{0} \beta(y, n, 0) \, dy = \sqrt{n+1}.
+\end{align*}
+as required.  Here $\beta(x,a,b) =  \int_{0}^{x}  t^{a-1}(1 - t)^{b-1} \,dt$ is the incomplete beta function~\cite{Pearson_tables_of_beta_functions} and we have used the identity $\int^{1}_{0} \beta(y, n, 0) \, dy = \frac{1}{n}$.}
+\end{example}
+
+% \subsection{The second moment of the Voronoi cell}
+
+% Setting 
+% \begin{align*}
+% f(\Qbf\wbf) = \|\Qbf\wbf\|^2  &= \|\wbf\|^2 - \frac{(\wbf^\prime \onebf)^2}{n+1} \\
+% &= t^2 + \sum_{i=1}^{n+1}w_i^2 - \frac{1}{n+1}\left( t + \sum_{i=1}^{n+1}w_i \right)^2 \\
+% &= t^2 + \sum_{i=1}^{n+1}w_i^2 - \frac{1}{n+1}\left( t^2 + 2 t \sum_{i=1}^{n+1}w_i + \left(\sum_{i=1}^{n+1}w_i \right)^2 \right)\\
+% &= c + d 
+% \end{align*}
+% where
+% \[
+% c = \frac{n}{n+1} t^2,\qquad \text{and} \qquad d = A - \frac{2t}{n+1}B - \frac{1}{n+1}B^2,
+% \]
+% where $A = \sum_{i=1}^{n-1}w_i^2$ and $B = \sum_{i=1}^{n-1}w_i$.  Now the second moment is given by
+% \[
+% C_1 = n\sqrt{n+1} \int^{1}_{0} \int^{y}_{0} \int^{t}_{0} \cdots \int^{t}_{0} \frac{c + d}{1 - t} \,dw_{n-1}\dots dw_1 \, dt  \, dy.
+% \]
+% Integrating $A$, $B$ and $B^2$ over the $w_1,\dots,w_{n-1}$ gives,
+% \begin{align*}
+% &\int^{t}_{0} \cdots \int^{t}_{0} A \,dw_{n-1}\dots dw_1 = \frac{n-1}{3}t^{n+1},\\
+% &\int^{t}_{0} \cdots \int^{t}_{0} B \,dw_{n-1}\dots dw_1 = \frac{n-1}{2}t^n, \,\,\,\, \text{and} \\
+% &\int^{t}_{0} \cdots \int^{t}_{0} B^2 \,dw_{n-1}\dots dw_1 = \frac{(n-1)(3n - 2)}{12} t^{n+1}
+% \end{align*}
+% So integrating $d$ over the $w_1,\dots,w_{n-1}$ gives,
+% \[
+% \int^{t}_{0} \cdots \int^{t}_{0} d \,dw_{n-1}\dots dw_1 =  \frac{7(n-1)(n-2)}{12(n+1)}t^{n+1}.
+% \]
+% Also,
+% \[
+% \int^{t}_{0} \cdots \int^{t}_{0} c \,dw_{n-1}\dots dw_1 =  \frac{n}{n+1}t^{n+1}.
+% \]
+% So,
+% \begin{align*}
+% C_1 &=  \sqrt{n+1}\frac{n(12n + 7(n-1)(n-2))}{12(n+1)} \int^{1}_{0} \int^{y}_{0}\frac{t^{n+1}}{1 - t}  \, dt  \, dy \\
+% &= \sqrt{n+1}\frac{12n + 7(n-1)(n-2)}{12(n+1)}
+% \end{align*}
+
+%\newcommand{\calV}{\mathcal{V}}
+\section{The moments of $A_n$}\label{sec:powers-eucl-norm}
+
+We now derive expressions for the $C_n(m)$.  Setting $f(\Qbf\xbf) = \left(\|\Qbf\wbf\|^{2}\right)^m$ in~\eqref{eq:intwewilluse} we obtain, 
+\[
+\frac{C_m(n)}{n\sqrt{n+1}} = \int_0^1 \int_0^y \int_0^t \cdots \int_0^t \frac{\left(\|\Qbf\wbf\|^2\right)^m}{1 - t} \,dw_{n-1} \, \dots \, dw_1 \, dt \, dy.
+\]
+Now $\|\Qbf\wbf\|^2 = \|\wbf\|^2 - \frac{1}{n+1}(\wbf^\prime \onebf)^2$ and recalling that $\wbf = [t,0,w_1,\dots,w_{n-1}]'$ we can write
+\begin{align*}
+\|\Qbf\wbf\|^2 &= \|\wbf\|^2 - \frac{1}{n+1}(\wbf^\prime \onebf)^2 \\
+&= t^2 + \sum_{i=1}^{n+1}w_i^2 - \frac{1}{n+1}\left( t + \sum_{i=1}^{n+1}w_i \right)^2 \\
+&= t^2 + \sum_{i=1}^{n+1}w_i^2 - \frac{1}{n+1}\left( t^2 + 2 t \sum_{i=1}^{n+1}w_i + \left(\sum_{i=1}^{n+1}w_i \right)^2 \right)\\
+&= c + d, 
+\end{align*}
+say, where
+\[
+c = \left(\frac{n}{n+1} \right) t^2,\qquad \text{and} \qquad d = A - \frac{2t}{n+1}B - \frac{1}{n+1}B^2,
+\]
+and where $A = \sum_{i=1}^{n-1}w_i^2$ and $B = \sum_{i=1}^{n-1}w_i$.  Now,
+\[
+ \frac{C_m(n)}{n\sqrt{n+1}} =  \int_0^1 \int_0^y \int_0^t \cdots \int_0^t \frac{(c+d)^m}{1 - t} \,dw_{n-1} \, \dots \, dw_1 \, dt \, dy,
+\]
+and by expanding the binomial $(c+d)^m$ we get
+\[
+\frac{C_m(n)}{n\sqrt{n+1}} =  \int_0^1 \int_0^y \frac{1}{1 - t}\sum_{k=0}^{m}\binom{m}{k} c^{m-k} \int_0^t \cdots \int_0^t \, d^{k} \,dw_{n-1} \, \dots \, dw_1 \, dt \, dy.
+\]
+Expanding $d^k$ as a trinomial gives
+\begin{align*}
+d^k &= \sum_{k_1+k_2+k_3=k} \frac{k! A^{k_1} B^{2k_3 + k_2}}{k_1! k_2! k_3!} \left(\frac{-1}{n+1}\right)^{k_2+k_3}2^{k_2}t^{k_2}  \\
+&=  \sum_{a=0}^k\sum_{b=0}^{k-a} \frac{k!  A^{a} B^{2k - 2a - b}}{a! b! (k-a-b)!} \left(\frac{-1}{n+1}\right)^{k - a}2^{b}t^{b}
+\end{align*}
+where the second line follows by setting $k_1 = a$, $k_2 = b$ and $k_3 = k - a - b$.  In Appendix~\ref{sec:mult-type-integr} we show that the integral of $A^{a} B^{2k - 2a - b}$ over $w_1,\dots w_{n-1}$ is
+\[
+\int_0^t \cdots \int_0^t A^{a} B^{2k-2a-b} dw_{n-1} \, \dots \, dw_1 = t^{n-1+2k - b} G(n-1,a,2k - 2a - b).
+\]
+where $G(n,k,m)$ satisfies the recursion given by~\eqref{eq:theGrecursion}.  So, let $D$ satisfy
+\begin{align*}
+D &= t^{1 - n - 2k}\int_0^t \cdots \int_0^t d^k dw_{n-1} \, \dots \, dw_1 \\
+&= \sum_{a=0}^k\sum_{b=0}^{k-a} \frac{2^{b} k!G(n-1,a,2k - 2a - b)}{a! b! (k-a-b)!} \left(\frac{-1}{n+1}\right)^{k - a}.
+\end{align*}
+Now $c^{m-k} = \left(\frac{n}{n+1} \right)^{m-k} t^{2(m-k)}$ and
+\begin{align*}
+\frac{C_m(n)}{n\sqrt{n+1}} &= \sum_{k=0}^{m} \binom{m}{k} \left(\frac{n}{n+1} \right)^{m-k} D \int_0^1 \int_0^y \frac{t^{n - 1 + 2m}}{1 - t} \, dt \, dy. \\
+&= \frac{1}{n+2m} \sum_{k=0}^{m} \binom{m}{k} \left(\frac{n}{n+1} \right)^{m-k} D.
+\end{align*}
+This expression is equivalent to that from~(\ref{eq:theCmformula}).
+
+
+\section{Results and simulations}\label{sec:results-simulations}
+
+We now plot the probability of coding error versus signal to noise ratio (SNR) for the lattices $A_1, A_2, A_3$ and $A_4$.  We assume that codes are constructed from these lattices using a \emph{Voronoi constellation}~\cite{Conway1983VoronoiCodes} of size $2^n$.  This corresponds to a rate of $1$ bit per dimension (or symbol).  The shaping region of these constellations is $2\vor(A_n)$, i.e. the Voronoi cell of $A_n$ scaled by a factor of $2$.  The average power of these constellations can be approximated by four times the second moment $4C_1(m)$.  This approximation is conservative as Voronoi constellations can have average power smaller than the second moment of the shaping region~\cite{Conway1983VoronoiCodes}.  The approximation becomes more accurate as the code rate and correspondingly the volume of the shaping region grows.  %In proving that lattice codes using lattice decoding can achieve capacity Erez and Zamir~\cite{Erex2004_lattice_decoding} employ a common dither between transmitter and receiver. This is to ensure that the average power is \emph{exactly} the second moment of the shaping region.  For this reason we think that this approximation is valid.  
+The SNR is then given by
+\[
+\text{SNR} = \frac{4C_1(n)}{n \sigma^2} = \frac{n+3}{3\sqrt{n+1}\sigma^2}
+\]   
+where $\sigma^2$ is the noise variance.  %As we have assumed that 1 bit is transmitted per symbol the SNR at channel capacity is equal to one.
+
+Figure~\ref{fig:peplots} shows the `exact' probability of error (correct to 16 decimal places) computed using the moments $C_n(m)$ and~\eqref{eq:summomentproberror} (solid line).  The number of moments needed to ensure a certain number of decimal places accuracy depends on $n$ and also on the noise variance $\sigma^2$.  At most 196 moments where needed for Figure~\ref{fig:peplots}.  We also display the probability of error computed approximately by Monte-Carlo simulation (dots).  %We have used the fast nearest point algorithm for $A_n$ described in~\cite{McKilliam2009CoxeterLattices} and~\cite[p. 448]{SPLAG}.  
+The simulations are iterated until 500 error events occur.
+
+We have also plotted approximations for the probability of error for codes constructed from the 8-dimensional $E_8$ lattice and the 24-dimensional Leech lattice $\Lambda_{24}$.  The approximation are made in the usual way by applying the union bound to the minimal vectors of the lattice~\cite[p.~71]{SPLAG}.  The $E_8$ lattice has 240 minimal vectors of length $\sqrt{2}$.  The packing radius of $E_8$ is therefore $\rho = \sqrt{2}/2$.  By the union bound the probability of error satisfies 
+\newcommand{\erfc}{\operatorname{erfc}}
+\newcommand{\erf}{\operatorname{erf}}
+\[
+P_E \leq 240\erfc\left( \frac{\rho}{\sqrt{2}\sigma} \right) = 240\erfc\left(\frac{1}{2\sigma}\right)
+\]
+where $\erfc(x) = 1 - \erf(x)$ is the complementary error function.  The second moment of this representation of $E_8$ is $\frac{929}{1620}$ so SNR is related to $\sigma^2$ by $\text{SNR} = \frac{929}{3240\sigma^2}$.
+
+For $\Lambda_{24}$ there are $196560$ minimal vectors each of length $2$.  The packing radius is $\rho = 1$.  The union bound on the probability of error is
+\[
+P_E \leq 196560\erfc\left( \frac{\rho}{\sqrt{2}\sigma} \right) = 196560\erfc\left(\frac{1}{\sqrt{2}\sigma}\right).
+\]
+The second moment of this representation of $\Lambda_{24}$ is approximately $24 \times 0.065771$.  This was computed numerically by Conway and Sloane~\cite[p. 61]{SPLAG}.  The relationship between SNR and $\sigma^2$ is $\text{SNR} = 4 \times 0.065771 \sigma^{-2}$.
+
+\begin{figure*}[tp]
+	\centering 
+		\includegraphics{plots/peplots-1.mps}
+		\caption{The probability of error versus SNR for $A_1 \simeq \ints$, $A_2$, $A_3\simeq D_3$, $A_4$, $E_8$ and the Leech lattice $\Lambda_{24}$.}
+		\label{fig:peplots}
+\end{figure*}
+
+
+\section{Conclusion}
+
+Recursive formulae for the moments of the Voronoi cell of the lattice $A_n$ were found.  These enable accurate prediction of the performance of codes constructed from $A_n$ when \emph{lattice decoding} is used.  In two dimensions $A_2$ is the hexagonal lattice and in three dimensions $A_3$ is the face-centered cubic lattice and our results include codes constructed using these packings as a special case.  The lattice $A_n$ does not produce good codes in large dimension, but we are hopeful that the techniques developed here can be applied to other lattices.  In particular similar techniques might apply to the family Coxeter lattices, which contains the root lattice $E_8$.  
+
+
+\appendix
+
+
+\subsection{A multinomial type integral over a hypercube}\label{sec:mult-type-integr}
+
+We need to evaluate integrals of the form
+\[
+F(n,c,d) = \int^{t}_{0} \cdots \int^{t}_{0} \left(\sum_{j=1}^{n} x_j^2\right)^c \left( \sum_{i=1}^{n} x_i \right)^d \,dx_1\cdots dx_{n}.
+ \]
+We shall find a recursion describing this integral.  Write
+\[
+F(n,c,d) = \int^t_0 \cdots \int^t_0 \left(x_n^2 + \sum_{j=1}^{n-1} x_j^2\right)^c \left( x_n + \sum_{i=1}^{n-1} x_i \right)^d \,dx_1\cdots dx_n.
+\]
+Expanding the two binomials gives
+\begin{align*}
+F(n,c,d) &=  \int^t_0 \cdots \int^t_0 \sum_{c'=0}^{c} \binom{c}{c'} x_n^{2c'} \left(\sum_{j=1}^{n-1} x_j^2\right)^{c-c'}  \sum_{d'=0}^{d}\binom{d}{d'} x_n^{d'} \left(\sum_{i=1}^{n-1} x_i \right)^{d-d'} \,dx_1\cdots dx_{n} \\
+&=  \sum_{c'=0}^{c} \sum_{d'=0}^d \int^t_0 \cdots \int^t_0 \binom{c}{c'} \binom{d}{d'} x_n^{2c'+d'} \left(\sum_{j=1}^{n-1} x_j^2\right)^{c-c'} \left(\sum_{i=1}^{n-1} x_i \right)^{d-d'} \,dx_1\cdots dx_{n}. 
+\end{align*}
+Integrating the $x_n$ term gives
+\[
+F(n,c,d) = \sum_{c'=0}^{c} \sum_{d'=0}^{d} \binom{c}{c'}\binom{d}{d'} \frac{t^{2c'+d'+1}}{2c'+d'+1} \int^t_0 \cdots \int^t_0 \left(\sum_{j=1}^{n-1}x_j^2\right)^{c-c'}\left(\sum_{i=1}^{n-1} x_i \right)^{d-d'} \,dx_1\cdots dx_{n-1}.
+\]
+Note that
+\[
+F(n-1,c-c',d-d')  = \int^t_0 \cdots \int^t_0 \left(\sum_{j=1}^{n-1}x_j^2\right)^{c-c'}\left(\sum_{i=1}^{n-1} x_i \right)^{d-d'} \,dx_1\cdots dx_{n-1}.
+\]
+So $F(n,c,d)$ satisfies the recursion
+\[
+F(n,c,d) = \sum_{c'=0}^{c} \sum_{d'=0}^{d} \binom{c}{c'}\binom{d}{d'} \frac{t^{2c'+d'}}{2c'+d'+1}F(n-1,c-c',d-d')
+\]
+with the initial conditions
+\[
+F(1,c,d) = \frac{t^{2c+d+1}}{2c+d+1} \qquad \text{and} \qquad F(n,0,0) = t^n.
+\]
+The $F(n,c,d)$ can be written as $t^{n+2c+d}G(n,c,d)$ where $G(n,c,d)$ is rational.  To see this write
+\begin{align*}
+F(n,c,d) &=  \sum_{c'=0}^{c} \sum_{d'=0}^{d} \binom{c}{c'}\binom{d}{d'} \frac{t^{2c'+d'+1}}{2c'+d'+1}t^{n-1+2(c-c')+d-d'}G(n-1,c-c',d-d') \\
+&=  t^{n+2c+d}\sum_{c'=0}^{c} \sum_{d'=0}^{d} \binom{c}{c'}\binom{d}{d'} \frac{G(n-1,c-c',d-d')}{2c'+d'+1} \\
+&=  t^{n+2c+d}G(n,c,d).
+\end{align*}
+Now $G(n,c,d)$ is the rational number satisfying the recursion
+\[
+G(n,c,d) = \sum_{c'=0}^{c} \sum_{d'=0}^{d} \binom{c}{c'}\binom{d}{d'} \frac{G(n-1,c-c',d-d')}{2c'+d'+1}
+\]
+with the initial conditions
+\[
+G(1,c,d) = \frac{1}{2c+d+1} \qquad \text{and} \qquad G(n,0,0) = 1.
+\]
+
+\subsection{Solving this recursion for fixed $d$ and $c$}\label{sec:solv-this-recurs}
+\newcommand{\calG}{\mathcal G}
+
+For fixed $d$ and $c$ this recursion can be solved explicitly.  Write
+\[
+G(n,c,d) = G(n-1,c,d) + \sum_{ (c',d') \neq (0,0)} \binom{c}{c'}\binom{d}{d'} \frac{G(n-1,c-c',d-d')}{2c'+d'+1}
+\]
+where the sum $\sum_{ (c',d') \neq (0,0)}$ is over all $0 \leq c' \leq c$ and $0 \leq d' \leq d$ except when both $d$ and $c$ are zero.  Denote by $\calG(z,c,d)$ the $z$-transform of $G(n,c,d)$.  Taking the $z$-transform of both sides in the equation above gives
+\[
+\calG(z,c,d) = \frac{z^{-1}}{1-z^{-1}} \sum_{ (c',d') \neq (0,0)} \binom{c}{c'}\binom{d}{d'} \frac{\calG(z,c-c',d-d')}{2c'+d'+1}.
+\]
+So the $z$-transform $\calG(z,c,d)$ satisfies this recursive equation.  The initial condition is $\calG(z,0,0) = \frac{z^{-1}}{1 - z^{-1}}$.  By inverting this $z$-transform and using the resultant expressions in~\eqref{eq:theCmformula} we obtain formulae in $n$ for the moment $C_n(m)$.  This procedure was used to generate the formula described in Section~\ref{sec:main-result}.
+
+
+
+% \section{Conclusion}
+% \begin{itemize}
+% \item We can use these techniques to compute other things about the Voronoi cell, i.e. the average $L_p$ norms.
+% \item Not restricted to Gaussian noise.  Any noise pdf that can be described by the moments will work.
+% \item Can other lattices be done?
+% \end{itemize}
+
+\small
+\bibliography{../bib/bib}
+
+
+
+
+% \section{Notable references}
+% \begin{itemize}
+% \item Conway and Sloane compute the second moment of all the root lattices and there duals~\cite{Conway1982VoronoiRegions}.  This is really \emph{the} paper on this topic.  The approach is to break the Voronoi cells into simplicies and compute the second moment of the simplicies. 
+
+% \begin{quotation}
+% In the second application, the same Euclidean code
+% $y_1,\dots ,y_n$ is used as a code for the Gaussian channel. Now
+% the Voronoi regions are the decoding regions: all points $x$
+% in the interior of $V(y_i)$ are decoded as $y_i$. If the codewords
+% are equally likely and all the Voronoi regions $V(y_i)$ are
+% congruent to a polytope P, the probability of correct decoding is proportional to
+% \[
+% \int_P e^{x^\prime x} dx.
+% \]
+% The description of the Voronoi regions given in Section III
+% thus makes it possible to calculate this probability exactly
+% for many Euclidean codes. These results will be described
+% elsewhere.
+% \end{quotation}
+
+% But it doesn't appear to be published elsewhere.  I'm not really sure how you would go about doing it either, because I think integrating $e^{x^\prime x}$ over an arbitray simplex is hard.
+
+% \item Baldoni \emph{et. al.}~\cite{Baldoni_how_to_integrate_poly_over_simplex_2008} claim to show that in general integrating a polynomial under a simplex is NP-hard.  However, if you fix the degree of the polynomial then it can be done in polynomial time.
+
+% \end{itemize}
+
+
+
+\end{document}

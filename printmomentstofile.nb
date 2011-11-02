@@ -1,0 +1,179 @@
+(* Content-type: application/mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 7.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       145,          7]
+NotebookDataLength[      4921,        170]
+NotebookOptionsPosition[      4523,        152]
+NotebookOutlinePosition[      4861,        167]
+CellTagsIndexPosition[      4818,        164]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"p", "[", "n_", "]"}], " ", ":=", 
+  RowBox[{"N", "[", 
+   RowBox[{
+    FractionBox["1", 
+     RowBox[{"101376", " ", 
+      SuperscriptBox[
+       RowBox[{"(", 
+        RowBox[{"1", "+", "n"}], ")"}], "9"]}]], "n", " ", 
+    RowBox[{"(", 
+     RowBox[{"11", "+", "n"}], ")"}], " ", 
+    RowBox[{"(", 
+     RowBox[{"768", "+", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "n"}], ")"}], " ", "n", " ", 
+       RowBox[{"(", 
+        RowBox[{"3056", "+", 
+         RowBox[{"n", " ", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"-", "1100"}], "+", 
+            RowBox[{"n", " ", 
+             RowBox[{"(", 
+              RowBox[{"152", "+", 
+               RowBox[{"3", " ", "n", " ", 
+                RowBox[{"(", 
+                 RowBox[{"693", "+", 
+                  RowBox[{"n", " ", 
+                   RowBox[{"(", 
+                    RowBox[{"333", "+", 
+                    RowBox[{"n", " ", 
+                    RowBox[{"(", 
+                    RowBox[{"55", "+", 
+                    RowBox[{"3", " ", "n"}]}], ")"}]}]}], ")"}]}]}], 
+                 ")"}]}]}], ")"}]}]}], ")"}]}]}], ")"}]}]}], ")"}]}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"str", " ", "=", " ", 
+  RowBox[{
+  "OpenWrite", "[", 
+   "\"\</home/harprobey/Software/pubtex/quantisingandcodingwithAn/plots/m10\>\
+\"", "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"Do", "[", 
+  RowBox[{
+   RowBox[{"WriteString", "[", 
+    RowBox[{"str", ",", " ", 
+     RowBox[{
+      RowBox[{"ToString", "[", "n", "]"}], " ", "<>", " ", "\"\<\\t\>\"", " ",
+       "<>", " ", 
+      RowBox[{"ToString", "[", 
+       RowBox[{"p", "[", "n", "]"}], "]"}], " ", "<>", " ", "\"\<\\n\>\""}]}],
+     "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"n", ",", "40"}], "}"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Close", "[", "str", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"FilePrint", "[", "%", "]"}]}], "Input",
+ CellChangeTimes->{{3.513990059784589*^9, 3.513990068970608*^9}, {
+  3.513990184175483*^9, 3.513990189341326*^9}, {3.513990220402586*^9, 
+  3.513990220903152*^9}, {3.513990258976334*^9, 3.513990286960592*^9}, {
+  3.513990342491159*^9, 3.513990351412302*^9}, {3.513990543596025*^9, 
+  3.513990601290825*^9}, {3.513991614066859*^9, 3.51399161821592*^9}, {
+  3.513992148515643*^9, 3.513992160748414*^9}, {3.513993050955975*^9, 
+  3.51399311923594*^9}}],
+
+Cell[BoxData[
+ RowBox[{"OutputStream", "[", 
+  RowBox[{"\<\"/home/harprobey/Software/pubtex/quantisingandcodingwithAn/\
+plots/m10\"\>", ",", "30"}], "]"}]], "Output",
+ CellChangeTimes->{
+  3.513990202534166*^9, {3.513990261578444*^9, 3.513990287868945*^9}, 
+   3.513990353570493*^9, {3.513990581810139*^9, 3.513990603269956*^9}, {
+   3.513993075964737*^9, 3.513993120615822*^9}}],
+
+Cell[BoxData["\<\"/home/harprobey/Software/pubtex/quantisingandcodingwithAn/\
+plots/m10\"\>"], "Output",
+ CellChangeTimes->{
+  3.513990202534166*^9, {3.513990261578444*^9, 3.513990287868945*^9}, 
+   3.513990353570493*^9, {3.513990581810139*^9, 3.513990603269956*^9}, {
+   3.513993075964737*^9, 3.513993120661925*^9}}],
+
+Cell["\<\
+1\t0.000177557
+2\t0.00105075
+3\t0.00175389
+4\t0.00216646
+5\t0.00241478
+6\t0.00257962
+7\t0.00270173
+8\t0.0028015
+9\t0.0028894
+10\t0.00297102
+11\t0.00304941
+12\t0.00312628
+13\t0.00320259
+14\t0.0032789
+15\t0.00335552
+16\t0.00343261
+17\t0.00351026
+18\t0.0035885
+19\t0.00366732
+20\t0.00374672
+21\t0.00382666
+22\t0.00390712
+23\t0.00398806
+24\t0.00406945
+25\t0.00415127
+26\t0.00423348
+27\t0.00431604
+28\t0.00439895
+29\t0.00448217
+30\t0.00456568
+31\t0.00464946
+32\t0.00473349
+33\t0.00481775
+34\t0.00490223
+35\t0.00498692
+36\t0.00507179
+37\t0.00515684
+38\t0.00524206
+39\t0.00532743
+40\t0.00541295\
+\>", "Print",
+ CellChangeTimes->{
+  3.513990202621513*^9, {3.51399026166252*^9, 3.513990287961554*^9}, 
+   3.513990353625892*^9, {3.513990581866143*^9, 3.5139906033249*^9}, {
+   3.513993076067551*^9, 3.513993120731658*^9}}]
+}, Open  ]]
+},
+WindowSize->{640, 750},
+WindowMargins->{{Automatic, 80}, {108, Automatic}},
+FrontEndVersion->"7.0 for Linux x86 (32-bit) (November 10, 2008)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[567, 22, 2413, 64, 328, "Input"],
+Cell[2983, 88, 379, 7, 72, "Output"],
+Cell[3365, 97, 317, 5, 52, "Output"],
+Cell[3685, 104, 822, 45, 687, "Print"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

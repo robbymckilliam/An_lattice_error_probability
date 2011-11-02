@@ -1,0 +1,59 @@
+\documentclass[a4paper,10pt]{article}
+
+\usepackage{../bib/mathbf-abbrevs}
+
+\input{defs}
+
+%opening
+\title{Formula for the moments of the lattice $A_n$}
+\author{Robby McKilliam}
+
+\begin{document}
+
+\newcommand{\calR}{\mathcal{R}}
+\newcommand{\calV}{\mathcal{V}}
+
+Let $\calV$ be the Voronoi cell of the lattice $A_n$.  The probability of correct decoding in Gaussian noise is
+\begin{align*}
+\prob(\sigma^2) &= \prob( \xbf \in \calV ) = \frac{1}{(\sqrt{2\pi}\sigma)^d}\int_\calV e^{-\|\xbf\|^2 / 2\sigma^2} d\xbf \\
+&= \frac{1}{(\sqrt{2\pi}\sigma)^d}\int_\calV 1 - \frac{\|\xbf\|^2}{2\sigma^2} + \frac{\left(\|\xbf\|^2\right)^2}{ 4\sigma^42!} - \frac{\left(\|\xbf\|^2\right)^3}{ 8\sigma^63!} + \dots d\xbf \\
+&= \frac{1}{(\sqrt{2\pi}\sigma)^d} \sum_{k=0}^\infty \frac{(-1)^k}{2^k\sigma^{2k}k!} \int_\calV \left(\|\xbf\|^2\right)^k
+\end{align*}
+where $\sigma^2$ is the noise variance.  The probability of error is $1 - \prob(\sigma^2)$.  So, the aim is to find expressions for
+\[
+ C_k = \int_\calV \left(\|\xbf\|^2\right)^k d\xbf
+\]
+These can be summed to give arbitrarily accurate expressions for the probability of error.  A problem could be that you need many terms to get reasonable accuracy when the dimension $n$ is large and when $\sigma^2$ is small.  You could use the covering radius of $A_n$ to get a (very conservative) bound on the number of terms required.  I expect the required number of terms to be quite large.  % Here is a bound on the number of terms
+
+% \begin{proposition}
+% Let $\epsilon > 0$ and let $d > 0$ be the smallest integer such that
+% \[
+% \sqrt{n+1}\frac{R^{2d}}{\sigma^{2d}d!} < \epsilon
+% \]
+% where
+% \[
+% R = \sqrt{ \frac{a(n+1 - a)}{n+1}  }
+% \] 
+% is the covering radius of $A_n$ and $a = \floor{(n+1)/2}$.
+% Then,
+% \[
+% \abs{\prob(\sigma^2) -  \sum_{k=0}^d \frac{(-1)^k}{\sigma^{2k}k!} C_k} < \epsilon.
+% \]
+% That is, using the first $d+1$ an accuracy of $\epsilon$. 
+% \end{proposition}
+
+% This bound is \emph{very} conservative.
+
+Unfortunately, I have computed formulae for are the $k$-norms,
+\[
+V_k = \int_\calV \|\xbf\|_k^k d\xbf = \int_\calV \left(\sum_{i=1}^{n}x_i^k\right) d\xbf.
+\]
+I computed the wrong thing!  Fortunately, the techniques I used to get the $V_k$ can be reused to get the $C_k$, but I need to work through a fair bit of new algebra and write the corresponding computer program.
+
+In the meantime, if anyone can think of an application for the $V_k$, i.e. the average of the $k$-norm over the Voronoi cell, then that would be great :)
+
+I'm still very interested in why/how the formula for the $V_k$ simplify as much as they do.  I'm hopeful that similar simplifications will occur for the $C_k$.
+
+%\bibliography{../bib/bib}
+
+\end{document}
