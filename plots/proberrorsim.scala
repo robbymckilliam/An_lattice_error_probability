@@ -6,12 +6,12 @@ import pubsim.lattices.An.AnFastSelect
 import pubsim.lattices.An.MomentComputer
 import pubsim.BigRational
 
-val ns = List(2,3,4)
+val ns = List(2,3,4,5)
 //val lattice = new AnFastSelect(n)
 val varstart = new BigRational(1,2)
 val varstep = new BigRational(9,10)
-val tope = 1e-11
-val petol = 1e-16
+val tope = 1e-12
+val petol = 1e-17
 
 print("Reading existing moment data, this might take a moment....")
 val mc = new MomentComputer("momentstore")
