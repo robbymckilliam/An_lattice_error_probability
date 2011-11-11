@@ -1,7 +1,7 @@
 %\documentclass[a4paper,10pt]{article}
-\documentclass[draftcls, onecolumn, 11pt]{IEEEtran}
-%\documentclass[journal]{../bib/IEEEtran}
-%\documentclass[correspondence,9pt]{../bib/IEEEtran}
+%\documentclass[draftcls, onecolumn, 11pt]{IEEEtran}
+\documentclass[journal]{IEEEtran}
+%\documentclass[correspondence,9pt]{IEEEtran}
 
 
 \usepackage{mathbf-abbrevs}
@@ -11,7 +11,7 @@
 \input{defs}
 
 %opening
-\title{Coding with the Lattice $A_n$}
+\title{On the error performance of the $A_n$ lattices}
 \author{Robby McKilliam, Ramanan Subramanian, Emanuele Viterbo}
 
 \begin{document}
@@ -22,11 +22,14 @@
 \maketitle
 
 \begin{abstract}
-Lattices can be used to construct block codes.  The special family of root lattices has attracted particular attention for this purpose.  We consider the root lattice $A_n$ and derive formulae for the moments of its Voronoi cell.  These formulae enable accurate prediction of the performance of codes constructed from $A_n$.  In two dimensions $A_2$ is the hexagonal lattice and in three dimensions $A_3$ is the face-centered cubic lattice.  These are the densest known sphere packings in dimensions two and three.  Our results automatically include codes constructed using these packings.
+We consider the root lattice $A_n$ and derive explicit formulae for
+the moments of its Voronoi cell.  We then show that these formulae
+enable accurate prediction of the error probability performance of
+lattice codes constructed from $A_n$.
 \end{abstract}
 
 \begin{keywords}
-Lattices, lattice decoding, root lattice, probability of error.
+Lattices, lattice decoding, root lattice, probability of error, Voronoi cell.
 \end{keywords}
 
 \section{Introduction}\label{sec:introduction}
@@ -371,6 +374,12 @@ The SNR is then given by
 \]
 where $\sigma^2$ is the noise variance.  %As we have assumed that 1 bit is transmitted per symbol the SNR at channel capacity is equal to one.
 
+Given a lattice with inradius $\rho$ and Voronoi cell having volume $V$ we define the SNR as
+\[
+\frac{n^2 \sigma^2 V_n}{(n+2)(\log(V_n) - \log(V) + n\log(\rho))}
+\]
+where $V_n$ is the volume of the $n$ dimensional hypersphere and the logarithms are base $2$.
+
 Figure~\ref{fig:peplots} shows the `exact' probability of error (correct to 16 decimal places) computed using the moments $C_n(m)$ and~\eqref{eq:summomentproberror} (solid line).  The number of moments needed to ensure a certain number of decimal places accuracy depends on $n$ and also on the noise variance $\sigma^2$.  At most 196 moments where needed for Figure~\ref{fig:peplots}.  We also display the probability of error computed approximately by Monte-Carlo simulation (dots).  %We have used the fast nearest point algorithm for $A_n$ described in~\cite{McKilliam2009CoxeterLattices} and~\cite[p. 448]{SPLAG}.
 The simulations are iterated until 500 error events occur.
 
@@ -391,7 +400,7 @@ The second moment of this representation of $\Lambda_{24}$ is approximately $24 
 \begin{figure*}[tp]
 	\centering
 		\includegraphics{plots/peplots-1.mps}
-		\caption{The probability of error versus SNR for $A_1 \simeq \ints$, $A_2$, $A_3\simeq D_3$, $A_4$, $E_8$ and the Leech lattice $\Lambda_{24}$.}
+		\caption{The probability of error versus SNR for $A_1 \simeq \ints$, $A_2$, $A_3\simeq D_3$, $A_4$, and $A_5$ and $E_8$ and the Leech lattice $\Lambda_{24}$.}
 		\label{fig:peplots}
 \end{figure*}
 

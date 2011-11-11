@@ -67,7 +67,7 @@ draw begingraph(plotwidth, plotheight);
  glabel.lft(btex $P_E$ etex, OUT) rotated 90;
  
   %setrange(whatever,"1e-6", whatever,0.05);
-  setrange(4.9,"1e-13", 22,2);
+  setrange(7,"1e-13", 22,2);
 
 %  gdraw (0, "1e-13")--(0, 2) dashed evenly; %glabel.bot(btex AWGN channel capacity etex, 0) rotated 90;
 
@@ -75,12 +75,13 @@ draw begingraph(plotwidth, plotheight);
   gdraw "moment2"; glabel.bot(btex $A_2$ etex, 1000);
   gdraw "moment3"; glabel.bot(btex $A_3$ etex, 1000);
   gdraw "moment4"; glabel.lrt(btex $A_4$ etex, 1000);
+  gdraw "moment5"; glabel.lrt(btex $A_5$ etex, 1000);
 
   gdraw "pemontecarlo1" plot(dot);
   gdraw "pemontecarlo2" plot(dot);
   gdraw "pemontecarlo3" plot(dot);
   gdraw "pemontecarlo4" plot(dot);
- % gdraw "pemontecarlo5" plot(dot);
+  gdraw "pemontecarlo5" plot(dot);
  % gdraw "pemontecarlo8" plot(dot);
 
   gdraw "pemontecarlo_E8" plot(dot); 
