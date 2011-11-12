@@ -35,14 +35,14 @@ Lattices, lattice decoding, root lattice, probability of error, Voronoi cell.
 \section{Introduction}\label{sec:introduction}
 
 
-The \emph{root lattices} $A_n$, $D_n$, $E_6$, $E_7$ and $E_8$ have attracted particular attention as structured codes for the AWGN channel~\cite{SPLAG}. The highly symmetric structure of these lattices provides the grounds for extremely efficient decoding algorithms.  In this paper we consider codes constructed from the root lattice $A_n$ and derive formulae for accurately predicting the performance of these codes.  This is achieved by deriving formulae for the \emph{moments} of the \emph{Voronoi cell} of $A_n$.  Conway and Sloane suggested this approach to compute the quantizing constants (second order moments) of the root lattices,~\cite{Conway1982VoronoiRegions}.  In this paper we extend their technique to compute the moments of any order for $A_n$.
+The \emph{root lattices} $A_n$, $D_n$, $E_6$, $E_7$ and $E_8$ have attracted particular attention as structured codes for the AWGN channel~\cite{SPLAG}. The highly symmetric structure of these lattices provides the grounds for extremely efficient decoding algorithms\cite{,Conway1982FastQuantDec,McKilliam2009CoxeterLattices,McKilliam2008}.  In this paper we consider codes constructed from the root lattice $A_n$ and derive formulae for accurately predicting the performance of these codes.  This is achieved by deriving formulae for the \emph{moments} of the \emph{Voronoi cell} of $A_n$.  Conway and Sloane suggested this approach to compute the quantizing constants (second order moments) of the root lattices,~\cite{Conway1982VoronoiRegions}.  In this paper we extend their technique to compute the moments of any order for $A_n$.
 
 In two dimensions $A_2$ is the hexagonal lattice and in three dimensions $A_3$ is the face-centered cubic lattice.  These are the densest known sphere packings in dimensions two and three and our results automatically include low dimensional codes constructed using these packings.  In general, the lattice $A_n$ does not produce asymptotically good codes in large dimensions, but does offer a coding gain in small dimensions.  For these cases, we provide an error probability expression that can be computed to any degree of accuracy at any finite signal-to-noise ratio.
 %We are hopeful that the techniques developed here may be applied to other lattices that do produce good codes.  In particular our techniques might apply to the Coxeter lattices $A_n^m$ of which the root lattice $E_8 \simeq A_8^3$ is a member~\cite{Coxeter1951,Martinet2003,McKilliam2009CoxeterLattices}.
 
 This paper is organised as follows.  In Section~\ref{sec:latt-latt-codes} we give a brief overview of lattices and codes constructed from them, i.e., \emph{lattice codes}.  We describe lattice decoding and show how the probability of coding error can be expressed in terms of the moments of the \emph{Voronoi cell} of the lattice used.  Section~\ref{sec:main-result} states the main result (without proof), which gives recursive formula to compute the moments of the Voronoi cell of $A_n$.  Section~\ref{sec:lattice-a_n} describes the lattice $A_n$ and some of its properties.  An important property for our purposes is that the Voronoi cell of $A_n$ is precisely the projection of a $n+1$-dimensional hypercube orthogonal to one of its vertices~\cite{McKilliam2009CoxeterLattices,McKilliam2010thesis}.
  %This result was previously known~\cite{McKilliam2009CoxeterLattices,McKilliam2010thesis}.  The proof is short and we give it again here so that this paper is self contained.
-In Section~\ref{sec:integr-funct-over} we use this property to show how integrals over the Voronoi cell of $A_n$ can be expressed as integrals over the $n$-dimensional hypercube. These integrals are solvable and we use them to obtain the moments of the Voronoi cell in Section~\ref{sec:powers-eucl-norm}.  In Section~\ref{sec:results-simulations} we plot the probability of error versus signal to noise ratio for codes constructed from the lattices $A_1 \simeq \ints$, $A_2$, $A_3 \simeq D_3$ and $A_4$.  We also plot the results of Monte-Carlo simulations that support our analytical results.
+In Section~\ref{sec:integr-funct-over} we use this property to show how integrals over the Voronoi cell of $A_n$ can be expressed as integrals over the $n$-dimensional hypercube. These integrals are solvable and we use them to obtain the moments of the Voronoi cell in Section~\ref{sec:powers-eucl-norm}.  In Section~\ref{sec:results-simulations} we plot the probability of error versus signal to noise ratio for codes constructed from the lattices $A_1 \simeq \ints$, $A_2$, $A_3 \simeq D_3$, $A_4$ and $A_5$.  We also plot the results of Monte-Carlo simulations that support our analytical results.
 %An advantage of the analytical results is that the probability of error can calculated at high SNR, when the probabilty of error is small.  This is in contrast to Monte-Carlo simulations that are computationally infeasible at when the probability of error is small.  We display the performance of these lattice codes
 
 
@@ -51,11 +51,11 @@ In Section~\ref{sec:integr-funct-over} we use this property to show how integral
 \section{Lattices, lattice codes, and lattice decoding} \label{sec:latt-latt-codes}
 
 
-A \term{lattice}\index{lattice}, $\Lambda$, is a countable subset of points in $\reals^m$ such that
+A \term{lattice}\index{lattice}, $\Lambda$, is a discrete subset of points in $\reals^m$ such that
 \[
    \Lambda = \{\xbf = \Bbf\ubf \mid \ubf \in \ints^n \}
  \]
- for a certain rank-$n$ $m \times n$ matrix $\Bbf$ of real elements, called the \term{generator matrix} or \term{basis matrix} or simply generator or basis. Since the generator matrix has rank $n$, the lattice $\Lambda$ is termed $n$-dimensional. If the generator is square, i.e. $m = n$, then the lattice points span $\reals^n$ and we say that the lattice is \term{full rank}. If $\Bbf$ has more rows than columns, i.e. $m > n$, then the lattice points lie in a $n$-dimensional subspace of $\reals^m$. For any lattice $\Lambda$ with an $m \times n$ generator matrix, we also define $\mathcal{S}_{\Lambda}$ to be the sub-space spanned by the columns of the generator matrix. The set of $n$-tuples of integers $\ints^n$ is a lattice (with the identity matrix as the generator) and we call this the~\emph{integer lattice}.
+ where $\Bbf \in \reals^{m \times n}$ is an $m \times n$ matrix of rank $n$, called the \term{generator matrix} or \term{basis matrix} or simply generator or basis. Since the generator matrix has rank $n$, the lattice $\Lambda$ is termed $n$-dimensional. If the generator is square, i.e. $m = n$, then the lattice points span $\reals^n$ and we say that the lattice is \term{full rank}. If $\Bbf$ has more rows than columns, i.e. $m > n$, then the lattice points lie in a $n$-dimensional subspace of $\reals^m$. For any lattice $\Lambda$ with an $m \times n$ generator matrix, we define $\mathcal{S}_{\Lambda}$ to be the sub-space spanned by the columns of the generator matrix. The set of $n$-tuples of integers $\ints^n$ is a lattice (with the identity matrix as the generator) and we call this the~\emph{integer lattice}.
 
 The (open) \term{Voronoi cell}, denoted $\vor(\Lambda)$, of a lattice $\Lambda$ is the subset of $\mathcal{S}_{\Lambda}$ containing all points nearer (in Euclidean distance) to the lattice point at the origin than any other lattice point. It can be shown that the Voronoi cell is an $n$-dimensional convex polytope that is symmetric about the origin.  It is convenient to modify this definition of the Voronoi cell slightly so that the union of translated Voronoi cells $\cup_{\xbf \in \Lambda}\vor(\Lambda) + \xbf$ is equal to  $\mathcal{S}_{\Lambda}$.  That is, the Voronoi cell tessellates space when translated by points in $\Lambda$.  To ensure this we require that if a face of $\vor(\Lambda)$ is open, then its opposing face is closed. Specifically, if $\xbf \in \vor(\Lambda)$ is on the boundary of $\vor(\Lambda)$ then $-\xbf \notin \vor(\Lambda)$.  We wont specifically define which opposing face is open and which is closed as the results that follow hold for any choice of open and closed opposing faces.
 
@@ -108,7 +108,7 @@ P_C &\leq P_C(\Lambda) = \lim_{\abs{\calX}\rightarrow \infty}
 &=   \frac{1}{(\sqrt{2\pi}\sigma)^n} \int_{\vor(\Lambda)}
 e^{-\|\xbf\|^2 / 2\sigma^2 } d\xbf. \label{eq:PEgaussian}
 \end{align}
-The probability of error is $P_E \leq 1 - P_C(\Lambda)$, where the upper bound is asymptotically tight for large constellations (the proportion of the codewords near the boundary of the shaping region becomes small).  By expanding $e^x = 1  + x + \frac{x^2}{2} + \dots$ we obtain
+The probability of error is $P_E \leq 1 - P_C(\Lambda)$, where the upper bound is asymptotically tight for large constellations (the proportion of the codewords near the boundary of the shaping region becomes small).  By expanding $e^x = 1  + x + \frac{x^2}{2} + \dots$ according to its MacLauren series we obtain
 \begin{align}
 P_C(\Lambda)  &= \frac{1}{(\sqrt{2\pi}\sigma)^n}\int_{\vor(\Lambda)} 1
 - \frac{\|\xbf\|^2}{2\sigma^2} + \frac{\left(\|\xbf\|^2\right)^2}{
@@ -200,12 +200,12 @@ The volume of the Voronoi cell $\vor(A_n)$ is $\sqrt{n+1}$~\cite[p. 108]{SPLAG}.
 
 The Voronoi cell of $A_n$ is closely related to the $n+1$ dimensional hypercube $\vor(\ints^{n+1})$ as the next theorem will show.  This result has appeared previously~\cite{McKilliam2009CoxeterLattices,McKilliam2010thesis}, but we repeat it here so that this paper is self contained.  We denote by
 \[
-\Qbf = \Ibf - \frac{\onebf\onebf^\prime}{n+1}
+\Qbf = \Ibf - \frac{\onebf\onebf^\prime}{\onebf^\prime \onebf} = \Ibf - \frac{\onebf\onebf^\prime}{n+1}
 \]
-the projection matrix orthogonal to $\onebf$ (i.e. into $H$) where $\Ibf$ is the $n+1$ by $n+1$ identity matrix.  Given a set $S$ of vectors from $\reals^{n+1}$ we write $\Qbf S$  to denote the set with elements $\Qbf \sbf$ for all $\sbf \in S$, i.e. the set containing the projection of the vectors from $S$.
+the projection matrix orthogonal to $\onebf$ (i.e. into the zero-sum plane) where $\Ibf$ is the $n+1$ by $n+1$ identity matrix.  Given a set $S$ of vectors from $\reals^{n+1}$ we write $\Qbf S$  to denote the set with elements $\Qbf \sbf$ for all $\sbf \in S$, i.e. the set containing the projection of the vectors from $S$.
 
 \begin{lemma} \label{lem:QVorZnsubsetVorAn}
-The projection of $\vor(\ints^{n+1})$ into H is a subset of $\vor(A_{n})$.  That is,
+The projection of $\vor(\ints^{n+1})$ into the zero-sum plane is a subset of $\vor(A_{n})$.  That is,
 \[
 \Qbf\vor(\ints^{n+1}) \subseteq \vor(A_{n}).
 \]
@@ -221,13 +221,17 @@ By definition \eqref{eq:An_sub_Zn} $\xbf'\onebf = 0$ so $\|\xbf - \ybf\|^2 < \|\
 \end{IEEEproof}
 
 \begin{theorem}  \label{thm:VorAn=QVorZn1}
-The projection of $\vor(\ints^{n+1})$ into H is equal to $\vor(A_{n})$. That is,
+The projection of $\vor(\ints^{n+1})$ into the zero-sum plane is equal to $\vor(A_{n})$. That is,
 \[
 \vor(A_n) = \Qbf\vor(\ints^{n+1}).
 \]
 \end{theorem}
 \begin{proof}
-The $n$-volume of $\vor(A_n)$ is given $\sqrt{n + 1}$.  From Berger~et.~al.~\cite[Theorem 1.1]{Burger1996} we find that the $n$-volume of the projected hypercube $\Qbf\vor(\ints^{n+1})$ is equal to $\sqrt{n + 1}$ also. It follows from Lemma~\ref{lem:QVorZnsubsetVorAn} that $\Qbf\vor(\ints^{n+1}) \subseteq \vor(A_n)$, so, because the volumes are the same, and because $\vor(A_n)$ and $\Qbf\vor(\ints^{n+1})$ are polytopes, we have $\vor(A_n) = \Qbf\vor(\ints^{n+1})$.
+The $n$-volume of $\vor(A_n)$ is given $\sqrt{n + 1}$.  From Berger~et.~al.~\cite[Theorem 1.1]{Burger1996} we find that the $n$-volume of the projected hypercube $\Qbf\vor(\ints^{n+1})$ is equal to 
+\[
+\sum_{i = 1}^{n+1} \frac{\dotprod{\onebf}{\ebf_i}}{\|\onebf\|} =  \sum_{i = 1}^{n+1} \frac{1}{\sqrt{n+1}} = \sqrt{n + 1}
+\] 
+also. It follows from Lemma~\ref{lem:QVorZnsubsetVorAn} that $\Qbf\vor(\ints^{n+1}) \subseteq \vor(A_n)$, so, because the volumes are the same, and because $\vor(A_n)$ and $\Qbf\vor(\ints^{n+1})$ are polytopes, we have $\vor(A_n) = \Qbf\vor(\ints^{n+1})$.
 \end{proof}
 
 \section{Integrating a function over $\vor(A_n)$}\label{sec:integr-funct-over}
@@ -264,7 +268,11 @@ and letting $w_{i-2} = x_i - y + 1/2 + t$ for $i = 3,\dots,n+1$ gives
 \begin{equation}\label{eq:intwewilluse}
 n \sqrt{n+1} \int^{1}_{0} \int^{y}_{0}  \int^{t}_{0} \cdots \int^{t}_{0} \frac{f(\Qbf\xbf )}{1 - t}  dw_{n-1} \, \dots \, dw_1 \, dt \, dy.
 \end{equation}
-Observe that $\xbf = \wbf + (y - t - \nicefrac{1}{2})\onebf$ where $\wbf$ is the column vector $[t, 0, w_1, w_2, \dots, w_{n-1}]^\prime$.  Projecting orthogonal to $\onebf$ gives $\Qbf\xbf = \Qbf \wbf$.  Interestingly $\wbf$ does not contain $y$ so the term inside the integral does not depend on $y$.  This is the integral we will use to compute the moments of $A_n$.
+Observe that $\xbf = \wbf + (y - t - \nicefrac{1}{2})\onebf$ where $\wbf$ is the column vector
+\[
+\wbf = [t, 0, w_1, w_2, \dots, w_{n-1}]^\prime.
+\]
+Projecting orthogonal to $\onebf$ gives $\Qbf\xbf = \Qbf \wbf$.  Interestingly $\wbf$ does not contain $y$ so the term inside the integral does not depend on $y$.  This is the integral we will use to compute the moments of $A_n$.
 
 \begin{example}\emph{\textbf{(The volume of the Voronoi cell)}
 In order to demonstrate this approach we will derive the $0$th moment (i.e. the volume) of the Voronoi cell using~(\ref{eq:intwewilluse}).  Setting $f(\Qbf\wbf) = \|\Qbf\wbf\|^0 = 1$ we obtain,
@@ -325,11 +333,11 @@ Now $\|\Qbf\wbf\|^2 = \|\wbf\|^2 - \frac{1}{n+1}(\wbf^\prime \onebf)^2$ and reca
 \|\Qbf\wbf\|^2 &= \|\wbf\|^2 - \frac{1}{n+1}(\wbf^\prime \onebf)^2 \\
 &= t^2 + \sum_{i=1}^{n+1}w_i^2 - \frac{1}{n+1}\left( t + \sum_{i=1}^{n+1}w_i \right)^2 \\
 &= t^2 + \sum_{i=1}^{n+1}w_i^2 - \frac{1}{n+1}\left( t^2 + 2 t \sum_{i=1}^{n+1}w_i + \left(\sum_{i=1}^{n+1}w_i \right)^2 \right)\\
-&= c + d,
+&= C + D,
 \end{align*}
 say, where
 \[
-c = \left(\frac{n}{n+1} \right) t^2,\qquad \text{and} \qquad d = A - \frac{2t}{n+1}B - \frac{1}{n+1}B^2,
+C = \left(\frac{n}{n+1} \right) t^2 \qquad \text{and} \qquad D = A - \frac{2t}{n+1}B - \frac{1}{n+1}B^2,
 \]
 and where,
 \[
@@ -337,30 +345,31 @@ and where,
 \]
 Now,
 \[
- \frac{C_m(n)}{n\sqrt{n+1}} =  \int_0^1 \int_0^y \int_0^t \cdots \int_0^t \frac{(c+d)^m}{1 - t} \,dw_{n-1} \, \dots \, dw_1 \, dt \, dy,
+ \frac{C_m(n)}{n\sqrt{n+1}} =  \int_0^1 \int_0^y \int_0^t \cdots \int_0^t \frac{(C+D)^m}{1 - t} \,dw_{n-1} \, \dots \, dw_1 \, dt \, dy,
 \]
-and by expanding the binomial $(c+d)^m$ we get
+and by expanding the binomial $(C+D)^m$ we get
 \[
-\frac{C_m(n)}{n\sqrt{n+1}} =  \int_0^1 \int_0^y \frac{1}{1 - t}\sum_{k=0}^{m}\binom{m}{k} c^{m-k} \int_0^t \cdots \int_0^t \, d^{k} \,dw_{n-1} \, \dots \, dw_1 \, dt \, dy.
+\frac{C_m(n)}{n\sqrt{n+1}} =  \int_0^1 \int_0^y \frac{1}{1 - t}\sum_{k=0}^{m}\binom{m}{k} C^{m-k} \int_0^t \cdots \int_0^t \, D^{k} \,dw_{n-1} \, \dots \, dw_1 \, dt \, dy.
 \]
-Expanding $d^k$ as a trinomial gives
+Expanding $D^k$ as a trinomial gives
 \begin{align*}
-d^k &= \sum_{k_1+k_2+k_3=k} \frac{k! A^{k_1} B^{2k_3 + k_2}}{k_1! k_2! k_3!} \left(\frac{-1}{n+1}\right)^{k_2+k_3}2^{k_2}t^{k_2}  \\
+D^k &= \sum_{k_1+k_2+k_3=k} \frac{k! A^{k_1} B^{2k_3 + k_2}}{k_1! k_2! k_3!} \left(\frac{-1}{n+1}\right)^{k_2+k_3}2^{k_2}t^{k_2}  \\
 &=  \sum_{a=0}^k\sum_{b=0}^{k-a} \frac{k!  A^{a} B^{2k - 2a - b}}{a! b! (k-a-b)!} \left(\frac{-1}{n+1}\right)^{k - a}2^{b}t^{b}
 \end{align*}
 where the second line follows by setting $k_1 = a$, $k_2 = b$ and $k_3 = k - a - b$.  In Appendix~\ref{sec:mult-type-integr} we show that the integral of $A^{a} B^{2k - 2a - b}$ over $w_1,\dots w_{n-1}$ is
 \[
 \int_0^t \cdots \int_0^t A^{a} B^{2k-2a-b} dw_{n-1} \, \dots \, dw_1 = t^{n-1+2k - b} G(n-1,a,2k - 2a - b).
 \]
-where $G(n,k,m)$ satisfies the recursion given by~\eqref{eq:theGrecursion}.  So, let $D$ satisfy
+where $G(n,c,d)$ satisfies the recursion given by~\eqref{eq:theGrecursion}.  So, let $P$ satisfy
 \begin{align*}
-D &= t^{1 - n - 2k}\int_0^t \cdots \int_0^t d^k dw_{n-1} \, \dots \, dw_1 \\
+P &= t^{1 - n - 2k}\int_0^t \cdots \int_0^t D^k dw_{n-1} \, \dots \, dw_1 \\
 &= \sum_{a=0}^k\sum_{b=0}^{k-a} \frac{2^{b} k!G(n-1,a,2k - 2a - b)}{a! b! (k-a-b)!} \left(\frac{-1}{n+1}\right)^{k - a}.
 \end{align*}
-Now $c^{m-k} = \left(\frac{n}{n+1} \right)^{m-k} t^{2(m-k)}$ and
+Now $C^{m-k} = \left(\frac{n}{n+1} \right)^{m-k} t^{2(m-k)}$ and
 \begin{align*}
-\frac{C_m(n)}{n\sqrt{n+1}} &= \sum_{k=0}^{m} \binom{m}{k} \left(\frac{n}{n+1} \right)^{m-k} D \int_0^1 \int_0^y \frac{t^{n - 1 + 2m}}{1 - t} \, dt \, dy. \\
-&= \frac{1}{n+2m} \sum_{k=0}^{m} \binom{m}{k} \left(\frac{n}{n+1} \right)^{m-k} D.
+\frac{C_m(n)}{n\sqrt{n+1}} &= \sum_{k=0}^{m} \binom{m}{k} \left(\frac{n}{n+1} \right)^{m-k} P \int_0^1 \int_0^y \frac{t^{n - 1 + 2m}}{1 - t} \, dt \, dy \\
+&= \sum_{k=0}^{m} \binom{m}{k} \left(\frac{n}{n+1} \right)^{m-k} P \int_0^1 \beta(y,n+2m,0) dy \\
+&= \frac{1}{n+2m} \sum_{k=0}^{m} \binom{m}{k} \left(\frac{n}{n+1} \right)^{m-k} P.
 \end{align*}
 This expression is equivalent to that from~(\ref{eq:theCmformula}).
 
@@ -417,9 +426,13 @@ Recursive formulae for the moments of the Voronoi cell of the lattice $A_n$ were
 
 We need to evaluate integrals of the form
 \[
-F(n,c,d) = \int^{t}_{0} \cdots \int^{t}_{0} \left(\sum_{j=1}^{n} x_j^2\right)^c \left( \sum_{i=1}^{n} x_i \right)^d \,dx_1\cdots dx_{n}.
- \]
-We shall find a recursion describing this integral.  Write
+F(n-1,a,2k - 2a - b) = \int^{t}_{0} \cdots \int^{t}_{0} A^a B^{2k - 2a - b} \,dw_{n-1}\cdots dw_{1},
+\]
+or equivalently, integrals of the form
+\[
+F(n,c,d) = \int^{t}_{0} \cdots \int^{t}_{0} \left(\sum_{j=1}^{n} x_j^2\right)^c \left( \sum_{i=1}^{n} x_i \right)^d \,dx_1\cdots dx_{n}
+\]
+where $n,c$ and $d$ are integers.  We shall find a recursion describing this integral.  Write
 \[
 F(n,c,d) = \int^t_0 \cdots \int^t_0 \left(x_n^2 + \sum_{j=1}^{n-1} x_j^2\right)^c \left( x_n + \sum_{i=1}^{n-1} x_i \right)^d \,dx_1\cdots dx_n.
 \]
