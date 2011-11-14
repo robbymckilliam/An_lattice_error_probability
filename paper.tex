@@ -1,6 +1,6 @@
 %\documentclass[a4paper,10pt]{article}
-%\documentclass[draftcls, onecolumn, 11pt]{IEEEtran}
-\documentclass[journal]{IEEEtran}
+\documentclass[draftcls, onecolumn, 11pt]{IEEEtran}
+%\documentclass[journal]{IEEEtran}
 %\documentclass[correspondence,9pt]{IEEEtran}
 
 
@@ -385,7 +385,7 @@ where $\sigma^2$ is the noise variance.  %As we have assumed that 1 bit is trans
 
 Given a lattice with inradius $\rho$ and Voronoi cell having volume $V$ we define the SNR as
 \[
-\frac{n^2 \sigma^2 V_n}{(n+2)(\log(V_n) - \log(V) + n\log(\rho))}
+\frac{V_n}{\sigma^2(n+2)(\log(V_n) - \log(V) + n\log(\rho))}
 \]
 where $V_n$ is the volume of the $n$ dimensional hypersphere and the logarithms are base $2$.
 
