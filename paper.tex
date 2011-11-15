@@ -12,7 +12,7 @@
 
 %opening
 \title{On the error performance of the $A_n$ lattices}
-\author{Robby McKilliam, Ramanan Subramanian, Emanuele Viterbo}
+\author{Robby McKilliam, Ramanan Subramanian, Emanuele Viterbo, I. Vaughan L. Clarkson}
 
 \begin{document}
 
@@ -236,11 +236,11 @@ also. It follows from Lemma~\ref{lem:QVorZnsubsetVorAn} that $\Qbf\vor(\ints^{n+
 
 \section{Integrating a function over $\vor(A_n)$}\label{sec:integr-funct-over}
 
-Consider a function $f : \reals^{n+1} \mapsto \reals$.  We would like to be able to solve integrals of the form
+We would like to be able to integrate functions over the Voronoi cell of $A_n$.  The definition of $A_n$ above places it in the $n$ dimensional zero-sum plane, lying in $\reals^{n+1}$.  The Voronoi cell is a subset of the zero-sum plane and has zero $n+1$-dimensional volume.  By an appropriate change of variables it would be possible to write the Voronoi cell in an $n$-dimensional coordinate system, and then integrate.  However, we find the following approach simpler.  Given a set $S$ let $S \times \onebf$ denote the set of elements that can be writen as $x + y$ where $x \in \vor(A_n)$ and $y = k\onebf$ for some $k \in [-\nicefrac{1}{2},\nicefrac{1}{2}]$.  Consider a function $f : \reals^{n+1} \mapsto \reals$.  We would like to be able to solve integrals of the form
 \begin{equation}\label{eq:vorfint}
-\int_{\vor(A_n)} f(\xbf) d\xbf = \int_{\Qbf\vor(\ints^{n+1})} f(\xbf) d\xbf.
+\int_{\vor(A_n) \times \onebf} f(\Qbf\xbf) d\xbf = \int_{\Qbf\vor(\ints^{n+1}) \times \onebf} f(\Qbf\xbf) d\xbf.
 \end{equation}
-It is not immediately clear how an integral over $\vor(A_n)$ should be performed.  Consider the following simpler integral over the hypercube $\vor(\ints^{n+1})$,
+It is not immediately clear how an integral over $\vor(A_n) \times \onebf$ should be performed.  Consider the following simpler integral over the hypercube $\vor(\ints^{n+1})$,
 \begin{equation}\label{eq:unormalised}
 \int_{\vor(\ints^{n+1})} f(\Qbf\xbf) d\xbf.
 \end{equation}
