@@ -67,7 +67,7 @@ draw begingraph(plotwidth, plotheight);
  glabel.lft(btex $P_E$ etex, OUT) rotated 90;
  
   %setrange(whatever,"1e-6", whatever,0.05);
-  setrange(7.9,"1e-13", 22,2);
+  setrange(7.7,"1e-13", 21.5,2);
 
 %  gdraw (0, "1e-13")--(0, 2) dashed evenly; %glabel.bot(btex AWGN channel capacity etex, 0) rotated 90;
 
