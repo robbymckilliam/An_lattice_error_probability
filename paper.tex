@@ -55,14 +55,14 @@ A \term{lattice}\index{lattice}, $\Lambda$, is a discrete subset of points in $\
 \[
    \Lambda = \{\xbf = \Bbf\ubf \mid \ubf \in \ints^n \}
  \]
- where $\Bbf \in \reals^{m \times n}$ is an $m \times n$ matrix of rank $n$, called the \term{generator matrix} or \term{basis matrix} or simply generator or basis. Since the generator matrix has rank $n$, the lattice $\Lambda$ is termed $n$-dimensional. If the generator is square, i.e. $m = n$, then the lattice points span $\reals^n$ and we say that the lattice is \term{full rank}. If $\Bbf$ has more rows than columns, i.e. $m > n$, then the lattice points lie in a $n$-dimensional subspace of $\reals^m$. For any lattice $\Lambda$ with an $m \times n$ generator matrix, we define $\mathcal{S}_{\Lambda}$ to be the sub-space spanned by the columns of the generator matrix. The set of $n$-tuples of integers $\ints^n$ is a lattice (with the identity matrix as the generator) and we call this the~\emph{integer lattice}.
+ where $\Bbf \in \reals^{m \times n}$ is an $m \times n$ matrix of rank $n$, called the \term{generator matrix} or \term{basis matrix} or simply generator or basis. In particular, the set of $n$-tuples of integers $\ints^n$ is a lattice (with the identity matrix as the generator) and we call this the~\emph{integer lattice}. A lattice $\Lambda$ associated with a rank-$n$ generator matrix $\mathbf{B}$ is said to be $n$-dimensional. If the generator is square, i.e. $m = n$, then the lattice points span $\reals^n$ and we say that the lattice is \term{full rank}. If $\Bbf$ has more rows than columns, i.e. $m > n$, then the lattice points lie in a $n$-dimensional subspace of $\reals^m$. For any lattice $\Lambda$ with an $m \times n$ generator matrix, we define $\mathcal{S}_{\Lambda}$ to be the hyperplane spanned by the columns of the generator matrix. It is easy to see that $\mathcal{S}_\Lambda$ is then the $n$-dimensional sub-space containing the lattice $\Lambda$.
 
 The (open) \term{Voronoi cell}, denoted $\vor(\Lambda)$, of a lattice $\Lambda$ is the subset of $\mathcal{S}_{\Lambda}$ containing all points nearer (in Euclidean distance) to the lattice point at the origin than any other lattice point. It can be shown that the Voronoi cell is an $n$-dimensional convex polytope that is symmetric about the origin.  It is convenient to modify this definition of the Voronoi cell slightly so that the union of translated Voronoi cells $\cup_{\xbf \in \Lambda}\vor(\Lambda) + \xbf$ is equal to  $\mathcal{S}_{\Lambda}$.  That is, the Voronoi cell tessellates space when translated by points in $\Lambda$.  To ensure this we require that if a face of $\vor(\Lambda)$ is open, then its opposing face is closed. Specifically, if $\xbf \in \vor(\Lambda)$ is on the boundary of $\vor(\Lambda)$ then $-\xbf \notin \vor(\Lambda)$.  We wont specifically define which opposing face is open and which is closed as the results that follow hold for any choice of open and closed opposing faces.
 
 The Voronoi cell encodes many interesting lattice properties such as the packing radius, covering radius, kissing number, minimal vectors, center density, thickness, and the normalized second moment (or quantizing constant)~\cite{Viterbo_diamond_cutting_1996, SPLAG}. The error probability of a lattice code can also be evaluated from the Voronoi cell as we will see.  There exist algorithms to completely enumerate the Voronoi cell of an arbitrary lattice~\cite{Viterbo_diamond_cutting_1996,Sikiric_complex_algs_vor_cells_2009,Sikiric_vor_reduction_covering_2008,Valentin2003_coverings_tilings_low_dimension}.  In general these algorithms are only computationally feasible when the dimension is small (approximately $n \leq 9$).  Even with a complete description of the Voronoi cell it is not necessarily easy to compute the probability of coding error.
 
 The Voronoi cell is linked with the problem of \emph{lattice decoding}.  Given some point $\ybf \in \reals^n$ a \emph{lattice decoder} (or \emph{nearest lattice point algorithm}) returns the lattice point in $\Lambda$ that is nearest to $\ybf$~\cite{Agrell2002}.  Equivalently it returns the lattice point $\xbf$ such that the translated Voronoi cell $\vor(\Lambda) + \xbf$ contains $\ybf$.  Computationally lattice decoding is known to be NP-hard under certain conditions when the lattice itself, or rather a basis thereof, is considered as an additional input parameter~\cite{micciancio_hardness_2001, Jalden2005_sphere_decoding_complexity}. Nevertheless, algorithms exist that can compute the nearest lattice point in reasonable time if the dimension is small (approximately $n \leq 60$). One such algorithm is the \term{sphere decoder}~\cite{Viterbo_sphere_decoder_1999,Pohst_sphere_decoder_1981,Agrell2002}.
- %Kannan~\cite{Kannan1987_fast_general_np} suggested a different approach that is known to be asymptotically faster than the sphere decoder. 
+ %Kannan~\cite{Kannan1987_fast_general_np} suggested a different approach that is known to be asymptotically faster than the sphere decoder.
 A good overview of these techniques is given by Agrell~et.~al.~\cite{Agrell2002}. Fast nearest point algorithms are known for specific lattices~\cite{Conway1982FastQuantDec, McKilliam2008,McKilliam2009CoxeterLattices,Vardy1993_leech_lattice_MLD}. For example, the root lattices $D_n$ and $A_n$ and their dual lattices $D_n^*$ and $A_n^*$ can be decoded in linear-time, i.e. in a number of operations of order $O(n)$~\cite{Conway1982FastQuantDec,McKilliam2009CoxeterLattices}.
 
 %Approximate algorithms for computing the nearest point have also been studied.  A classic example is \term{Babai's nearest plane algorithm}~\citep{Babai1986}\index{Babai's nearest plane algorithm}, which requires $O(n^4)$ arithmetic operations in the worst case where $n$ is the dimension of the lattice and only $O(n^2)$ if the lattice basis is \term{Lov\'asz reduced}~\citep{Lenstra1982}\index{Lov\'asz reduced}. Recently, various approximate techniques for solving the nearest lattice point problem have been motivated by applications to MIMO communications.  An example is the \term{$K$-best algorithm}\index{K-best algorithm}~\citep{Zhan2006_K_best_sphere_decoder} that works similarly to the sequential $M$-algorithm~\citep{Anderson1984_seq_coding_alg} used in coding theory. Yet another example is the \term{fixed sphere decoder}~\citep{Jalden2009_error_prob_fixed_sphere_decoder,Barbero2008_fixed_sphere_decoder}. In this thesis we will make use of Babai's nearest plane algorithm, the sphere decoder and the $K$-best algorithm.  We will not detail the workings of these algorithms as excellent descriptions already exist in the literature cited above.
@@ -76,7 +76,8 @@ Lattices can be used to construct \emph{signal space codes}.  A signal space cod
 \]
 where $\ybf \in \reals^n$, $\xbf \in \calX$ and $\wbf$ is a vector of independent and identically distributed Gaussian random variables with variance $\sigma^2$.  If the receiver employs maximum likelihood decoding then the estimator of $\xbf$ given $\ybf$ at the receiver is
 \begin{equation}\label{eq:mldecoder}
-\hat{\xbf} = \mbox{arg~}\min_{\xbf \in \calX} \| \ybf - \xbf \|^2.
+\hat{\xbf} = \underset{\xbf \in \calX}{\operatorname{argmin}}\;\| \ybf - \xbf \|^2.
+%\hat{\xbf} &=& \mbox{arg~}\min_{\xbf \in \calX} \| \ybf - \xbf \|^2.
 \end{equation}
 That is, the receiver computes the codeword in $\calX$ nearest in Euclidean distance to the received signal $\ybf$.  Assuming that each codeword is transmitted with equal probability then the probability of correct decoding is
 \[
@@ -147,7 +148,7 @@ These can be summed in (\ref{eq:summomentproberror}) to give arbitrarily accurat
 
 We now state our main result.  The $m$th moment $\calM_n(m)$ of the lattice $A_n$ satisfies
 \begin{equation}\label{eq:theCmformula}
-\frac{\calM_n(m)}{m!} = \frac{n\sqrt{n+1}}{n+2m}\sum_{k=0}^{m}\sum_{a =0}^{k}\sum_{b=0}^{k-a} \frac{G(n-1,a,2k - 2a - b)}{(-1)^{k-a}H(n,m,k,a,b)} 
+\frac{\calM_n(m)}{m!} = \frac{n\sqrt{n+1}}{n+2m}\sum_{k=0}^{m}\sum_{a =0}^{k}\sum_{b=0}^{k-a} \frac{G(n-1,a,2k - 2a - b)}{(-1)^{k-a}H(n,m,k,a,b)}
 \end{equation}
 where the function
 \[
@@ -227,10 +228,10 @@ The projection of $\vor(\ints^{n+1})$ into the zero-sum plane is equal to $\vor(
 \]
 \end{theorem}
 \begin{proof}
-Let $\ebf_i$ denote a vector with $i$th element equal to one and the remaining elements zero.  The $n$-volume of $\vor(A_n)$ is $\sqrt{n + 1}$.  From Berger~et.~al.~\cite[Theorem 1.1]{Burger1996} we find that the $n$-volume of the projected hypercube $\Qbf\vor(\ints^{n+1})$ is equal to 
+Let $\ebf_i$ denote a vector with $i$th element equal to one and the remaining elements zero.  The $n$-volume of $\vor(A_n)$ is $\sqrt{n + 1}$.  From Berger~et.~al.~\cite[Theorem 1.1]{Burger1996} we find that the $n$-volume of the projected hypercube $\Qbf\vor(\ints^{n+1})$ is equal to
 \[
 \sum_{i = 1}^{n+1} \frac{\dotprod{\onebf}{\ebf_i}}{\|\onebf\|} =  \sum_{i = 1}^{n+1} \frac{1}{\sqrt{n+1}} = \sqrt{n + 1}
-\] 
+\]
 also. It follows from Lemma~\ref{lem:QVorZnsubsetVorAn} that $\Qbf\vor(\ints^{n+1}) \subseteq \vor(A_n)$, so, because the volumes are the same, and because $\vor(A_n)$ and $\Qbf\vor(\ints^{n+1})$ are polytopes, we have $\vor(A_n) = \Qbf\vor(\ints^{n+1})$.
 \end{proof}
 
