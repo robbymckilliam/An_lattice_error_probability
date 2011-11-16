@@ -389,11 +389,11 @@ The plot also displays approximations for the probability of error for the 8-dim
 \[
 P_E \leq 240\erfc\left( \frac{\rho}{\sqrt{2}\sigma} \right) = 240\erfc\left(\frac{1}{2\sigma}\right)
 \]
-where $\erfc(x) = 1 - \erf(x)$ is the complementary error function.  %The second moment of this representation of $E_8$ is $\frac{929}{1620}$ so SNR is related to $\sigma^2$ by $\text{SNR} = \frac{929}{3240\sigma^2}$.
+where $\erfc(x) = 1 - \erf(x)$ is the complementary error function.  For the $E_8$ lattice this approximation is an upper bound because the relevant vectors of $E_8$ (those vectors that define the Voronoi cell) are precisely the 240 minimal vectors.  %The second moment of this representation of $E_8$ is $\frac{929}{1620}$ so SNR is related to $\sigma^2$ by $\text{SNR} = \frac{929}{3240\sigma^2}$.
 
 For $\Lambda_{24}$ there are $196560$ minimal vectors each of length $2$.  The packing radius is $\rho = 1$.  The union bound on the probability of error is
 \[
-P_E \leq 196560\erfc\left( \frac{\rho}{\sqrt{2}\sigma} \right) = 196560\erfc\left(\frac{1}{\sqrt{2}\sigma}\right).
+P_E \approx 196560\erfc\left( \frac{\rho}{\sqrt{2}\sigma} \right) = 196560\erfc\left(\frac{1}{\sqrt{2}\sigma}\right).
 \]
 % The second moment of this representation of $\Lambda_{24}$ is approximately $24 \times 0.065771$.  This was computed numerically by Conway and Sloane~\cite[p. 61]{SPLAG}.  The relationship between SNR and $\sigma^2$ is $\text{SNR} = 4 \times 0.065771 \sigma^{-2}$.
 
