@@ -376,35 +376,56 @@ This expression is equivalent to that from~(\ref{eq:theCmformula}).
 
 \section{Results and simulations}\label{sec:results-simulations}
 
-We now plot the probability of coding error versus signal to noise ratio (SNR) for the lattices $A_1, A_2, A_3$ and $A_4$.  We assume that codes are constructed from these lattices using a \emph{Voronoi constellation}~\cite{Conway1983VoronoiCodes} of size $2^n$.  This corresponds to a rate of $1$ bit per dimension (or symbol).  The shaping region of these constellations is $2\vor(A_n)$, i.e. the Voronoi cell of $A_n$ scaled by a factor of $2$.  The average power of these constellations can be approximated by four times the second moment $4\calM_n(1)$.  This approximation is conservative as Voronoi constellations can have average power smaller than the second moment of the shaping region~\cite{Conway1983VoronoiCodes}.  The approximation becomes more accurate as the code rate and correspondingly the volume of the shaping region grows.  %In proving that lattice codes using lattice decoding can achieve capacity Erez and Zamir~\cite{Erex2004_lattice_decoding} employ a common dither between transmitter and receiver. This is to ensure that the average power is \emph{exactly} the second moment of the shaping region.  For this reason we think that this approximation is valid.
-The SNR is then given by
+We now plot the probability of coding error versus signal to noise ratio (SNR) for the lattices $A_1, A_2, A_3$ and $A_4$.  For these plots the SNR is related to noise variance according to~\cite{Viterbo_diamond_cutting_1996}
 \[
-\text{SNR} = \frac{4\calM_n(1)}{n \sigma^2} = \frac{n+3}{3\sqrt{n+1}\sigma^2}
+\text{SNR} = \frac{V^{2/n}}{4\sigma^2},
 \]
-where $\sigma^2$ is the noise variance.  %As we have assumed that 1 bit is transmitted per symbol the SNR at channel capacity is equal to one.
-
-%Given a lattice with inradius $\rho$ and Voronoi cell having volume $V$ we define the SNR as
-%\[
-%\frac{V_n}{\sigma^2(n+2)(\log(V_n) - \log(V) + n\log(\rho))}
-%\]
-%where $V_n$ is the volume of the $n$ dimensional hypersphere and the logarithms are base $2$.
-
-Figure~\ref{fig:peplots} shows the `exact' probability of error (correct to 16 decimal places) computed using the moments $\calM_n(1)$ and~\eqref{eq:summomentproberror} (solid line).  The number of moments needed to ensure a certain number of decimal places accuracy depends on $n$ and also on the noise variance $\sigma^2$.  At most 196 moments where needed for Figure~\ref{fig:peplots}.  We also display the probability of error computed approximately by Monte-Carlo simulation (dots).  %We have used the fast nearest point algorithm for $A_n$ described in~\cite{McKilliam2009CoxeterLattices} and~\cite[p. 448]{SPLAG}.
+where $V$ is the volume of the Voronoi cell and $n$ is the dimension of the lattice.  Figure~\ref{fig:peplots} shows the `exact' probability of error (correct to 16 decimal places) computed using the moments $\calM_n(1)$ and~\eqref{eq:summomentproberror} (solid line).  The number of moments needed to ensure a certain number of decimal places accuracy depends on $n$ and also on the noise variance $\sigma^2$.  At most 196 moments where needed for Figure~\ref{fig:peplots}.  We also display the probability of error computed approximately by Monte-Carlo simulation (dots).  %We have used the fast nearest point algorithm for $A_n$ described in~\cite{McKilliam2009CoxeterLattices} and~\cite[p. 448]{SPLAG}.
 The simulations are iterated until 500 error events occur.
 
-We have also plotted approximations for the probability of error for codes constructed from the 8-dimensional $E_8$ lattice and the 24-dimensional Leech lattice $\Lambda_{24}$.  The approximation are made in the usual way by applying the union bound to the minimal vectors of the lattice~\cite[p.~71]{SPLAG}.  The $E_8$ lattice has 240 minimal vectors of length $\sqrt{2}$.  The packing radius of $E_8$ is therefore $\rho = \sqrt{2}/2$.  By the union bound the probability of error satisfies
+The plot also displays approximations for the probability of error for the 8-dimensional $E_8$ lattice and the 24-dimensional Leech lattice $\Lambda_{24}$.  The approximations are made in the usual way by applying the union bound to the minimal vectors of the lattice~\cite[p.~71]{SPLAG}.  The $E_8$ lattice has 240 minimal vectors of length $\sqrt{2}$.  The packing radius of $E_8$ is therefore $\rho = \sqrt{2}/2$.  By the union bound the probability of error satisfies
 \newcommand{\erfc}{\operatorname{erfc}}
 \newcommand{\erf}{\operatorname{erf}}
 \[
 P_E \leq 240\erfc\left( \frac{\rho}{\sqrt{2}\sigma} \right) = 240\erfc\left(\frac{1}{2\sigma}\right)
 \]
-where $\erfc(x) = 1 - \erf(x)$ is the complementary error function.  The second moment of this representation of $E_8$ is $\frac{929}{1620}$ so SNR is related to $\sigma^2$ by $\text{SNR} = \frac{929}{3240\sigma^2}$.
+where $\erfc(x) = 1 - \erf(x)$ is the complementary error function.  %The second moment of this representation of $E_8$ is $\frac{929}{1620}$ so SNR is related to $\sigma^2$ by $\text{SNR} = \frac{929}{3240\sigma^2}$.
 
 For $\Lambda_{24}$ there are $196560$ minimal vectors each of length $2$.  The packing radius is $\rho = 1$.  The union bound on the probability of error is
 \[
 P_E \leq 196560\erfc\left( \frac{\rho}{\sqrt{2}\sigma} \right) = 196560\erfc\left(\frac{1}{\sqrt{2}\sigma}\right).
 \]
-The second moment of this representation of $\Lambda_{24}$ is approximately $24 \times 0.065771$.  This was computed numerically by Conway and Sloane~\cite[p. 61]{SPLAG}.  The relationship between SNR and $\sigma^2$ is $\text{SNR} = 4 \times 0.065771 \sigma^{-2}$.
+% The second moment of this representation of $\Lambda_{24}$ is approximately $24 \times 0.065771$.  This was computed numerically by Conway and Sloane~\cite[p. 61]{SPLAG}.  The relationship between SNR and $\sigma^2$ is $\text{SNR} = 4 \times 0.065771 \sigma^{-2}$.
+
+% We now plot the probability of coding error versus signal to noise ratio (SNR) for the lattices $A_1, A_2, A_3$ and $A_4$.  We assume that codes are constructed from these lattices using a \emph{Voronoi constellation}~\cite{Conway1983VoronoiCodes} of size $2^n$.  This corresponds to a rate of $1$ bit per dimension (or symbol).  The shaping region of these constellations is $2\vor(A_n)$, i.e. the Voronoi cell of $A_n$ scaled by a factor of $2$.  The average power of these constellations can be approximated by four times the second moment $4\calM_n(1)$.  This approximation is conservative as Voronoi constellations can have average power smaller than the second moment of the shaping region~\cite{Conway1983VoronoiCodes}.  The approximation becomes more accurate as the code rate and correspondingly the volume of the shaping region grows.  %In proving that lattice codes using lattice decoding can achieve capacity Erez and Zamir~\cite{Erex2004_lattice_decoding} employ a common dither between transmitter and receiver. This is to ensure that the average power is \emph{exactly} the second moment of the shaping region.  For this reason we think that this approximation is valid.
+% The SNR is then given by
+% \[
+% \text{SNR} = \frac{4\calM_n(1)}{n \sigma^2} = \frac{n+3}{3\sqrt{n+1}\sigma^2}
+% \]
+% where $\sigma^2$ is the noise variance.  %As we have assumed that 1 bit is transmitted per symbol the SNR at channel capacity is equal to one.
+
+% %Given a lattice with inradius $\rho$ and Voronoi cell having volume $V$ we define the SNR as
+% %\[
+% %\frac{V_n}{\sigma^2(n+2)(\log(V_n) - \log(V) + n\log(\rho))}
+% %\]
+% %where $V_n$ is the volume of the $n$ dimensional hypersphere and the logarithms are base $2$.
+
+% Figure~\ref{fig:peplots} shows the `exact' probability of error (correct to 16 decimal places) computed using the moments $\calM_n(1)$ and~\eqref{eq:summomentproberror} (solid line).  The number of moments needed to ensure a certain number of decimal places accuracy depends on $n$ and also on the noise variance $\sigma^2$.  At most 196 moments where needed for Figure~\ref{fig:peplots}.  We also display the probability of error computed approximately by Monte-Carlo simulation (dots).  %We have used the fast nearest point algorithm for $A_n$ described in~\cite{McKilliam2009CoxeterLattices} and~\cite[p. 448]{SPLAG}.
+% The simulations are iterated until 500 error events occur.
+
+% We have also plotted approximations for the probability of error for codes constructed from the 8-dimensional $E_8$ lattice and the 24-dimensional Leech lattice $\Lambda_{24}$.  The approximation are made in the usual way by applying the union bound to the minimal vectors of the lattice~\cite[p.~71]{SPLAG}.  The $E_8$ lattice has 240 minimal vectors of length $\sqrt{2}$.  The packing radius of $E_8$ is therefore $\rho = \sqrt{2}/2$.  By the union bound the probability of error satisfies
+% \newcommand{\erfc}{\operatorname{erfc}}
+% \newcommand{\erf}{\operatorname{erf}}
+% \[
+% P_E \leq 240\erfc\left( \frac{\rho}{\sqrt{2}\sigma} \right) = 240\erfc\left(\frac{1}{2\sigma}\right)
+% \]
+% where $\erfc(x) = 1 - \erf(x)$ is the complementary error function.  The second moment of this representation of $E_8$ is $\frac{929}{1620}$ so SNR is related to $\sigma^2$ by $\text{SNR} = \frac{929}{3240\sigma^2}$.
+
+% For $\Lambda_{24}$ there are $196560$ minimal vectors each of length $2$.  The packing radius is $\rho = 1$.  The union bound on the probability of error is
+% \[
+% P_E \leq 196560\erfc\left( \frac{\rho}{\sqrt{2}\sigma} \right) = 196560\erfc\left(\frac{1}{\sqrt{2}\sigma}\right).
+% \]
+% The second moment of this representation of $\Lambda_{24}$ is approximately $24 \times 0.065771$.  This was computed numerically by Conway and Sloane~\cite[p. 61]{SPLAG}.  The relationship between SNR and $\sigma^2$ is $\text{SNR} = 4 \times 0.065771 \sigma^{-2}$.
 
 \begin{figure*}[tp]
 	\centering
