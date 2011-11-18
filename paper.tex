@@ -237,7 +237,7 @@ also. It follows from Lemma~\ref{lem:QVorZnsubsetVorAn} that $\Qbf\vor(\ints^{n+
 
 \section{Integrating a function over $\vor(A_n)$}\label{sec:integr-funct-over}
 
-We would like to be able to integrate functions over the Voronoi cell of $A_n$.  Consider a function $f : \reals^{n+1} \mapsto \reals$.  The definition we have made for $A_n$ above places it in the $n$-dimensional zero-sum plane, lying in $\reals^{n+1}$.  The Voronoi cell is a subset of the zero-sum plane that has zero $n+1$-dimensional volume.  So, the integral $\int_{\vor(A_n)} f(\xbf) d \xbf$ is equal to zero.  This is not what we intend.  By an appropriate change of variables it would be possible to write the Voronoi cell $\vor(A_n)$ in an $n$-dimensional coordinate system, and then integrate.  However, we find the following approach simpler.  Given a set $S$ of vectors from the zero sum plane, let $S \times \onebf$ denote the set of elements that can be written as $x + y$ where $x \in S$ and $y = k\onebf$ for some $k \in [-\nicefrac{1}{2},\nicefrac{1}{2}]$.  Now, the integral over the Voronoi cell can be written as
+We would like to be able to integrate functions over the Voronoi cell of $A_n$.  Consider a function $f : \reals^{n+1} \mapsto \reals$.  The definition we have made for $A_n$ above places it in the $n$-dimensional zero-sum plane, lying in $\reals^{n+1}$.  The Voronoi cell is a subset of the zero-sum plane that has zero $n+1$-dimensional volume.  So, the integral $\int_{\vor(A_n)} f(\xbf) d \xbf$ is equal to zero.  This is not what we intend.  By an appropriate change of variables it would be possible to write the Voronoi cell $\vor(A_n)$ in an $n$-dimensional coordinate system, and then integrate.  However, we find the following approach simpler.  Given a set $S$ of vectors from the zero sum plane, let $S \times \onebf$ denote the set of elements that can be written as $\xbf + \ybf$ where $\xbf \in S$ and $\ybf = k\onebf$ for some $k \in [-\nicefrac{1}{2},\nicefrac{1}{2}]$.  Now, the integral over the Voronoi cell can be written as
 \begin{equation}\label{eq:vorfint}
 \int_{\vor(A_n) \times \onebf} f(\Qbf\xbf) d\xbf = \int_{\Qbf\vor(\ints^{n+1}) \times \onebf} f(\Qbf\xbf) d\xbf.
 \end{equation}
@@ -384,7 +384,7 @@ We now plot the probability of coding error versus signal to noise ratio (SNR) f
 where $V$ is the volume of the Voronoi cell and $n$ is the dimension of the lattice.  Figure~\ref{fig:peplots} shows the `exact' probability of error (correct to 16 decimal places) computed using the moments $\calM_n(1)$ and~\eqref{eq:summomentproberror} (solid line).  The number of moments needed to ensure a certain number of decimal places accuracy depends on $n$ and also on the noise variance $\sigma^2$.  At most 196 moments where needed for Figure~\ref{fig:peplots}.  We also display the probability of error computed approximately by Monte-Carlo simulation (dots).  %We have used the fast nearest point algorithm for $A_n$ described in~\cite{McKilliam2009CoxeterLattices} and~\cite[p. 448]{SPLAG}.
 The simulations are iterated until 500 error events occur.
 
-The plot also displays approximations for the probability of error for the 8-dimensional $E_8$ lattice and the 24-dimensional Leech lattice $\Lambda_{24}$.  The approximations are made in the usual way by applying the union bound to the minimal vectors of the lattice~\cite[p.~71]{SPLAG}.  The $E_8$ lattice has 240 minimal vectors of length $\sqrt{2}$.  The packing radius of $E_8$ is therefore $\rho = \sqrt{2}/2$.  By the union bound the probability of error satisfies
+The plot also displays approximations for the probability of error for the 8-dimensional $E_8$ lattice and the 24-dimensional Leech lattice $\Lambda_{24}$.  The approximations are made in the usual way by applying the union bound to the minimal vectors of the lattice~\cite[p.~71]{SPLAG}.  The $E_8$ lattice has 240 minimal vectors of length $\sqrt{2}$.  The packing radius of $E_8$ is therefore $\rho = \sqrt{2}/2$.  Applying the union bound on the  probability of error satisfies
 \newcommand{\erfc}{\operatorname{erfc}}
 \newcommand{\erf}{\operatorname{erf}}
 \[
@@ -392,7 +392,7 @@ P_E \leq 240\erfc\left( \frac{\rho}{\sqrt{2}\sigma} \right) = 240\erfc\left(\fra
 \]
 where $\erfc(x) = 1 - \erf(x)$ is the complementary error function.  For the $E_8$ lattice this approximation is an upper bound because the relevant vectors of $E_8$ (those vectors that define the Voronoi cell) are precisely the 240 minimal vectors.  %The second moment of this representation of $E_8$ is $\frac{929}{1620}$ so SNR is related to $\sigma^2$ by $\text{SNR} = \frac{929}{3240\sigma^2}$.
 
-For $\Lambda_{24}$ there are $196560$ minimal vectors each of length $2$.  The packing radius is $\rho = 1$.  The union bound on the probability of error is
+For $\Lambda_{24}$ there are $196560$ minimal vectors each of length $2$.  The packing radius is $\rho = 1$.  An approximation for the probability of error is
 \[
 P_E \approx 196560\erfc\left( \frac{\rho}{\sqrt{2}\sigma} \right) = 196560\erfc\left(\frac{1}{\sqrt{2}\sigma}\right).
 \]

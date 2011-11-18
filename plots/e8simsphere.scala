@@ -31,7 +31,7 @@ while(pe > tope){
   val snr = scala.math.pow(10.0,dbnow/10.0)
   val v = 1/snr/4
   pe = new ProbabilityOfCodingError(lattice,new GaussianNoise(0,v),500).probError
-  println(dbnow + "\t" + pe)
+  println(dbnow + "\t" + pe + "\t"  + v)
   efile.write(dbnow.toString.replace('E', 'e') + "\t" + pe.toString.replace('E', 'e') + "\n")
   dbnow = dbnow + stepdb
 }
