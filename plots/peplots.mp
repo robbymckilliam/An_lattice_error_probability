@@ -71,10 +71,10 @@ draw begingraph(plotwidth, plotheight);
 
 %  gdraw (0, "1e-13")--(0, 2) dashed evenly; %glabel.bot(btex AWGN channel capacity etex, 0) rotated 90;
 
-  gdraw "moment1"; glabel.bot(btex $A_1$ etex, 1000);
+  gdraw "moment1"; glabel.rt(btex $A_1$ etex, 1000);
   gdraw "moment2"; glabel.bot(btex $A_2$ etex, 1000);
   gdraw "moment3"; glabel.bot(btex $A_3$ etex, 1000);
-  gdraw "moment4"; glabel.lrt(btex $A_4$ etex, 1000);
+  gdraw "moment4"; glabel.rt(btex $A_4$ etex, 38);
 
   gdraw "pemontecarlo1" plot(dot);
   gdraw "pemontecarlo2" plot(dot);
