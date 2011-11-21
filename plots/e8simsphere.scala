@@ -8,7 +8,7 @@ import pubsim.Util
 import pubsim.lattices.util.ProbabilityOfCodingError
 import pubsim.distributions.GaussianNoise
 
-/*
+
 {
 println
 println("Running Monte-Carlo trials with the E8 lattice")
@@ -29,17 +29,16 @@ println("SNRdB \t Prob Error")
 while(pe > tope){
   //val snrdb = lattice.noiseVarianceToSNRdB(varnow.doubleValue)
   val snr = scala.math.pow(10.0,dbnow/10.0)
-  val v = 4.0*sm/snr/8
-  pe = new ProbabilityOfCodingError(lattice,new GaussianNoise(0,v),200).probError
-  println(dbnow + "\t" + pe)
+  val v = 1/snr/4
+  pe = new ProbabilityOfCodingError(lattice,new GaussianNoise(0,v),500).probError
+  println(dbnow + "\t" + pe + "\t"  + v)
   efile.write(dbnow.toString.replace('E', 'e') + "\t" + pe.toString.replace('E', 'e') + "\n")
   dbnow = dbnow + stepdb
 }
 efile.close
 }
-*/
 
-
+/*
 {
 val varstart = 1.0/6.0
 val varstep = 9.5/10.0
@@ -58,7 +57,7 @@ println("SNRdB \t Prob Error")
 while(pe > tope){
   //val snrdb = lattice.noiseVarianceToSNRdB(varnow.doubleValue)
   val r2sdev = new BigRational(scala.math.sqrt(varnow*4.0) ,20)
-  val snr = 929.0/3240.0/varnow
+  val snr = 1/varnow/4
   val snrdb = 10*scala.math.log10(snr)
   pe = 240*(1 - pubsim.Util.erf(r2sdev.reciprocal, tol))
   varnow = varnow*varstep
@@ -87,7 +86,7 @@ println("SNRdB \t Prob Error")
 while(pe > tope){
   //val snrdb = lattice.noiseVarianceToSNRdB(varnow.doubleValue)
   val r2sdev = new BigRational(scala.math.sqrt(varnow*2.0) ,20)
-  val snr = 4*0.065771/varnow
+  val snr = 1/varnow/4
   val snrdb = 10*scala.math.log10(snr)
   pe = 196560*(1 - pubsim.Util.erf(r2sdev.reciprocal, tol))
   varnow = varnow*varstep
@@ -96,4 +95,4 @@ while(pe > tope){
 }
 mfile.close
 }
-
+*/
