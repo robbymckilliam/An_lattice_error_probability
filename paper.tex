@@ -92,11 +92,11 @@ P_E = 1 - \frac{1}{\abs{\calX}} \sum_{\xbf \in \calX} \prob(
 
 %A problem with randomly generated codes and maximum likelihood decoding is that there are no computationally efficient methods for encoding and decoding.  For encoding the transmitter must store a list of size $\abs{\calX} \approx 2^{nR/B}$ and for decoding the receiver must compute $\hat{\xbf}$ requiring a search over all $\abs{\calX} \approx 2^{nR/B}$ codewords.  As $n$ gets large this becomes infeasible.  To avoid this computational complexity it is preferable for a code to have some type of `structure' that is exploitable for efficient encoding and decoding.  One way of enforcing structure is to choose codewords from a lattice.  The idea being that encoding and decoding can now be performed efficiently by \emph{lattice decoding}, i.e. by finding a nearest point in a lattice.
 
-A \emph{lattice code} is a signal space code with codewords taken from a finite subset of points of some lattice $\Lambda$ in $\reals^n$. There are infinitely many ways to choose a finite subset from a lattice, but common approaches make use of a bounded subset of $\reals^n$, called a \emph{shaping region} $S \subset \reals^n$ and
+A \emph{lattice code} is a signal space code with codewords taken from a finite subset of points of some lattice $\Lambda$ in $\reals^n$. There are infinitely many ways to choose a finite subset from a lattice, but common approaches make use of a bounded subset of $\reals^n$, called a \emph{shaping region} $S \subset \reals^n$.  The codewords are given by those lattice points inside the shaping region, that is,
 \[
 \calX = S \cap \Lambda.
 \]
-Possible choices of shaping region are $n$-dimensional spheres, spherical shells, hypercubes or the Voronoi cell of a \emph{sublattice} of $\Lambda$~\cite{Buda1989_some_opt_codes_structure,Erex2004_lattice_decoding,Conway1983VoronoiCodes}.  A consequence of the finiteness of a lattice code is that the maximum likelihood decoder~\eqref{eq:mldecoder} is \emph{not} equivalent to lattice decoding.  Computing a nearest lattice point will not in general return a lattice point from the code (the decoded lattice point might lie outside the shaping region).
+Common choices of shaping region are $n$-dimensional spheres, spherical shells, hypercubes, or the Voronoi cell of a \emph{sublattice} of $\Lambda$~\cite{Buda1989_some_opt_codes_structure,Erex2004_lattice_decoding,Conway1983VoronoiCodes}.  A consequence of the finiteness of a lattice code is that the maximum likelihood decoder~\eqref{eq:mldecoder} is \emph{not} equivalent to lattice decoding.  Computing a nearest lattice point will not in general return a lattice point from the code (the decoded lattice point might lie outside the shaping region).
  %A question that remained open for some time was whether lattice codes employing lattice decoding could achieve channel capacity.  This question was answered in the affirmative by Erez and Zamir~\cite{Erex2004_lattice_decoding}.
 
 Let $\calX$ be a lattice code constructed from a lattice $\Lambda$.  Assuming that each codeword $\xbf \in \calX$ has an equal probability of being transmitted and that the receiver employs lattice decoding, then the average probability of correct decoding in the AWGN channel is
@@ -278,7 +278,7 @@ Projecting orthogonal to $\onebf$ gives $\Qbf\xbf = \Qbf \wbf$.  Interestingly $
 \begin{example}\emph{\textbf{(The volume of the Voronoi cell)}
 In order to demonstrate this approach we will derive the $0$th moment (i.e. the volume) of the Voronoi cell using~(\ref{eq:intwewilluse}).  Setting $f(\Qbf\wbf) = \|\Qbf\wbf\|^0 = 1$ we obtain,
 \begin{align*}
-C_0 &= n\sqrt{n+1} \int^{1}_{0} \int^{y}_{0} \int^{t}_{0} \cdots \int^{t}_{0} \frac{1}{1 - t} \,dw_{n-1}\dots dw_1 \, dt  \, dy\\
+M_n(0) &= n\sqrt{n+1} \int^{1}_{0} \int^{y}_{0} \int^{t}_{0} \cdots \int^{t}_{0} \frac{1}{1 - t} \,dw_{n-1}\dots dw_1 \, dt  \, dy\\
  &= n\sqrt{n+1} \int^{y}_{0} \int_{0}^{1}  \frac{t^{n-1}}{1 - t} \, dt  \, dy. \\
 &= n\sqrt{n+1}  \int^{1}_{0} \beta(y, n, 0) \, dy = \sqrt{n+1}.
 \end{align*}
@@ -377,14 +377,14 @@ This expression is equivalent to that from~(\ref{eq:theCmformula}).
 
 \section{Results and simulations}\label{sec:results-simulations}
 
-We now plot the probability of coding error versus signal to noise ratio (SNR) for the lattices $A_1, A_2, A_3$ and $A_4$.  For these plots the SNR is related to noise variance according to~\cite{Viterbo_diamond_cutting_1996}
+We now plot the probability of coding error versus signal to noise ratio (SNR) for the lattices $A_1, A_2, A_3, A_4$ and $A_5$.  For these plots the SNR is related to noise variance according to~\cite{Viterbo_diamond_cutting_1996}
 \[
 \text{SNR} = \frac{V^{2/n}}{4\sigma^2},
 \]
-where $V$ is the volume of the Voronoi cell and $n$ is the dimension of the lattice.  Figure~\ref{fig:peplots} shows the `exact' probability of error (correct to 16 decimal places) computed using the moments $\calM_n(1)$ and~\eqref{eq:summomentproberror} (solid line).  The number of moments needed to ensure a certain number of decimal places accuracy depends on $n$ and also on the noise variance $\sigma^2$.  At most 196 moments where needed for Figure~\ref{fig:peplots}.  We also display the probability of error computed approximately by Monte-Carlo simulation (dots).  %We have used the fast nearest point algorithm for $A_n$ described in~\cite{McKilliam2009CoxeterLattices} and~\cite[p. 448]{SPLAG}.
+where $V$ is the volume of the Voronoi cell and $n$ is the dimension of the lattice.  Figure~\ref{fig:peplots} shows the `exact' probability of error (correct to 16 decimal places) computed using the moments $\calM_n(m)$ and~\eqref{eq:summomentproberror} (solid line).  The number of moments needed to ensure a certain number of decimal places accuracy depends on $n$ and also on the noise variance $\sigma^2$.  At most 252 moments where needed for Figure~\ref{fig:peplots}.  We also display the probability of error computed approximately by Monte-Carlo simulation (dots).  %We have used the fast nearest point algorithm for $A_n$ described in~\cite{McKilliam2009CoxeterLattices} and~\cite[p. 448]{SPLAG}.
 The simulations are iterated until 500 error events occur.
 
-The plot also displays approximations for the probability of error for the 8-dimensional $E_8$ lattice and the 24-dimensional Leech lattice $\Lambda_{24}$.  The approximations are made in the usual way by applying the union bound to the minimal vectors of the lattice~\cite[p.~71]{SPLAG}.  The $E_8$ lattice has 240 minimal vectors of length $\sqrt{2}$.  The packing radius of $E_8$ is therefore $\rho = \sqrt{2}/2$.  Applying the union bound on the  probability of error satisfies
+The plot also display an approximation for the probability of error for the 8-dimensional $E_8$ lattice.  The approximation is made in the usual way by applying the union bound to the minimal vectors of the lattice~\cite[p.~71]{SPLAG}.  The $E_8$ lattice has 240 minimal vectors of length $\sqrt{2}$.  The packing radius of $E_8$ is therefore $\rho = \sqrt{2}/2$.  Applying the union bound the probability of error satisfies
 \newcommand{\erfc}{\operatorname{erfc}}
 \newcommand{\erf}{\operatorname{erf}}
 \[
@@ -392,10 +392,10 @@ P_E \leq 240\erfc\left( \frac{\rho}{\sqrt{2}\sigma} \right) = 240\erfc\left(\fra
 \]
 where $\erfc(x) = 1 - \erf(x)$ is the complementary error function.  For the $E_8$ lattice this approximation is an upper bound because the relevant vectors of $E_8$ (those vectors that define the Voronoi cell) are precisely the 240 minimal vectors.  %The second moment of this representation of $E_8$ is $\frac{929}{1620}$ so SNR is related to $\sigma^2$ by $\text{SNR} = \frac{929}{3240\sigma^2}$.
 
-For $\Lambda_{24}$ there are $196560$ minimal vectors each of length $2$.  The packing radius is $\rho = 1$.  An approximation for the probability of error is
-\[
-P_E \approx 196560\erfc\left( \frac{\rho}{\sqrt{2}\sigma} \right) = 196560\erfc\left(\frac{1}{\sqrt{2}\sigma}\right).
-\]
+%For $\Lambda_{24}$ there are $196560$ minimal vectors each of length $2$.  The packing radius is $\rho = 1$.  An approximation for the probability of error is
+%\[
+%P_E \approx 196560\erfc\left( \frac{\rho}{\sqrt{2}\sigma} \right) = 196560\erfc\left(\frac{1}{\sqrt{2}\sigma}\right).
+%\]
 % The second moment of this representation of $\Lambda_{24}$ is approximately $24 \times 0.065771$.  This was computed numerically by Conway and Sloane~\cite[p. 61]{SPLAG}.  The relationship between SNR and $\sigma^2$ is $\text{SNR} = 4 \times 0.065771 \sigma^{-2}$.
 
 % We now plot the probability of coding error versus signal to noise ratio (SNR) for the lattices $A_1, A_2, A_3$ and $A_4$.  We assume that codes are constructed from these lattices using a \emph{Voronoi constellation}~\cite{Conway1983VoronoiCodes} of size $2^n$.  This corresponds to a rate of $1$ bit per dimension (or symbol).  The shaping region of these constellations is $2\vor(A_n)$, i.e. the Voronoi cell of $A_n$ scaled by a factor of $2$.  The average power of these constellations can be approximated by four times the second moment $4\calM_n(1)$.  This approximation is conservative as Voronoi constellations can have average power smaller than the second moment of the shaping region~\cite{Conway1983VoronoiCodes}.  The approximation becomes more accurate as the code rate and correspondingly the volume of the shaping region grows.  %In proving that lattice codes using lattice decoding can achieve capacity Erez and Zamir~\cite{Erex2004_lattice_decoding} employ a common dither between transmitter and receiver. This is to ensure that the average power is \emph{exactly} the second moment of the shaping region.  For this reason we think that this approximation is valid.
@@ -431,14 +431,14 @@ P_E \approx 196560\erfc\left( \frac{\rho}{\sqrt{2}\sigma} \right) = 196560\erfc\
 \begin{figure*}[tp]
 	\centering
 		\includegraphics{plots/peplots-1.mps}
-		\caption{The probability of error versus SNR for $A_1 \simeq \ints$, $A_2$, $A_3\simeq D_3$ and $A_4$ and $E_8$ and the Leech lattice $\Lambda_{24}$.}
+		\caption{The probability of error versus SNR for $A_1 \simeq \ints$, $A_2$, $A_3\simeq D_3, A_4, A_5$ and $E_8$.}
 		\label{fig:peplots}
 \end{figure*}
 
 
 \section{Conclusion}
 
-Recursive formulae for the moments of the Voronoi cell of the lattice $A_n$ were found.  These enable accurate prediction of the performance of codes constructed from $A_n$.  In two dimensions $A_2$ is the hexagonal lattice and in three dimensions $A_3$ is the face-centered cubic lattice and our results include codes constructed using these packings as a special case.  %The lattice $A_n$ does not produce good codes in large dimension, but we are hopeful that the techniques developed here can be applied to other lattices.  In particular similar techniques might apply to the family Coxeter lattices, which contains the root lattice $E_8$.
+Recursive formulae for the moments of the Voronoi cell of the lattice $A_n$ were found.  These enable accurate prediction of the performance of codes constructed from $A_n$.  In two dimensions $A_2$ is the hexagonal lattice and in three dimensions $A_3$ is the face-centered cubic lattice.  Our results include codes constructed using these packings as a special case.  %The lattice $A_n$ does not produce good codes in large dimension, but we are hopeful that the techniques developed here can be applied to other lattices.  In particular similar techniques might apply to the family Coxeter lattices, which contains the root lattice $E_8$.
 
 
 \appendix
