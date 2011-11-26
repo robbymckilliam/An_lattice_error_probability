@@ -7,10 +7,10 @@ import pubsim.lattices.An.MomentComputer
 import pubsim.BigRational
 import pubsim.Util
 
-val ns = List(3,4,5)
+val ns = List(2,3,4,5)
 //val lattice = new AnFastSelect(n)
 val varstart = new BigRational(1,2)
-val varstep = new BigRational(9,10)
+val varstep = new BigRational(93,100)
 val tope = 1e-12
 val petol = 1e-17
 
