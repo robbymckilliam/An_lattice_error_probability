@@ -82,13 +82,14 @@ draw begingraph(plotwidth, plotheight);
   gdraw "moment3"; glabel.rt(btex $A_3$ etex, 1000);
   gdraw "moment4"; glabel.bot(btex $A_4$ etex, 1000);
   gdraw "moment5"; glabel.lft(btex $A_5$ etex, 1000);
-
+  gdraw "pe8"; glabel.lft(btex $A_8$ etex, 1000);
+  
   gdraw "pemontecarlo1" plot(dot);
   gdraw "pemontecarlo2" plot(dot);
   gdraw "pemontecarlo3" plot(dot);
   gdraw "pemontecarlo4" plot(dot);
   gdraw "pemontecarlo5" plot(dot);
-  %gdraw "pemontecarlo8" plot(dot);
+  gdraw "pemontecarlo8" plot(dot);
 
   gdraw "pemontecarlo_E8" plot(dot); 
   gdraw "E8UnionBound" dashed evenly; glabel.rt(btex $E_8$ etex, 1000);

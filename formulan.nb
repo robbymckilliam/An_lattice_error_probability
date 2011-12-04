@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       157,          7]
-NotebookDataLength[     49132,       1339]
-NotebookOptionsPosition[     47970,       1294]
-NotebookOutlinePosition[     48307,       1309]
-CellTagsIndexPosition[     48264,       1306]
+NotebookDataLength[     49425,       1351]
+NotebookOptionsPosition[     48199,       1303]
+NotebookOutlinePosition[     48536,       1318]
+CellTagsIndexPosition[     48493,       1315]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -476,7 +476,15 @@ Cell[BoxData[
    SuperscriptBox["n", "8"]}]}]], "Output",
  CellChangeTimes->{{3.522964250827593*^9, 3.522964256058992*^9}, 
    3.5229643044830647`*^9, 3.522964354293509*^9}]
+}, Open  ]]
 }, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Construct a table with formula for the moments\
+\>", "Section",
+ CellChangeTimes->{{3.532027974768639*^9, 3.5320280146644983`*^9}}],
 
 Cell[CellGroupData[{
 
@@ -499,7 +507,8 @@ Cell[BoxData[
   3.522964735474152*^9, 3.522964770161623*^9}, {3.522965675850828*^9, 
   3.522965675985194*^9}, {3.5229663921304617`*^9, 3.522966392467906*^9}, {
   3.5229688079629097`*^9, 3.522968809138438*^9}, {3.523054846905982*^9, 
-  3.523054857892083*^9}, {3.5232233348941803`*^9, 3.523223341119938*^9}}],
+  3.523054857892083*^9}, {3.5232233348941803`*^9, 3.523223341119938*^9}, {
+  3.532028002951386*^9, 3.5320280047932453`*^9}}],
 
 Cell[BoxData[
  RowBox[{"{", 
@@ -1293,7 +1302,7 @@ Cell[BoxData[
 }, Open  ]]
 },
 WindowSize->{830, 1073},
-WindowMargins->{{Automatic, 49}, {Automatic, 0}},
+WindowMargins->{{Automatic, 41}, {Automatic, 0}},
 FrontEndVersion->"8.0 for Linux x86 (64-bit) (February 23, 2011)",
 StyleDefinitions->"Default.nb"
 ]
@@ -1333,12 +1342,15 @@ Cell[15507, 412, 914, 15, 69, "Output"]
 Cell[CellGroupData[{
 Cell[16458, 432, 883, 25, 30, "Input"],
 Cell[17344, 459, 615, 18, 30, "Output"]
+}, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[17996, 482, 803, 19, 30, "Input"],
-Cell[18802, 503, 14556, 392, 827, "Output"]
+Cell[18008, 483, 141, 3, 74, "Section"],
+Cell[CellGroupData[{
+Cell[18174, 490, 854, 20, 30, "Input"],
+Cell[19031, 512, 14556, 392, 827, "Output"]
 }, Open  ]],
-Cell[33373, 898, 14569, 392, 1541, InheritFromParent]
+Cell[33602, 907, 14569, 392, 1503, "Input"]
 }, Open  ]]
 }, Open  ]]
 }

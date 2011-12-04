@@ -5,7 +5,7 @@ import pubsim.lattices.util.ProbabilityOfCodingError
 import pubsim.lattices.An.AnFastSelect
 import pubsim.distributions.GaussianNoise
 
-val ns = List(1,2,3,4,5)
+val ns = List(8)
 
 val startdb = 5.5
 val stepdb = 0.5
@@ -27,7 +27,7 @@ for(n <- ns){
     val snr = scala.math.pow(10.0,dbnow/10.0)
     //val v = (3.0+n)/3.0/scala.math.sqrt(n+1)/snr
     val v  = scala.math.pow(V,2.0/n)/snr/4
-    pe = new ProbabilityOfCodingError(lattice,new GaussianNoise(0,v),1000).probError
+    pe = new ProbabilityOfCodingError(lattice,new GaussianNoise(0,v),500).probError
     println(dbnow + "\t" + pe)
     mfile.write(dbnow.toString.replace('E', 'e') + "\t" + pe.toString.replace('E', 'e') + "\n")
     dbnow = dbnow + stepdb

@@ -1,0 +1,22 @@
+Repository containing code for the paper 
+
+R. McKilliam, R. Subramanian, E. Viterbo, I. V. L. Clarkson. ''On the error performance of the $A_n$ lattices''
+
+The main latex file is paper.tex.
+
+The script build.sh with build the figures and compile the latex file to a pdf using pdflatex.
+
+There are two mathematica scripts for computing the probability of error for the An lattices.  The first is nopolymoments.nb which, when executed will construct a probability of error plot for one of the An lattices.
+
+The file formulan.nb computes formula for the moments by solving the recursion described in the paper.
+
+The plots folder contains the output data and scripts for generating the plot in the paper.  An existing java library was used for the Monte Carlo simlations.  Execute the script 
+
+montecarlo.sh 
+
+You need a working jvm and scala2.8 or higher installed to run this.  These scripts make use of nearest point algorithms for An (and other lattices) contained in the java library available at 
+
+https://github.com/robbymckilliam/pubsim.  
+
+An executable for this library is packaged inside this repository.
+
