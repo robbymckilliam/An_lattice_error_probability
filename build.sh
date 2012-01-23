@@ -2,7 +2,9 @@ cd plots
 mpost -interaction=nonstopmode peplots.mp
 cd ..
 
-pdflatex paper.tex
+latex paper.tex
 bibtex paper
-pdflatex paper.tex
-pdflatex paper.tex
+latex paper.tex
+latex paper.tex
+dvips paper.dvi
+ps2pdf paper.ps
