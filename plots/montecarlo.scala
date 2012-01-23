@@ -5,7 +5,7 @@ import pubsim.lattices.util.ProbabilityOfCodingError
 import pubsim.lattices.An.AnFastSelect
 import pubsim.distributions.GaussianNoise
 
-val ns = List(8)
+val ns = List(2,3,4,5,8)
 
 val startdb = 5.5
 val stepdb = 0.5
