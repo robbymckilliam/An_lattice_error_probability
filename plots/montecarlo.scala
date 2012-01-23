@@ -7,7 +7,7 @@ import pubsim.distributions.GaussianNoise
 
 val ns = List(2,3,4,5,8)
 
-val startdb = 5.5
+val startdb = 10.0
 val stepdb = 0.5
 val tope = 1e-6
 

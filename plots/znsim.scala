@@ -14,7 +14,7 @@ println
 println("Running Monte-Carlo trials with the Zn lattice")
 
 val lattice = new Zn(1)
-val startdb = 0.0
+val startdb = 10.0
 val stepdb = 0.5
 val tope = 1e-6
 

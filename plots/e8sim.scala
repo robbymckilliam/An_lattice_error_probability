@@ -14,7 +14,7 @@ println
 println("Running Monte-Carlo trials with the E8 lattice")
 
 val lattice = new E8
-val startdb = 5.5
+val startdb = 10.0
 val stepdb = 0.5
 val tope = 1e-6
 
