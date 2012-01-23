@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       157,          7]
-NotebookDataLength[     88183,       2192]
-NotebookOptionsPosition[     87000,       2145]
-NotebookOutlinePosition[     87337,       2160]
-CellTagsIndexPosition[     87294,       2157]
+NotebookDataLength[     88231,       2192]
+NotebookOptionsPosition[     87048,       2145]
+NotebookOutlinePosition[     87385,       2160]
+CellTagsIndexPosition[     87342,       2157]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -506,14 +506,14 @@ Cell[BoxData[
          RowBox[{"2", "*", "m"}]}], ")"}]}]}], ",", 
      RowBox[{"n", ">", "1"}]}], "]"}], ",", " ", 
    RowBox[{"{", 
-    RowBox[{"m", ",", "0", ",", "20"}], "}"}]}], "]"}]], "Input",
+    RowBox[{"m", ",", "0", ",", "40"}], "}"}]}], "]"}]], "Input",
  CellChangeTimes->{{3.522964472926499*^9, 3.522964499296987*^9}, {
   3.522964735474152*^9, 3.522964770161623*^9}, {3.522965675850828*^9, 
   3.522965675985194*^9}, {3.5229663921304617`*^9, 3.522966392467906*^9}, {
   3.5229688079629097`*^9, 3.522968809138438*^9}, {3.523054846905982*^9, 
   3.523054857892083*^9}, {3.5232233348941803`*^9, 3.523223341119938*^9}, {
   3.532028002951386*^9, 3.5320280047932453`*^9}, {3.532028174567019*^9, 
-  3.532028174638711*^9}}],
+  3.532028174638711*^9}, {3.5362751477983847`*^9, 3.536275147909299*^9}}],
 
 Cell[BoxData[
  RowBox[{"{", 
@@ -2144,7 +2144,7 @@ Cell[BoxData[
 }, Open  ]]
 },
 WindowSize->{830, 1073},
-WindowMargins->{{Automatic, 41}, {Automatic, 0}},
+WindowMargins->{{Automatic, 33}, {Automatic, 0}},
 FrontEndVersion->"8.0 for Linux x86 (64-bit) (February 23, 2011)",
 StyleDefinitions->"Default.nb"
 ]
@@ -2189,8 +2189,8 @@ Cell[17475, 463, 637, 18, 30, "Output"]
 Cell[CellGroupData[{
 Cell[18161, 487, 141, 3, 74, "Section"],
 Cell[CellGroupData[{
-Cell[18327, 494, 903, 21, 30, "Input"],
-Cell[19233, 517, 67727, 1623, 7964, "Output"]
+Cell[18327, 494, 951, 21, 30, "Input"],
+Cell[19281, 517, 67727, 1623, 7964, "Output"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
