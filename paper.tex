@@ -1,5 +1,6 @@
 %\documentclass[a4paper,10pt]{article}
-\documentclass[draftcls, onecolumn, 11pt]{IEEEtran}
+%\documentclass[draftcls, onecolumn, 11pt]{IEEEtran}
+\documentclass[journal, onecolumn, 10pt]{IEEEtran}
 %\documentclass[journal]{IEEEtran}
 %\documentclass[correspondence,9pt]{IEEEtran}
 
@@ -12,7 +13,9 @@
 
 %opening
 \title{On the error performance of the $A_n$ lattices}
-\author{Robby McKilliam, Ramanan Subramanian, Emanuele Viterbo, I. Vaughan L. Clarkson}
+\author{Robby McKilliam, Ramanan Subramanian, Emanuele Viterbo, I. Vaughan L. Clarkson
+ \thanks{Robby~McKilliam and Ramanan Subramanian are with the Institute for Telecommunications Research, The University of South Australia, SA, 5095.  Emanuele Viterbo is with the Department of Electrical and Computer Systems Engineering, Monash University, Melbourne, VIC, Australia.   Vaughan~Clarkson is with the School of Information Technology \& Electrical Engineering, The University of Queensland, QLD., 4072, Australia.}
+}
 
 \begin{document}
 
@@ -70,42 +73,43 @@ A good overview of these techniques is given by Agrell~et.~al.~\cite{Agrell2002}
 
 %For each lattice point $\ybf \in \Lambda$ there exists a Voronoi cell containing those point from $\reals^n$ nearer to $\ybf$ that any other lattice point.  Due to the structure of the lattice the Voronoi cell of each lattice point is the same shape.  Denote by $\vor(\Lambda)$ the Vornoi cell of the lattice point at the origin. NEAREST POINT PROBLEM.
 \newcommand{\calX}{\mathcal X}
-Lattices can be used to construct \emph{signal space codes}.  A signal space code $\calX$ of dimension $n$ is a finite set of vectors (or points) in the Euclidean space $\reals^n$.  Each vector in $\calX$ is called a \emph{codeword} and represents a particular signal.  The number of codewords is denoted by $\abs{\calX}$.  If each codeword is transmitted with equal probability then the rate of the code is $R = \frac{1}{n}\log_2\abs{\calX}$ bits per codeword. The average power of the code is given by $P = \frac{1}{\abs{\calX}}\sum_{\xbf \in \calX}\|\xbf\|^2$.  In the AWGN channel the received signal takes the form
+\newcommand{\calC}{\mathcal C}
+Lattices can be used to construct \emph{signal space codes}.  A signal space code $\calC$ of dimension $n$ is a finite set of vectors (or points) in the Euclidean space $\reals^n$.  Each vector in $\calC$ is called a \emph{codeword} and represents a particular signal.  The number of codewords is denoted by $\abs{\calC}$.  If each codeword is transmitted with equal probability then the rate of the code is $R = \frac{1}{n}\log_2\abs{\calC}$ bits per codeword. The average power of the code is given by $P = \frac{1}{\abs{\calC}}\sum_{\cbf \in \calC}\|\cbf\|^2$.  In the AWGN channel the received signal takes the form
 \[
-\ybf = \xbf + \wbf
+\ybf = \cbf + \wbf
 \]
-where $\ybf \in \reals^n$, $\xbf \in \calX$ and $\wbf$ is a vector of independent and identically distributed Gaussian random variables with variance $\sigma^2$.  If the receiver employs maximum likelihood decoding then the estimator of $\xbf$ given $\ybf$ at the receiver is
+where $\ybf \in \reals^n$, $\cbf \in \calC$ and $\wbf$ is a vector of independent and identically distributed Gaussian random variables with variance $\sigma^2$.  If the receiver employs maximum likelihood decoding then the estimator of $\cbf$ given $\ybf$ at the receiver is
 \begin{equation}\label{eq:mldecoder}
-\hat{\xbf} = \underset{\xbf \in \calX}{\operatorname{argmin}}\;\| \ybf - \xbf \|^2.
-%\hat{\xbf} &=& \mbox{arg~}\min_{\xbf \in \calX} \| \ybf - \xbf \|^2.
+\hat{\cbf} = \underset{\cbf \in \calC}{\operatorname{argmin}}\;\| \ybf - \cbf \|^2.
+%\hat{\cbf} &=& \mbox{arg~}\min_{\cbf \in \calC} \| \ybf - \cbf \|^2.
 \end{equation}
-That is, the receiver computes the codeword in $\calX$ nearest in Euclidean distance to the received signal $\ybf$.  Assuming that each codeword is transmitted with equal probability then the probability of correct decoding is
+That is, the receiver computes the codeword in $\calC$ nearest in Euclidean distance to the received signal $\ybf$.  Assuming that each codeword is transmitted with equal probability then the probability of correct decoding is
 \[
-P_C =\frac{1}{\abs{\calX}}\sum_{\xbf \in \calX} \prob( \hat{\xbf} = \xbf ),
+P_C =\frac{1}{\abs{\calC}}\sum_{\cbf \in \calC} \prob( \hat{\cbf} = \cbf ),
 \]
 and the probability of error is
 \[
-P_E = 1 - \frac{1}{\abs{\calX}} \sum_{\xbf \in \calX} \prob(
-\hat{\xbf} = \xbf ).
+P_E = 1 - \frac{1}{\abs{\calC}} \sum_{\cbf \in \calC} \prob(
+\hat{\cbf} = \cbf ).
 \]
 %The maximum possible rate of reliable communications in this channel is given by the channel capacity $B\log_2\left(1 + \frac{P}{\sigma^2}\right)$.  If the codewords are chosen uniformly randomly on a sphere of radius $\sqrt{P}$ then as $n$ gets large the rate of the code can be made arbitrarily close to the channel capacity while simultaneously the probability of error can be made arbitrarily small.  Another way of stating this is that we can choose close to $2^{nR/B}$ codewords uniformly randomly on a sphere of radius $\sqrt{P}$ and as $n$ gets large the probability of error decreases to zero.
 
-%A problem with randomly generated codes and maximum likelihood decoding is that there are no computationally efficient methods for encoding and decoding.  For encoding the transmitter must store a list of size $\abs{\calX} \approx 2^{nR/B}$ and for decoding the receiver must compute $\hat{\xbf}$ requiring a search over all $\abs{\calX} \approx 2^{nR/B}$ codewords.  As $n$ gets large this becomes infeasible.  To avoid this computational complexity it is preferable for a code to have some type of `structure' that is exploitable for efficient encoding and decoding.  One way of enforcing structure is to choose codewords from a lattice.  The idea being that encoding and decoding can now be performed efficiently by \emph{lattice decoding}, i.e. by finding a nearest point in a lattice.
+%A problem with randomly generated codes and maximum likelihood decoding is that there are no computationally efficient methods for encoding and decoding.  For encoding the transmitter must store a list of size $\abs{\calC} \approx 2^{nR/B}$ and for decoding the receiver must compute $\hat{\cbf}$ requiring a search over all $\abs{\calC} \approx 2^{nR/B}$ codewords.  As $n$ gets large this becomes infeasible.  To avoid this computational complexity it is preferable for a code to have some type of `structure' that is exploitable for efficient encoding and decoding.  One way of enforcing structure is to choose codewords from a lattice.  The idea being that encoding and decoding can now be performed efficiently by \emph{lattice decoding}, i.e. by finding a nearest point in a lattice.
 
 A \emph{lattice code} is a signal space code with codewords taken from a finite subset of points of some lattice $\Lambda$ in $\reals^n$. There are infinitely many ways to choose a finite subset from a lattice, but common approaches make use of a bounded subset of $\reals^n$, called a \emph{shaping region} $S \subset \reals^n$.  The codewords are given by those lattice points inside the shaping region, that is,
 \[
-\calX = S \cap \Lambda.
+\calC = S \cap \Lambda.
 \]
 Common choices of shaping region are $n$-dimensional spheres, spherical shells, hypercubes, or the Voronoi cell of a \emph{sublattice} of $\Lambda$~\cite{Buda1989_some_opt_codes_structure,Erex2004_lattice_decoding,Conway1983VoronoiCodes}.  A consequence of the finiteness of a lattice code is that the maximum likelihood decoder~\eqref{eq:mldecoder} is \emph{not} equivalent to lattice decoding.  Computing a nearest lattice point will not in general return a lattice point from the code (the decoded lattice point might lie outside the shaping region).
  %A question that remained open for some time was whether lattice codes employing lattice decoding could achieve channel capacity.  This question was answered in the affirmative by Erez and Zamir~\cite{Erex2004_lattice_decoding}.
 
-Let $\calX$ be a lattice code constructed from a lattice $\Lambda$.  Assuming that each codeword $\xbf \in \calX$ has an equal probability of being transmitted and that the receiver employs lattice decoding, then the average probability of correct decoding in the AWGN channel is
+Let $\calC$ be a lattice code constructed from a lattice $\Lambda$.  Assuming that each codeword $\cbf \in \calC$ has an equal probability of being transmitted and that the receiver employs lattice decoding, then the average probability of correct decoding in the AWGN channel is
 %\footnote{In order to approach capacity Erez and Zamir~\cite{Erex2004_lattice_decoding} employ a uniform dither and also a minimum mean square error scaling parameter $\alpha$ (the so called \emph{modulo-lattice additive noise channel}).  A result of this is that that observed noise distribution is no longer Gaussian. However, for large signal to noise ratio $\alpha \approx 1$ and the observed noise is very close to Gaussian.  In this case~\eqref{eq:PEgaussian} is a reasonable approximation.}
 \begin{align}
-P_C &\geq P_C(\Lambda) = \lim_{\abs{\calX}\rightarrow \infty}
- \frac{1}{\abs{\calX}} \sum_{\xbf\in \calX} \prob( \xbf + \wbf \in
-\vor(\Lambda) + \xbf )  \nonumber \\
-&= \prob(\xbf \in \vor(\Lambda) ) \nonumber \\
+P_C &\geq P_C(\Lambda) = \lim_{\abs{\calC}\rightarrow \infty}
+ \frac{1}{\abs{\calC}} \sum_{\cbf\in \calC} \prob( \cbf + \wbf \in
+\vor(\Lambda) + \cbf )  \nonumber \\
+&= \prob(\wbf \in \vor(\Lambda) ) \nonumber \\
 &=   \frac{1}{(\sqrt{2\pi}\sigma)^n} \int_{\vor(\Lambda)}
 e^{-\|\xbf\|^2 / 2\sigma^2 } d\xbf. \label{eq:PEgaussian}
 \end{align}
