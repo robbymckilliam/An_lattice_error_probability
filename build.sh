@@ -1,10 +1,13 @@
-cd plots   
-mpost -interaction=nonstopmode peplots.mp   
-cd ..   
+cd plots
+mpost -interaction=nonstopmode peplots.mp
+cd ..
 
-latex paper.tex  
-bibtex paper  
-latex paper.tex  
-latex paper.tex  
-dvips paper.dvi  
-ps2pdf paper.ps  
+pdflatex paper.tex
+bibtex paper
+pdflatex paper.tex
+pdflatex paper.tex
+
+pdflatex threepager.tex
+bibtex threepager
+pdflatex threepager.tex
+pdflatex threepager.tex
