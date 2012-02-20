@@ -25,7 +25,7 @@
 \maketitle
 
 \begin{abstract}
-We consider the root lattice $A_n$ and derive explicit formulae for the moments of its Voronoi cell.  We then show that these formulae enable accurate prediction of the error probability of lattice codes constructed from $A_n$.
+We consider the root lattice $A_n$ and derive explicit formulae for the moments of its Voronoi cell.  These formulae enable accurate prediction of the error probability of lattice codes constructed from $A_n$.
 \end{abstract}
 
 \begin{keywords}
@@ -54,9 +54,9 @@ A \term{lattice}\index{lattice}, $\Lambda$, is a discrete subset of points in $\
 \[
    \Lambda = \{\xbf = \Bbf\ubf \mid \ubf \in \ints^n \}
  \]
- where $\Bbf \in \reals^{m \times n}$ is an $m \times n$ matrix of rank $n$, called the \term{generator matrix} or \term{basis matrix} or simply generator or basis. In particular, the set of $n$-tuples of integers $\ints^n$ is a lattice (with the identity matrix as the generator) and we call this the~\emph{integer lattice}. A lattice $\Lambda$ associated with a rank-$n$ generator matrix $\mathbf{B}$ is said to be $n$-dimensional. If the generator is square, i.e. $m = n$, then the lattice points span $\reals^n$ and we say that the lattice is \term{full rank}. If $\Bbf$ has more rows than columns, i.e. $m > n$, then the lattice points lie in a $n$-dimensional subspace of $\reals^m$.
+ where $\Bbf \in \reals^{m \times n}$ is an $m \times n$ matrix of rank $n$, called the \term{generator matrix} or \term{basis matrix} or simply generator or basis. In particular, the set of $n$-tuples of integers $\ints^n$ is a lattice (with the identity matrix as the generator) and we call this the~\emph{integer lattice}. %A lattice $\Lambda$ associated with a rank-$n$ generator matrix $\mathbf{B}$ is said to be $n$-dimensional. If the generator is square, i.e. $m = n$, then the lattice points span $\reals^n$ and we say that the lattice is \term{full rank}. If $\Bbf$ has more rows than columns, i.e. $m > n$, then the lattice points lie in a $n$-dimensional subspace of $\reals^m$.
 
-The \term{Voronoi cell}, denoted $\vor(\Lambda)$, of a lattice $\Lambda$ is the subset of $\reals^m$ containing all points nearer (in Euclidean distance) to the lattice point at the origin than any other lattice point. The Voronoi cell is an $n$-dimensional convex polytope that is symmetric about the origin.  If we translate the Voronoi cell by a lattice point $\xbf$, we obtain the subset of $\reals^m$ that is closer to $\xbf$ than any other lattice point.  We write $\vor(\Lambda) + \xbf$ to denote the Voronoi cell translated about the lattice point $\xbf$.
+The \term{Voronoi cell}, denoted $\vor(\Lambda)$, of a lattice $\Lambda$ is the subset of $\reals^m$ containing all points nearer (in Euclidean distance) to the lattice point at the origin than any other lattice point. The Voronoi cell is an $n$-dimensional convex polytope that is symmetric about the origin.  If we translate the Voronoi cell by a lattice point $\xbf$, we obtain the subset of $\reals^m$ that is closer to $\xbf$ than any other lattice point.  We write $\vor(\Lambda) + \xbf$ to denote the Voronoi cell translated by $\xbf$.
 %It is convenient to modify this definition of the Voronoi cell slightly so that the union of translated Voronoi cells $\cup_{\xbf \in \Lambda}\vor(\Lambda) + \xbf$ is equal to  $\mathcal{S}_{\Lambda}$.  That is, the Voronoi cell tessellates when translated by points in $\Lambda$.  To ensure this we require that if a face of $\vor(\Lambda)$ is open, then its opposing face is closed. Specifically, if $\xbf \in \vor(\Lambda)$ is on the boundary of $\vor(\Lambda)$ then $-\xbf \notin \vor(\Lambda)$.  We wont specifically define which opposing face is open and which is closed as the results that follow hold for any choice of open and closed opposing faces.
 The Voronoi cell encodes many interesting lattice properties such as the packing radius, covering radius, kissing number, minimal vectors, center density, thickness, and the normalized second moment (or quantizing constant)~\cite{Viterbo_diamond_cutting_1996, SPLAG}. The error probability of a lattice code can also be evaluated from the Voronoi cell as we will see.  There exist algorithms to completely enumerate the Voronoi cell of an arbitrary lattice~\cite{Viterbo_diamond_cutting_1996,Sikiric_complex_algs_vor_cells_2009,Sikiric_vor_reduction_covering_2008,Valentin2003_coverings_tilings_low_dimension}.  In general these algorithms are only computationally feasible when the dimension is small (approximately $n \leq 9$).  Even with a complete description of the Voronoi cell it is not necessarily easy to compute the probability of coding error.
 
@@ -78,15 +78,17 @@ In the AWGN channel the received signal takes the form
 \]
 where $\ybf \in \reals^n$, $\cbf \in \calC$ and $\wbf$ is a vector of independent and identically distributed Gaussian random variables with variance $\sigma^2$.  If the receiver employs maximum likelihood decoding then the estimator of $\cbf$ given $\ybf$ at the receiver is
 \begin{equation}\label{eq:mldecoder}
-\hat{\cbf}_{\text{ML}} = \underset{\cbf \in C}{\operatorname{argmin}}\;\| \ybf - \cbf \|^2.
+\hat{\cbf}_{\text{ML}} = \underset{\cbf \in C}{\operatorname{argmin}}\;\| \ybf - \cbf \|^2,
 %\hat{\cbf} &=& \mbox{arg~}\min_{\cbf \in \calC} \| \ybf - \cbf \|^2.
 \end{equation}
-That is, the receiver computes the codeword in $\calC$ nearest in Euclidean distance to the received signal $\ybf$.  Typically maximum likelihood decoding is computationally complex and it is preferable to use \emph{lattice deoding}~\cite{Erex2004_lattice_decoding}.  The estimator of $\cbf$ is then,
+that is, the receiver computes the codeword in $\calC$ nearest in Euclidean distance to the received signal $\ybf$.  Typically maximum likelihood decoding is computationally complex and it is preferable to use \emph{lattice deoding}~\cite{Erex2004_lattice_decoding}.  The estimator of $\cbf$ is then,
 \begin{equation}\label{eq:latticedecoder}
 \hat{\cbf} = \underset{\cbf \in \Lambda}{\operatorname{argmin}}\;\| \ybf - \cbf \|^2,
 %\hat{\cbf} &=& \mbox{arg~}\min_{\cbf \in \calC} \| \ybf - \cbf \|^2.
 \end{equation}
-That is, the receiver computes the lattice point in $\Lambda$ nearest in Euclidean distance to the received signal $\ybf$.  Equivalently, $\hat{\cbf}$ is the lattice point such that $\ybf \in \vor(\Lambda) + \hat{\cbf}$.  The codeword is correctly decoded when $\hat{\cbf} = \cbf$, or equivalently when $\ybf \in \vor(\Lambda) + \cbf$ implying that $\wbf \in \vor(\Lambda)$.  Assuming that each codeword $\cbf$ is transmitted with probability $p(\cbf)$, then the probability of correct decoding is
+that is, the receiver computes the lattice point in $\Lambda$ nearest in Euclidean distance to the received signal $\ybf$.  Equivalently, $\hat{\cbf}$ is the lattice point such that $\ybf \in \vor(\Lambda) + \hat{\cbf}$.  Note that with lattice decoding the decoded lattice point $\hat{\cbf}$ is not guaranteed to be inside $\calC$.
+
+Correct decoding occurs when $\hat{\cbf} = \cbf$, or equivalently when $\ybf \in \vor(\Lambda) + \cbf$, or equivalently when $\wbf \in \vor(\Lambda)$, i.e. when the noise $\wbf$ is inside the Voronoi cell of the lattice.  Assuming that each codeword $\cbf$ is transmitted with probability $p(\cbf)$, then the probability of correct lattice decoding is
 \begin{align}
 P_C &= \sum_{\cbf \in \calC} p(\cbf) \prob( \hat{\cbf} = \cbf ) \\
 &= \sum_{\cbf\in \calC} p(\cbf) \prob( \cbf + \wbf \in \vor(\Lambda) + \cbf )  \nonumber \\
@@ -102,7 +104,7 @@ P_C  &= \frac{1}{(\sqrt{2\pi}\sigma)^n}\int_{\vor(\Lambda)} 1
 \frac{(-1)^m}{2^m\sigma^{2m}m!} \int_{\vor(\Lambda)} \|\xbf\|^{2m}
 d\xbf.  \label{eq:summomentproberror}
 \end{align}
-So, to obtain arbitrarily accurate approximations to the probability of error it is enough to know the values of $\int_{\vor(\Lambda)} \|\xbf\|^{2m} d\xbf$ for $m=1,2\dots$ for some sufficiently large $m$.  The number of terms required will increase as the noise variance gets smaller.  This implies that the bound with a fixed number of terms is not asymptotically tight but is very accurate up to a finite signal-to-noise ratio.
+So, to obtain arbitrarily accurate approximations to the probability of error it is enough to know the values of $\int_{\vor(\Lambda)} \|\xbf\|^{2m} d\xbf$ for $m=1,2\dots$ for some sufficiently large $m$.  The number of terms required increases as the noise variance gets smaller.  %This implies that the bound with a fixed number of terms is not asymptotically tight but is very accurate up to a finite signal-to-noise ratio.
 
 \newcommand{\calM}{M}
 In this paper we focus on $n$-dimensional lattice codes constructed from the family of lattices called $A_n$ and  we will derive expressions for the $m$th \emph{moment}s
@@ -140,7 +142,7 @@ These can be summed in (\ref{eq:summomentproberror}) to give arbitrarily accurat
 \\ \calM_n(1) &= \frac{n(n+3)}{12\sqrt{n+1}} \qquad \text{the second moment of $\vor(A_n)$~ \cite[p. 462]{SPLAG}}, 
 \\ \calM_n(2) &=  \frac{50 n + 55 n^2 + 34 n^3 + 5 n^4}{720 (1 + n)^{3/2}}, 
 \\ \calM_n(3) &= \frac{1960 n + 2142 n^2 + 2681 n^3 + 1423 n^4 + 399 n^5 + 35 n^6}{60480 (1 + n)^{5/2}}, 
-\\ \calM_n(4) &= \frac{93744 n + 34356 n^2 + 112172 n^3 + 89343 n^4 + 53224 n^5 + 17246 n^6 + 2940 n^7 + 175 n^8}{3628800 (1 + n)^{7/2}},
+\\ \calM_n(4) &= \frac{93744 n + 34356 n^2 + 112172 n^3 + 89343 n^4 + 53224 n^5 + 17246 n^6 + 2940 n^7 + 175 n^8}{3628800 (1 + n)^{7/2}}.
 %\\ \calM_n(5) &= \frac{3577728 n - 1825648 n^2 + 2410804 n^3 + 1569392 n^4 + 1644423 n^5 + 906105 n^6 + 341550 n^7 + 75526 n^8 + 8855 n^9 + 385 n^{10}}{95800320 (1 + n)^{9/2}}.
 \end{split}
 \end{equation*}
