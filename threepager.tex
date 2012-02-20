@@ -14,7 +14,7 @@
 %opening
 \title{On the error performance of the $A_n$ lattices}
 \author{Robby McKilliam, Ramanan Subramanian, Emanuele Viterbo, I. Vaughan L. Clarkson
- \thanks{Robby~McKilliam and Ramanan Subramanian are with the Institute for Telecommunications Research, The University of South Australia, SA, 5095.  Emanuele Viterbo is with the Department of Electrical and Computer Systems Engineering, Monash University, Melbourne, VIC, Australia.   Vaughan~Clarkson is with the School of Information Technology \& Electrical Engineering, The University of Queensland, QLD., 4072, Australia.}
+ \thanks{Robby~McKilliam and Ramanan Subramanian are with the Institute for Telecommunications Research, The University of South Australia, SA, 5095.  Emanuele Viterbo is with the Department of Electrical and Computer Systems Engineering, Monash University, Melbourne, VIC, Australia.   Vaughan~Clarkson is with the School of Information Technology \& Electrical Engineering, The University of Queensland, QLD., 4072, Australia.  A preliminary full version of this paper is available at http://arxiv.org/abs/1111.6334.}
 }
 
 \begin{document}
@@ -56,7 +56,7 @@ A \term{lattice}\index{lattice}, $\Lambda$, is a discrete subset of points in $\
  \]
  where $\Bbf \in \reals^{m \times n}$ is an $m \times n$ matrix of rank $n$, called the \term{generator matrix} or \term{basis matrix} or simply generator or basis. In particular, the set of $n$-tuples of integers $\ints^n$ is a lattice (with the identity matrix as the generator) and we call this the~\emph{integer lattice}. A lattice $\Lambda$ associated with a rank-$n$ generator matrix $\mathbf{B}$ is said to be $n$-dimensional. If the generator is square, i.e. $m = n$, then the lattice points span $\reals^n$ and we say that the lattice is \term{full rank}. If $\Bbf$ has more rows than columns, i.e. $m > n$, then the lattice points lie in a $n$-dimensional subspace of $\reals^m$.
 
-The (open) \term{Voronoi cell}, denoted $\vor(\Lambda)$, of a lattice $\Lambda$ is the subset of $\reals^m$ containing all points nearer (in Euclidean distance) to the lattice point at the origin than any other lattice point. The Voronoi cell is an $n$-dimensional convex polytope that is symmetric about the origin.  If we translate the Voronoi cell by a lattice point $\xbf$, we obtain the reals of $\reals^m$ that is closer to $\xbf$ than any other lattice point.  We write $\vor(\Lambda) + \xbf$ to denote the Voronoi cell translated about the lattice point $\xbf$.
+The \term{Voronoi cell}, denoted $\vor(\Lambda)$, of a lattice $\Lambda$ is the subset of $\reals^m$ containing all points nearer (in Euclidean distance) to the lattice point at the origin than any other lattice point. The Voronoi cell is an $n$-dimensional convex polytope that is symmetric about the origin.  If we translate the Voronoi cell by a lattice point $\xbf$, we obtain the subset of $\reals^m$ that is closer to $\xbf$ than any other lattice point.  We write $\vor(\Lambda) + \xbf$ to denote the Voronoi cell translated about the lattice point $\xbf$.
 %It is convenient to modify this definition of the Voronoi cell slightly so that the union of translated Voronoi cells $\cup_{\xbf \in \Lambda}\vor(\Lambda) + \xbf$ is equal to  $\mathcal{S}_{\Lambda}$.  That is, the Voronoi cell tessellates when translated by points in $\Lambda$.  To ensure this we require that if a face of $\vor(\Lambda)$ is open, then its opposing face is closed. Specifically, if $\xbf \in \vor(\Lambda)$ is on the boundary of $\vor(\Lambda)$ then $-\xbf \notin \vor(\Lambda)$.  We wont specifically define which opposing face is open and which is closed as the results that follow hold for any choice of open and closed opposing faces.
 The Voronoi cell encodes many interesting lattice properties such as the packing radius, covering radius, kissing number, minimal vectors, center density, thickness, and the normalized second moment (or quantizing constant)~\cite{Viterbo_diamond_cutting_1996, SPLAG}. The error probability of a lattice code can also be evaluated from the Voronoi cell as we will see.  There exist algorithms to completely enumerate the Voronoi cell of an arbitrary lattice~\cite{Viterbo_diamond_cutting_1996,Sikiric_complex_algs_vor_cells_2009,Sikiric_vor_reduction_covering_2008,Valentin2003_coverings_tilings_low_dimension}.  In general these algorithms are only computationally feasible when the dimension is small (approximately $n \leq 9$).  Even with a complete description of the Voronoi cell it is not necessarily easy to compute the probability of coding error.
 
@@ -70,27 +70,32 @@ The Voronoi cell encodes many interesting lattice properties such as the packing
 %For each lattice point $\ybf \in \Lambda$ there exists a Voronoi cell containing those point from $\reals^n$ nearer to $\ybf$ that any other lattice point.  Due to the structure of the lattice the Voronoi cell of each lattice point is the same shape.  Denote by $\vor(\Lambda)$ the Vornoi cell of the lattice point at the origin. NEAREST POINT PROBLEM.
 \newcommand{\calX}{\mathcal X}
 \newcommand{\calC}{\mathcal C}
-Lattices can be used to construct \emph{lattice codes}.  A lattice code $\calC$ of dimension $n$ is a finite subset of points of some lattice $\Lambda$ in $\reals^n$. There are infinitely many ways to choose a finite subset from a lattice, but common approaches make use of a bounded subset of $\reals^n$, called a \emph{shaping region} $S \subset \reals^n$.  The codewords are given by those lattice points inside the shaping region, that is, $\calC = S \cap \Lambda.$  Common choices of shaping region are $n$-dimensional spheres, spherical shells, hypercubes, or the Voronoi cell of a \emph{sublattice} of $\Lambda$~\cite{Buda1989_some_opt_codes_structure,Erex2004_lattice_decoding,Conway1983VoronoiCodes}.  
+Lattices can be used to construct \emph{lattice codes}.  A lattice code $\calC$ of dimension $n$ is a finite subset of points of some lattice $\Lambda$ in $\reals^n$.  Each point in $\calC$ is called a \emph{codeword} and represents a particular signal.  There are infinitely many ways to choose a finite subset from a lattice, but common approaches make use of a bounded subset of $\reals^n$, called a \emph{shaping region} $S \subset \reals^n$.  The codewords are given by those lattice points inside the shaping region, that is, $\calC = S \cap \Lambda.$  Common choices of shaping region are $n$-dimensional spheres, spherical shells, hypercubes, or the Voronoi cell of a \emph{sublattice} of $\Lambda$~\cite{Buda1989_some_opt_codes_structure,Erex2004_lattice_decoding,Conway1983VoronoiCodes}.  
 
-Each vector in $\calC$ is called a \emph{codeword} and represents a particular signal.  The number of codewords is denoted by $\abs{\calC}$.  In the AWGN channel the received signal takes the form
+In the AWGN channel the received signal takes the form
 \[
 \ybf = \cbf + \wbf
 \]
-where $\ybf \in \reals^n$, $\cbf \in \calC$ and $\wbf$ is a vector of independent and identically distributed Gaussian random variables with variance $\sigma^2$.  If the receiver employs \emph{lattice decoding} then the estimator of $\cbf$ given $\ybf$ at the receiver is
+where $\ybf \in \reals^n$, $\cbf \in \calC$ and $\wbf$ is a vector of independent and identically distributed Gaussian random variables with variance $\sigma^2$.  If the receiver employs maximum likelihood decoding then the estimator of $\cbf$ given $\ybf$ at the receiver is
 \begin{equation}\label{eq:mldecoder}
-\hat{\cbf} = \underset{\cbf \in \Lambda}{\operatorname{argmin}}\;\| \ybf - \cbf \|^2.
+\hat{\cbf}_{\text{ML}} = \underset{\cbf \in C}{\operatorname{argmin}}\;\| \ybf - \cbf \|^2.
 %\hat{\cbf} &=& \mbox{arg~}\min_{\cbf \in \calC} \| \ybf - \cbf \|^2.
 \end{equation}
-That is, the receiver computes the lattice point in $\Lambda$ nearest in Euclidean distance to the received signal $\ybf$.  Assuming that each codeword $\cbf$ is transmitted with probability $p(\cbf)$, then the probability of correct decoding is
+That is, the receiver computes the codeword in $\calC$ nearest in Euclidean distance to the received signal $\ybf$.  Typically maximum likelihood decoding is computationally complex and it is preferable to use \emph{lattice deoding}~\cite{Erex2004_lattice_decoding}.  The estimator of $\cbf$ is then,
+\begin{equation}\label{eq:latticedecoder}
+\hat{\cbf} = \underset{\cbf \in \Lambda}{\operatorname{argmin}}\;\| \ybf - \cbf \|^2,
+%\hat{\cbf} &=& \mbox{arg~}\min_{\cbf \in \calC} \| \ybf - \cbf \|^2.
+\end{equation}
+That is, the receiver computes the lattice point in $\Lambda$ nearest in Euclidean distance to the received signal $\ybf$.  Equivalently, $\hat{\cbf}$ is the lattice point such that $\ybf \in \vor(\Lambda) + \hat{\cbf}$.  The codeword is correctly decoded when $\hat{\cbf} = \cbf$, or equivalently when $\ybf \in \vor(\Lambda) + \cbf$ implying that $\wbf \in \vor(\Lambda)$.  Assuming that each codeword $\cbf$ is transmitted with probability $p(\cbf)$, then the probability of correct decoding is
 \begin{align}
-P_C &= \sum_{\cbf \in \calC} p(\cbf) \prob( \hat{\cbf} = \cbf ),
+P_C &= \sum_{\cbf \in \calC} p(\cbf) \prob( \hat{\cbf} = \cbf ) \\
 &= \sum_{\cbf\in \calC} p(\cbf) \prob( \cbf + \wbf \in \vor(\Lambda) + \cbf )  \nonumber \\
 &= \prob(\wbf \in \vor(\Lambda) ) \nonumber \\
 &=   \frac{1}{(\sqrt{2\pi}\sigma)^n} \int_{\vor(\Lambda)}e^{-\|\xbf\|^2 / 2\sigma^2 } d\xbf. \label{eq:PEgaussian}
 \end{align}
 The probability of error is $P_E = 1 - P_C$.  By expanding $e^x = 1  + x + \frac{x^2}{2} + \dots$ according to its Maclaurin series we obtain
 \begin{align}
-P_C(\Lambda)  &= \frac{1}{(\sqrt{2\pi}\sigma)^n}\int_{\vor(\Lambda)} 1
+P_C  &= \frac{1}{(\sqrt{2\pi}\sigma)^n}\int_{\vor(\Lambda)} 1
 - \frac{\|\xbf\|^2}{2\sigma^2} + \frac{\left(\|\xbf\|^2\right)^2}{
 4\sigma^42!} - \dots d\xbf \nonumber \\
 &= \frac{1}{(\sqrt{2\pi}\sigma)^n} \sum_{m=0}^\infty
@@ -121,6 +126,25 @@ These can be summed in (\ref{eq:summomentproberror}) to give arbitrarily accurat
 
 % Given a lattice code $C = \Lambda \cap R$ and a recieved codeword $\ybf = \xbf + \wbf$ where $\xbf \in C$ and $\wbf$ is a vector of independent and identically distributioned Gaussian random variables with variance $\sigma^2$, the maximum likelihood decoder returns the lattice point in $C$ that is nearest to $\ybf$ in Euclidean distance.  A difficult
 
+\begin{figure*}[htbp]
+	\centering
+		\includegraphics{plots/threepagerpeplot-1.mps}
+		\caption{The probability of error versus SNR for $A_1 \simeq \ints$, $A_2$, $A_3\simeq D_3, A_4, A_5, A_8$ and $E_8$.}
+		\label{fig:peplots}
+\end{figure*}
+
+\begin{figure*}[htbp]
+\begin{equation*} \label{eq:momentsAnformn}
+\begin{split}
+\calM_n(0) &= \sqrt{n+1} \qquad \text{the volume of } \vor(A_n),
+\\ \calM_n(1) &= \frac{n(n+3)}{12\sqrt{n+1}} \qquad \text{the second moment of $\vor(A_n)$~ \cite[p. 462]{SPLAG}}, 
+\\ \calM_n(2) &=  \frac{50 n + 55 n^2 + 34 n^3 + 5 n^4}{720 (1 + n)^{3/2}}, 
+\\ \calM_n(3) &= \frac{1960 n + 2142 n^2 + 2681 n^3 + 1423 n^4 + 399 n^5 + 35 n^6}{60480 (1 + n)^{5/2}}, 
+\\ \calM_n(4) &= \frac{93744 n + 34356 n^2 + 112172 n^3 + 89343 n^4 + 53224 n^5 + 17246 n^6 + 2940 n^7 + 175 n^8}{3628800 (1 + n)^{7/2}},
+%\\ \calM_n(5) &= \frac{3577728 n - 1825648 n^2 + 2410804 n^3 + 1569392 n^4 + 1644423 n^5 + 906105 n^6 + 341550 n^7 + 75526 n^8 + 8855 n^9 + 385 n^{10}}{95800320 (1 + n)^{9/2}}.
+\end{split}
+\end{equation*}
+\end{figure*}
 
 
 \section{The main result}\label{sec:main-result}
@@ -141,19 +165,7 @@ with the initial conditions
 \[
 G(1,c,d) = \frac{1}{2c+d+1} \qquad \text{and} \qquad G(n,0,0) = 1.
 \]
-For fixed $m$ it is possible to solve this recursion in $n$ and obtain formula for the $\calM_n(m)$ in terms of $n$.  The first five such formula are displayed in~\eqref{eq:momentsAnformn} on~\pageref{eq:momentsAnformn}.  We have explicitly tabulated these formula for $m=0$ to $40$. For larger $m$ direct evaluation for specific $n$ from the recursive formula is preferable.  %We will derive these results in Section~\ref{sec:powers-eucl-norm}, but first need some properties of the lattice $A_n$.
-
-\begin{figure*}[B]
-\begin{equation} \label{eq:momentsAnformn}
-\begin{split}
-\calM_n(0) &= \sqrt{n+1} \qquad \text{the volume of } \vor(A_n),\\
-\calM_n(1) &= \frac{n(n+3)}{12\sqrt{n+1}} \qquad \text{the second moment of $\vor(A_n)$~ \cite[p. 462]{SPLAG}}, \\
-\calM_n(2) &=  \frac{50 n + 55 n^2 + 34 n^3 + 5 n^4}{720 (1 + n)^{3/2}}, \\
-\calM_n(3) &= \frac{1960 n + 2142 n^2 + 2681 n^3 + 1423 n^4 + 399 n^5 + 35 n^6}{60480 (1 + n)^{5/2}}, \\
-\calM_n(4) &= \frac{93744 n + 34356 n^2 + 112172 n^3 + 89343 n^4 + 53224 n^5 + 17246 n^6 + 2940 n^7 + 175 n^8}{3628800 (1 + n)^{7/2}}.
-\end{split}
-\end{equation}
-\end{figure*}
+For fixed $m$ it is possible to solve this recursion in $n$ and obtain formula for the $\calM_n(m)$ in terms of $n$.  The first five such formula are displayed on page~\pageref{eq:momentsAnformn}.  We have explicitly tabulated these formula for $m=0$ to $40$. For larger $m$ direct evaluation for specific $n$ from the recursive formula is preferable.  %We will derive these results in Section~\ref{sec:powers-eucl-norm}, but first need some properties of the lattice $A_n$.
 
 
 \section{Results and simulations}\label{sec:results-simulations}
@@ -209,13 +221,6 @@ where $\erfc(x) = 1 - \erf(x)$ is the complementary error function.  For the $E_
 % \]
 % The second moment of this representation of $\Lambda_{24}$ is approximately $24 \times 0.065771$.  This was computed numerically by Conway and Sloane~\cite[p. 61]{SPLAG}.  The relationship between SNR and $\sigma^2$ is $\text{SNR} = 4 \times 0.065771 \sigma^{-2}$.
 
-\begin{figure*}[tp]
-	\centering
-		\includegraphics{plots/peplots-1.mps}
-		\caption{The probability of error versus SNR for $A_1 \simeq \ints$, $A_2$, $A_3\simeq D_3, A_4, A_5, A_8$ and $E_8$.}
-		\label{fig:peplots}
-\end{figure*}
-
 
 \section{Conclusion}
 
@@ -226,8 +231,6 @@ Recursive formulae for the moments of the Voronoi cell of the lattice $A_n$ were
 
 \small
 \bibliography{bib}
-
-
 
 
 % \section{Notable references}
