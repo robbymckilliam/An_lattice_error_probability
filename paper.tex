@@ -1,6 +1,6 @@
 %\documentclass[a4paper,10pt]{article}
 %\documentclass[draftcls, onecolumn, 11pt]{IEEEtran}
-\documentclass[journal, onecolumn, 10pt]{IEEEtran}
+\documentclass[journal, onecolumn, 11pt]{IEEEtran}
 %\documentclass[journal]{IEEEtran}
 %\documentclass[correspondence,9pt]{IEEEtran}
 
@@ -379,11 +379,11 @@ This expression is equivalent to that from~(\ref{eq:theCmformula}).
 
 \section{Results and simulations}\label{sec:results-simulations}
 
-We now plot the probability of coding error versus signal to noise ratio (SNR) for the lattices $A_1, A_2, A_3, A_4, A_5$ and $A_8$.  For these plots the SNR is related to noise variance according to~\cite{Viterbo_diamond_cutting_1996}
+We now plot the probability of coding error versus signal to noise ratio (SNR) for the lattices $A_1, A_2, A_3, A_4, A_5$ and $A_8$.  For these plots the SNR is related to noise variance according to
 \[
 \text{SNR} = \frac{V^{2/n}}{4\sigma^2},
 \]
-where $V$ is the volume of the Voronoi cell and $n$ is the dimension of the lattice.  Figure~\ref{fig:peplots} shows the `exact' probability of error (correct to 16 decimal places) computed using the moments $\calM_n(m)$ and~\eqref{eq:summomentproberror} (solid line).  The number of moments needed to ensure a certain number of decimal places accuracy depends on $n$ and also on the noise variance $\sigma^2$.  At most 321 moments where needed for Figure~\ref{fig:peplots}.  We also display the probability of error computed approximately by Monte-Carlo simulation (dots).  %We have used the fast nearest point algorithm for $A_n$ described in~\cite{McKilliam2009CoxeterLattices} and~\cite[p. 448]{SPLAG}.
+where $V$ is the volume of the Voronoi cell and $n$ is the dimension of the lattice~\cite[p. 167]{Viterbo_diamond_cutting_1996}.  Figure~\ref{fig:peplots} shows the `exact' probability of error (correct to 16 decimal places) computed using the moments $\calM_n(m)$ and~\eqref{eq:summomentproberror} (solid line).  The number of moments needed to ensure a certain number of decimal places accuracy depends on $n$ and also on the noise variance $\sigma^2$.  At most 321 moments where needed for Figure~\ref{fig:peplots}.  We also display the probability of error computed approximately by Monte-Carlo simulation (dots).  %We have used the fast nearest point algorithm for $A_n$ described in~\cite{McKilliam2009CoxeterLattices} and~\cite[p. 448]{SPLAG}.
 The simulations are iterated until 500 error events occur.
 
 The plot also displays an approximation for the probability of error for the 8-dimensional $E_8$ lattice.  The approximation is made in the usual way by applying the union bound to the minimal vectors of the lattice~\cite[p.~71]{SPLAG}.  The $E_8$ lattice has 240 minimal vectors of length $\sqrt{2}$.  The packing radius of $E_8$ is therefore $\rho = \sqrt{2}/2$.  Applying the union bound the probability of error satisfies
