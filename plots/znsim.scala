@@ -18,6 +18,8 @@ val startdb = 10.0
 val stepdb = 0.5
 val tope = 1e-6
 
+val toerrors = 5000 //this will take a while!
+
 var pe = 1.0
 var dbnow = startdb 
 val efile = new java.io.FileWriter("pemontecarlo1")
@@ -29,7 +31,7 @@ while(pe > tope){
   val snr = scala.math.pow(10.0,dbnow/10.0)
    val v = 1/snr/4
   //val v = 2.0/3.0/snr
-  pe = new ProbabilityOfCodingError(lattice,new GaussianNoise(0,v),1000).probError
+  pe = new ProbabilityOfCodingError(lattice,new GaussianNoise(0,v),toerrors).probError
   println(dbnow + "\t" + pe)
   efile.write(dbnow.toString.replace('E', 'e') + "\t" + pe.toString.replace('E', 'e') + "\n")
   dbnow = dbnow + stepdb
@@ -46,7 +48,7 @@ val petol = 1e-16
 
 var pe = 1.0
 var varnow = varstart 
-val mfile = new java.io.FileWriter("moment1")
+val mfile = new java.io.FileWriter("pe1")
 
 val tol = new BigRational(BigInteger.ONE, BigInteger.TEN.pow(15));
 

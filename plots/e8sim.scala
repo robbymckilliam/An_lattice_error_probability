@@ -18,6 +18,8 @@ val startdb = 10.0
 val stepdb = 0.5
 val tope = 1e-6
 
+val toerrors = 5000 //this will take a while!
+
 val sm = lattice.secondMoment
 
 var pe = 1.0
@@ -30,7 +32,7 @@ while(pe > tope){
   //val snrdb = lattice.noiseVarianceToSNRdB(varnow.doubleValue)
   val snr = scala.math.pow(10.0,dbnow/10.0)
   val v = 1/snr/4
-  pe = new ProbabilityOfCodingError(lattice,new GaussianNoise(0,v),500).probError
+  pe = new ProbabilityOfCodingError(lattice,new GaussianNoise(0,v),toerrors).probError
   println(dbnow + "\t" + pe + "\t"  + v)
   efile.write(dbnow.toString.replace('E', 'e') + "\t" + pe.toString.replace('E', 'e') + "\n")
   dbnow = dbnow + stepdb
