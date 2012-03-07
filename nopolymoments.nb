@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       157,          7]
-NotebookDataLength[     45602,       1072]
-NotebookOptionsPosition[     43857,       1006]
-NotebookOutlinePosition[     44194,       1021]
-CellTagsIndexPosition[     44151,       1018]
+NotebookDataLength[     45614,       1072]
+NotebookOptionsPosition[     43869,       1006]
+NotebookOutlinePosition[     44206,       1021]
+CellTagsIndexPosition[     44163,       1018]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -424,7 +424,7 @@ Cell[BoxData[{
        RowBox[{"(", 
         RowBox[{"93", "/", "100"}], ")"}], "^", "k"}]}], ",", " ", 
      RowBox[{"{", 
-      RowBox[{"k", ",", "0", ",", "54"}], "}"}]}], "]"}]}], 
+      RowBox[{"k", ",", "0", ",", "56"}], "}"}]}], "]"}]}], 
   ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"snrdb", " ", "=", " ", 
@@ -444,7 +444,7 @@ Cell[BoxData[{
    RowBox[{
     RowBox[{
      RowBox[{"Pe", "[", 
-      RowBox[{"n", ",", "#", ",", "320"}], "]"}], "&"}], "/@", " ", 
+      RowBox[{"n", ",", "#", ",", "400"}], "]"}], "&"}], "/@", " ", 
     "vars"}]}], ";"}], "\[IndentingNewLine]", 
  RowBox[{"ListLogPlot", "[", 
   RowBox[{
@@ -454,24 +454,24 @@ Cell[BoxData[{
    RowBox[{"Joined", "\[Rule]", 
     RowBox[{"{", "True", "}"}]}]}], "]"}]}], "Input",
  CellChangeTimes->CompressedData["
-1:eJwd0X0s1AEcx/FfJXRYOcYlhExziDxsUp3u6EEOt/MwlbgiLNE4SzWVXFKT
-noTmqaUrDzWLRFRreqAtpxsqMZ2Ibre4i5qK1Pf7/eOz1z/v/z72+w+LDyxm
-GGYbDFWNWCo/8TT8XN6JD+iEU8oQ2rZWOIKm1YnZo+Do63BSlnKQg26Rde1A
-RZUSLWpy2G0aPftMlD8GKmRiUmqawHwBa8OSSIFRqA966IWIfHEpVYZeHlAV
-oO9zVVdQYbblVXS2aIMK5cRsJLPYjbxxMMR9VoDmBGx5i8aeCSCzC7tXTIBf
-T/WQLPetEWqwKjKdtBgSJk6CLS7JJBNfv10L8o4GBaHKlvx+xl/D77U+Tz6f
-e1S8BPwmWiD3CF5qDUBW5KAO7S+YKmSB9qbpl9ArFxoyjEDXlU3kS0+zZBPw
-fZ8fGVgjlS8He1pySPM84yd5oRq+oyObVC/rr7gMRvlVVKG299fIUadMJ7Jh
-/tqAHGzRu0nuE4wFPwI934yTzTYPxvuwC3xF6mQ5ihEw8OwIOXDm6UX9MA0/
-waC2BH2zmtFfBlobzpM7faes0SNcExvUdYXSDU2zUpEDmaPeaEngBFldLs01
-Bu84Z5F8P+N6U3C6iEuWxn9scAYzp4fI3pLWZjR3XtGGdnf5daP1nKRetN1F
-+hmd+eE/hm4S/lajthXHfqAcvusC2lm0iMUFDdmFy9F1ZQUW6CbLxdbo7gwj
-8lvcLW9Uk+/sg4r67QRodOFj0naoNATVce6GowcdwnajGVwxyaRqJWjnw++k
-3dFVDi7gnw4b0koo4aLvZmvc0YbWci9U3XGDzNGG7kJP/hSRsZUWEurNOGR5
-+1w82mjwjyzWlR1CX/tWkY6q7hk0WfmZjJYu1XcFhREskne+iYXetm8lz21g
-m6OtWy3I416h5h6gxxMxGZxcHbcelJvUSdDJL5sVdaDngoAcDPJS3NsLv417
-k3rBCTHDoLkikZzK09UwsRp+09gM6a6M2OEG/v0VRcbUfTwdDl6vHSb/AwTd
-EtE=
+1:eJwd0X0s1AEcx/FfT9RhuIxLCJnmEHnYkI67WOTidtRK4opiHsdZqSlynpok
+CS3SKuWhZiVR1FqPLK5uksh0nrOb3EVND1Lf7/ePz17/fP57Wx1KER9ezjDM
+DhiqHDFRfOap+Dm8kx/RKduEIfTRJuEImtwgZo+BY12hpCwhnoP6yjoDUNEV
+iRrVS3GcQ/OfigrGQblMTEoNY5gJsD4klhToBLujiS9E5IuSJBl6fkBZhPbn
+KEtRYabJBXShzFOJciK2ksfY93iT4C6nBQGavd33HRqZu53MLO4xmAK/ZL0l
+WU7+YdNgze5U0nhIeOQr2GofRzLRjTvUIC8jMBBVtBb0MT4qfq/ZGfL5n4fl
+K8AZ0RK5X/BSrQ2ydn/SoH1Fs8Us0MowtQQtPduUpgM6rGsmX7qsjdMD+997
+kX510lp98G1rNmmUp/s4L1jFt7Fhk9Nr+qrPg3u8qmtQi7sba1HbdFuyafHi
+QC3YuvIaeVAwHvQQdOmeJFvM70++x5/fK1Ijy5aPgH75I+RA7pNzWiEqfox2
+fQXavYHRWgOarV4kd3rMmqFHuXrmqIOBwhFNNlWSA+ljbmiF3xR5vUqaowve
+sjtG8r10Gw3BuTIuWRk92GQHps8Nkb0VbS1ozqL8EdrT6dWDNnJie9F2e+ko
+Ov/dZxz1Fv6aRi2qj39HOXyHJfR12TIWF1zNLtZHN18uMka9TZaboeFpOuRM
+1A03VFVg546K+iwF6N7iDtJiqHIXquHcDkXjrUPC0TSumGSS1BL09YNvpGXG
+emt78Pczc9JUKOGiHxbqnNCmtipXdPrZVTJbHbwPPfVDREZeMZbQfy2HrGr/
+E43e0/5HlmsuJ6JdHjWkjbJnHo1TjJJ7pau0HEBhGIvknWlmoTet2shCT7YR
+2uZvTJ5wDTZyBp0fi8mguOtRW8BavQYJ+nVim7wBdFkSkJ8CXeV3DkC3STdy
+ZVBMxDBoJD9CzuZp6phIFb95fJ50UoQFOIJ/f+4hIxoGT4eCl+qHycLUjlO9
+UdD9TXoW+h+HUBxL
   "]],
 
 Cell[BoxData[
@@ -1061,16 +1061,16 @@ Cell[14733, 381, 1129, 15, 30, "Output"]
 Cell[CellGroupData[{
 Cell[15911, 402, 139, 3, 74, "Section"],
 Cell[CellGroupData[{
-Cell[16075, 409, 2491, 65, 126, "Input"],
-Cell[18569, 476, 18712, 352, 419, "Output"]
+Cell[16075, 409, 2503, 65, 126, "Input"],
+Cell[18581, 476, 18712, 352, 419, "Output"]
 }, Open  ]],
-Cell[37296, 831, 223, 5, 30, "Text"],
+Cell[37308, 831, 223, 5, 30, "Text"],
 Cell[CellGroupData[{
-Cell[37544, 840, 2507, 61, 202, "Input"],
-Cell[40054, 903, 654, 9, 30, "Output"],
-Cell[40711, 914, 714, 11, 30, "Output"],
-Cell[41428, 927, 652, 9, 30, "Output"],
-Cell[42083, 938, 1734, 63, 887, "Print"]
+Cell[37556, 840, 2507, 61, 202, "Input"],
+Cell[40066, 903, 654, 9, 30, "Output"],
+Cell[40723, 914, 714, 11, 30, "Output"],
+Cell[41440, 927, 652, 9, 30, "Output"],
+Cell[42095, 938, 1734, 63, 887, "Print"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
