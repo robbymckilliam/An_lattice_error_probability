@@ -29,9 +29,9 @@ We consider the root lattice $A_n$ and derive explicit recursive formulae for th
 enable accurate prediction of the error probability of lattice codes constructed from $A_n$.
 \end{abstract}
 
-\begin{keywords}
+\begin{IEEEkeywords}
 Lattices, lattice decoding, root lattice, probability of error, Voronoi cell.
-\end{keywords}
+\end{IEEEkeywords}
 
 \section{Introduction}\label{sec:introduction}
 
@@ -41,7 +41,7 @@ The \emph{root lattices} $A_n$, $D_n$, $E_6$, $E_7$ and $E_8$ have attracted par
 In two dimensions $A_2$ is the hexagonal lattice and in three dimensions $A_3$ is the face-centered cubic lattice.  These are the densest sphere packings in dimensions two and three and our results automatically include low dimensional codes constructed using these packings.  In general, the lattice $A_n$ does not produce asymptotically good codes in large dimensions, but does offer a coding gain in small dimensions.  For these cases, we provide an error probability expression that can be computed to any degree of accuracy at any finite signal-to-noise ratio.
 %We are hopeful that the techniques developed here may be applied to other lattices that do produce good codes.  In particular our techniques might apply to the Coxeter lattices $A_n^m$ of which the root lattice $E_8 \simeq A_8^3$ is a member~\cite{Coxeter1951,Martinet2003,McKilliam2009CoxeterLattices}.
 
-This paper is organised as follows.  In Section~\ref{sec:latt-latt-codes} we give a brief overview of lattices and codes constructed from them, i.e., \emph{lattice codes}.  We describe lattice decoding and show how the probability of coding error can be expressed in terms of the moments of the \emph{Voronoi cell} of the lattice used.  Section~\ref{sec:main-result} states the main result, describing recursive formula to compute the moments of the Voronoi cell of $A_n$.  Section~\ref{sec:lattice-a_n} describes the lattice $A_n$ and some of its properties.  An important property for our purposes is that the Voronoi cell of $A_n$ is precisely the orthogonal projection of a $(n+1)$-dimensional hypercube onto a hyperplace orthogonal to one of its vertices~\cite{McKilliam2009CoxeterLattices,McKilliam2010thesis}.
+This paper is organised as follows.  In Section~\ref{sec:latt-latt-codes} we give a brief overview of lattices and codes constructed from them, i.e., \emph{lattice codes}.  We describe lattice decoding and show how the probability of coding error can be expressed in terms of the moments of the \emph{Voronoi cell} of the lattice used.  Section~\ref{sec:main-result} states the main result, describing recursive formula to compute the moments of the Voronoi cell of $A_n$.  Section~\ref{sec:lattice-a_n} describes the lattice $A_n$ and some of its properties.  An important property for our purposes is that the Voronoi cell of $A_n$ is precisely the orthogonal projection of an $(n+1)$-dimensional hypercube onto a hyperplace orthogonal to one of its vertices~\cite{McKilliam2009CoxeterLattices,McKilliam2010thesis}.
  %This result was previously known~\cite{McKilliam2009CoxeterLattices,McKilliam2010thesis}.  The proof is short and we give it again here so that this paper is self contained.
 In Section~\ref{sec:integr-funct-over} we use this property to show how integrals over the Voronoi cell of $A_n$ can be expressed as integrals over the $(n+1)$-dimensional hypercube. These integrals are solvable and we use them to obtain the moments of the Voronoi cell in Section~\ref{sec:powers-eucl-norm}.  In Section~\ref{sec:results-simulations} we plot the probability of error versus signal to noise ratio for codes constructed from the lattices $A_1 \simeq \ints$, $A_2$, $A_3 \simeq D_3$ and $A_4$, $A_5$ and $A_8$.  We also plot the results of Monte-Carlo simulations that support our analytical results.
 %An advantage of the analytical results is that the probability of error can calculated at high SNR, when the probabilty of error is small.  This is in contrast to Monte-Carlo simulations that are computationally infeasible at when the probability of error is small.  We display the performance of these lattice codes
@@ -56,9 +56,9 @@ A \term{lattice}\index{lattice}, $\Lambda$, is a discrete subset of points in $\
 \[
    \Lambda = \{\xbf = \Bbf\ubf \mid \ubf \in \ints^n \}
  \]
- where $\Bbf \in \reals^{m \times n}$ is an $m \times n$ matrix of rank $n$, called a \term{generator matrix} or \term{basis matrix} or simply generator or basis. In particular, the set of $n$-tuples of integers $\ints^n$ is a lattice (with the identity matrix as a generator) and we call this the~\emph{integer lattice}. A lattice $\Lambda$ associated with a rank-$n$ generator matrix $\mathbf{B}$ is said to be $n$-dimensional. If the generator is square, i.e. $m = n$, then the lattice points span $\reals^n$ and we say that the lattice is \term{full rank}. If $\Bbf$ has more rows than columns, i.e. $m > n$, then the lattice points lie in a $n$-dimensional subspace of $\reals^m$. For any lattice $\Lambda$ with an $m \times n$ generator matrix, we define $\mathcal{S}_{\Lambda}$ to be the hyperplane spanned by the columns of the generator matrix. %It is easy to see that $\mathcal{S}_\Lambda$ is then the $n$-dimensional subspace containing the lattice $\Lambda$.
+ where $\Bbf \in \reals^{m \times n}$ is an $m \times n$ matrix of rank $n$, called a \term{generator matrix} or \term{basis matrix} or simply generator or basis. In particular, the set of $n$-tuples of integers $\ints^n$ is a lattice (with the identity matrix as a generator) and we call this the~\emph{integer lattice}. A lattice $\Lambda$ associated with a rank-$n$ generator matrix $\mathbf{B}$ is said to be $n$-dimensional. If the generator is square, i.e. $m = n$, then the lattice points span $\reals^n$ and we say that the lattice is \term{full rank}. If $\Bbf$ has more rows than columns, i.e. $m > n$, then the lattice points lie in an $n$-dimensional subspace of $\reals^m$. For any lattice $\Lambda$ with an $m \times n$ generator matrix, we define $\mathcal{S}_{\Lambda}$ to be the hyperplane spanned by the columns of the generator matrix. %It is easy to see that $\mathcal{S}_\Lambda$ is then the $n$-dimensional subspace containing the lattice $\Lambda$.
 
-The (open) \term{Voronoi cell}, denoted $\vor(\Lambda)$, of a lattice $\Lambda$ is the subset of $\mathcal{S}_{\Lambda}$ containing all points nearer (in Euclidean distance) to the lattice point at the origin than any other lattice point. The Voronoi cell is an $n$-dimensional convex polytope that is symmetric about the origin.  It is convenient to modify this definition of the Voronoi cell slightly so that the union of translated Voronoi cells $\cup_{\xbf \in \Lambda}\vor(\Lambda) + \xbf$ is equal to  $\mathcal{S}_{\Lambda}$.  That is, the Voronoi cell tessellates when translated by points in $\Lambda$.  To ensure this we require that if a face of $\vor(\Lambda)$ is open, then its opposing face is closed. Specifically, if $\xbf \in \vor(\Lambda)$ is on the boundary of $\vor(\Lambda)$ then $-\xbf \notin \vor(\Lambda)$.  We wont specifically define which opposing face is open and which is closed as the results that follow hold for any choice of open and closed opposing faces.
+The (open) \term{Voronoi cell}, denoted $\vor(\Lambda)$, of a lattice $\Lambda$ is the subset of $\mathcal{S}_{\Lambda}$ containing all points nearer (in Euclidean distance) to the lattice point at the origin than any other lattice point. The Voronoi cell is an $n$-dimensional convex polytope that is symmetric about the origin.  It is convenient to modify this definition of the Voronoi cell slightly so that the union of translated Voronoi cells $\cup_{\xbf \in \Lambda}\vor(\Lambda) + \xbf$ is equal to  $\mathcal{S}_{\Lambda}$.  That is, the Voronoi cell tessellates when translated by points in $\Lambda$.  To ensure this we require that if a face of $\vor(\Lambda)$ is open, then its opposing face is closed. Specifically, if $\xbf \in \vor(\Lambda)$ is on the boundary of $\vor(\Lambda)$ then $-\xbf \notin \vor(\Lambda)$.  We will not specifically define which opposing face is open and which is closed as the results that follow hold for any choice of open and closed opposing faces.
 
 The Voronoi cell encodes many interesting lattice properties such as the packing radius, covering radius, kissing number, minimal vectors, center density, thickness, and the normalized second moment (or quantizing constant)~\cite{Viterbo_diamond_cutting_1996, SPLAG}. The error probability of a lattice code can also be evaluated from the Voronoi cell as we will see.  There exist algorithms to completely enumerate the Voronoi cell of an arbitrary lattice~\cite{Viterbo_diamond_cutting_1996,Sikiric_complex_algs_vor_cells_2009,Sikiric_vor_reduction_covering_2008,Valentin2003_coverings_tilings_low_dimension}.  In general these algorithms are only computationally feasible when the dimension is small (approximately $n \leq 9$).  Even with a complete description of the Voronoi cell it is not necessarily easy to compute the probability of coding error.
 
@@ -228,13 +228,13 @@ The projection of $\vor(\ints^{n+1})$ into the zero-sum plane is equal to $\vor(
 \vor(A_n) = \Qbf\vor(\ints^{n+1}).
 \]
 \end{theorem}
-\begin{proof}
+\begin{IEEEproof}
 Let $\ebf_i$ denote a vector with $i$th element equal to one and the remaining elements zero.  The $n$-volume of $\vor(A_n)$ is $\sqrt{n + 1}$.  From Burger~et.~al.~\cite[Theorem 1.1]{Burger1996} we find that the $n$-volume of the projected hypercube $\Qbf\vor(\ints^{n+1})$ is equal to
 \[
 \sum_{i = 1}^{n+1} \frac{\dotprod{\onebf}{\ebf_i}}{\|\onebf\|} =  \sum_{i = 1}^{n+1} \frac{1}{\sqrt{n+1}} = \sqrt{n + 1}
 \]
 also. It follows from Lemma~\ref{lem:QVorZnsubsetVorAn} that $\Qbf\vor(\ints^{n+1}) \subseteq \vor(A_n)$, so, because the volumes are the same, and because $\vor(A_n)$ and $\Qbf\vor(\ints^{n+1})$ are polytopes, we have $\vor(A_n) = \Qbf\vor(\ints^{n+1})$.
-\end{proof}
+\end{IEEEproof}
 
 \section{Integrating a function over $\vor(A_n)$}\label{sec:integr-funct-over}
 
@@ -280,7 +280,7 @@ Projecting orthogonal to $\onebf$ gives $\Qbf\xbf = \Qbf \wbf$.  Interestingly $
 In order to demonstrate this approach we will derive the $0$th moment (i.e. the volume) of the Voronoi cell using~(\ref{eq:intwewilluse}).  Setting $f(\Qbf\wbf) = \|\Qbf\wbf\|^0 = 1$ we obtain,
 \begin{align*}
 M_n(0) &= n\sqrt{n+1} \int^{1}_{0} \int^{y}_{0} \int^{t}_{0} \cdots \int^{t}_{0} \frac{1}{1 - t} \,dw_{n-1}\dots dw_1 \, dt  \, dy\\
- &= n\sqrt{n+1} \int^{y}_{0} \int_{0}^{1}  \frac{t^{n-1}}{1 - t} \, dt  \, dy \\
+ &= n\sqrt{n+1} \int_{0}^{1} \int^{y}_{0} \frac{t^{n-1}}{1 - t} \, dt  \, dy \\
 &= n\sqrt{n+1}  \int^{1}_{0} \beta(y, n, 0) \, dy = \sqrt{n+1},
 \end{align*}
 as required.  Here $\beta(x,a,b) =  \int_{0}^{x}  t^{a-1}(1 - t)^{b-1} \,dt$ is the incomplete beta function~\cite{Pearson_tables_of_beta_functions} and we have used the identity $\int^{1}_{0} \beta(y, n, 0) \, dy = \frac{1}{n}$.}
