@@ -109,29 +109,7 @@ edges.each do |e|
   end
 end
 
-#R = Matrix[[Math.cos(Math::PI/3), -Math.sin(Math::PI/3)],[Math.sin(Math::PI/3), Math.cos(Math::PI/3)]]
-#v = (M*Vector[1,0] + M*Vector[0,1])*(1/3)
-#vorpath = Path.new
-#6.times do
-#  vorpath.add_pair(Pair.new(dround(v[0]).cm, dround(v[1]).cm))
-#  v = R*v
-#end
-#vorpath.add_pair('cycle')
-
-#pic = Picture.new('picL')
-#circ = Picture.new('circ')
-#vorpic = Picture.new('vor')
-#inrad = 1.0
-#(-3..3).each do |x|
-#	(-3..3).each do |y|
-#		v = M*Vector[x,y]
-#		pic.add_drawable(Fill.new(Circle.new()).scale(0.1.cm).translate(v[0].cm,v[1].cm))
-#    circ.add_drawable(Draw.new(Circle.new()).scale((scaler*inrad).cm).translate(v[0].cm,v[1].cm))
-#    vorpic.add_drawable(Draw.new(vorpath).translate(v[0].cm,v[1].cm))
-#	end
-#end
-
-#figure 2 is the same but with packing circles added
+#figure 1 is 4 projected cubes, all unimodular zonotopes
 fig = Figure.new
 fig.add_drawable(Draw.new(picsideon))
 fig.add_drawable(Draw.new(picmiddle1).translate(2.0.cm,0.0.cm))
@@ -144,6 +122,31 @@ fig.add_drawable(Draw.new(picvertexon).translate(6.0.cm,0.0.cm))
 #fig.add_drawable(Draw.new(vorpic))
 #fig.add_drawable(Draw.new(pic))
 #fig.add_drawable(Draw.new(circ))
+file.add_figure(fig)
+
+
+picother = Picture.new
+#oc = Vector[1/2.0,1/2.0,-1/2.0]; #the occluded vertex
+# a random orthogonal matrix
+R = Matrix[[-0.1817, 0.7236, 0.6658],
+           [-0.6198, -0.6100, 0.4938],
+           [0.7634, -0.3230, 0.5594]] 
+edges.each do |e|
+  vi = R*e[0]; vj = R*e[1];
+  path = Path.new
+  path.add_pair(Pair.new(vi[0].cm,vi[1].cm))
+  path.add_pair(Pair.new(vj[0].cm,vj[1].cm))
+  if  (e[0] + oc).r <= 0.01 || (e[1] + oc).r <= 0.01
+    print('true')
+    picother.add_drawable(Draw.new(path).add_option(Dashed.new))
+  else
+    picother.add_drawable(Draw.new(path))
+  end
+end
+
+#figure 2 is a random rotation
+fig = Figure.new
+fig.add_drawable(Draw.new(picother))
 file.add_figure(fig)
 
 file.compile

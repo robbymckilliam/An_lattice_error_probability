@@ -77,11 +77,11 @@ draw begingraph(plotwidth, plotheight);
   %gdraw "pe4"; glabel.lft(btex $A_4$ etex, 1000);
   %gdraw "pe5"; glabel.lft(btex $A_4$ etex, 1000);
   
-  gdraw "moment1"; glabel.rt(btex $A_1$ etex, 1000);
-  gdraw "moment2"; glabel.rt(btex $A_2$ etex, 1000);
-  gdraw "moment3"; glabel.rt(btex $A_3$ etex, 1000);
-  gdraw "moment4"; glabel.bot(btex $A_4$ etex, 1000);
-  gdraw "moment5"; glabel.lft(btex $A_5$ etex, 1000);
+  gdraw "pe1"; glabel.rt(btex $A_1$ etex, 1000);
+  gdraw "pe2"; glabel.rt(btex $A_2$ etex, 1000);
+  gdraw "pe3"; glabel.lrt(btex $A_3$ etex, 1000);
+  gdraw "pe4"; glabel.bot(btex $A_4$ etex, 1000);
+  gdraw "pe5"; glabel.lft(btex $A_5$ etex, 1000);
   gdraw "pe8"; glabel.lft(btex $A_8$ etex, 1000);
   
   gdraw "pemontecarlo1" plot(dot);

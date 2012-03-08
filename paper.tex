@@ -1,6 +1,6 @@
 %\documentclass[a4paper,10pt]{article}
-\documentclass[draftcls, onecolumn, 11pt]{IEEEtran}
-%\documentclass[journal, onecolumn, 11pt]{IEEEtran}
+%\documentclass[draftcls, onecolumn, 11pt]{IEEEtran}
+\documentclass[journal, onecolumn, 11pt]{IEEEtran}
 %\documentclass[journal]{IEEEtran}
 %\documentclass[correspondence,9pt]{IEEEtran}
 
@@ -238,13 +238,12 @@ also. It follows from Lemma~\ref{lem:QVorZnsubsetVorAn} that $\Qbf\vor(\ints^{n+
 
 \begin{figure*}[tp]
 	\centering
-		\includegraphics{figs/cuberothex-1.mps}
-		\caption{Orthogonal projection of a cube as it is rotated about its center.  The figure of the left is the view of a cube from side on, and the boundary is a square.  When the cube is rotated the boundary becomes a hexagon.  The hexagon is regular when the cube is viewed along one of its vertices (the rightmost figure).}
-		\label{fig:peplots}
+		\includegraphics[scale=1.6]{figs/cuberothex-1.mps}
+		\caption{Orthogonal projection of a cube as it is rotated about its center.  The figure of the left is the view of a cube from side on, and the boundary is a square.  When the cube is rotated the boundary becomes a hexagon.  The hexagon is regular when the cube is viewed along one of its vertices (the rightmost figure).  The regular hexagon is the Voronoi cell of the hexagonal lattice $A_2$.  Every 2-dimensional zonotope is also unimodular so the boundary of each of the figures above can be used to tile Euclidean space~\cite{McMullen_space_tiling_zonotopes_1975}.}
+		\label{fig:cuberothex}
 \end{figure*}
 
-
-This theorem asserts that the Voronoi cell of the lattice $A_n$ is the $n$-dimensional polytope that results from orthogonally projecting the $(n+1)$-dimensional into the zero sum plane.  Results of this type have been studied for some time.  A polytope that is the projection of a hypercube is called a \emph{zonotope}.
+This theorem asserts that the Voronoi cell of the lattice $A_n$ is the $n$-dimensional polytope that results from orthogonally projecting the $(n+1)$-dimensional into the zero sum plane.  Results of this type have been studied previously.  A polytope that is the orthogonal projection of a hypercube is called a \emph{zonotope}~\cite[p.~313]{surveys_combin_zonotopes_1997}~\cite{McMullen_space_tiling_zonotopes_1975}.  Figure~\ref{fig:cuberothex} depicts some 2-dimensional zonotopes.  A zonotope is \emph{unimodular} if it can be used to tiles (or tesselate) Euclidean space.  Such a tesselation naturally gives rise to a lattice, a so called \emph{zonotopal lattice}~\cite{Vallentin_space_tiling_zonotope_2004}.  The lattice $A_n$ is a zonotopol lattice.  The techniques in this paper can potentially be extended to other zonotopal lattices, but we do not consider such extentions here. 
 
 \section{Integrating a function over $\vor(A_n)$}\label{sec:integr-funct-over}
 
