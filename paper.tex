@@ -236,6 +236,16 @@ Let $\ebf_i$ denote a vector with $i$th element equal to one and the remaining e
 also. It follows from Lemma~\ref{lem:QVorZnsubsetVorAn} that $\Qbf\vor(\ints^{n+1}) \subseteq \vor(A_n)$, so, because the volumes are the same, and because $\vor(A_n)$ and $\Qbf\vor(\ints^{n+1})$ are polytopes, we have $\vor(A_n) = \Qbf\vor(\ints^{n+1})$.
 \end{IEEEproof}
 
+\begin{figure*}[tp]
+	\centering
+		\includegraphics{figs/cuberothex-1.mps}
+		\caption{Orthogonal projection of a cube as it is rotated about its center.  The figure of the left is the view of a cube from side on, and the boundary is a square.  When the cube is rotated the boundary becomes a hexagon.  The hexagon is regular when the cube is viewed along one of its vertices (the rightmost figure).}
+		\label{fig:peplots}
+\end{figure*}
+
+
+This theorem asserts that the Voronoi cell of the lattice $A_n$ is the $n$-dimensional polytope that results from orthogonally projecting the $(n+1)$-dimensional into the zero sum plane.  Results of this type have been studied for some time.  A polytope that is the projection of a hypercube is called a \emph{zonotope}.
+
 \section{Integrating a function over $\vor(A_n)$}\label{sec:integr-funct-over}
 
 We would like to be able to integrate functions over the Voronoi cell of $A_n$.  Consider a function $f : \reals^{n+1} \mapsto \reals$.  The definition we have made for $A_n$ above places it in the $n$-dimensional zero-sum plane, lying in $\reals^{n+1}$.  The Voronoi cell is a subset of the zero-sum plane that has zero $(n+1)$-dimensional volume.  So, the volume integral $\int_{\vor(A_n)} f(\xbf) d \xbf$ is equal to zero.  This is not what we intend.  By an appropriate change of variables it would be possible to write the Voronoi cell $\vor(A_n)$ in an $n$-dimensional coordinate system, and then integrate.  However, we find the following approach simpler.  Given a set $S$ of vectors from the zero sum plane, let $S \times \onebf$ denote the set of elements that can be written as $\xbf + \ybf$ where $\xbf \in S$ and $\ybf = k\onebf$ for some $k \in [-\nicefrac{1}{2},\nicefrac{1}{2}]$.  If $S$ has $n$-volume $V$ then the $(n+1)$-volume of $S\times\onebf$ is $V \sqrt{n+1}$.  Now, the integral over the Voronoi cell can be written as
