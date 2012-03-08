@@ -101,7 +101,7 @@ P_C &= \sum_{\cbf \in \calC} \prob( \hat{\cbf} = \cbf ) \\
 &= \prob(\wbf \in \vor(\Lambda) ) \nonumber \\
 &=   \frac{1}{(\sqrt{2\pi}\sigma)^n} \int_{\vor(\Lambda)}e^{-\|\xbf\|^2 / 2\sigma^2 } d\xbf. \label{eq:PEgaussian}
 \end{align}
-The probability of error is $P_E = 1 - P_C$.  The probability of correct lattice decoding is smaller than the probability of correct maximum likelihood decoding, however, as the size of the code $\abs{\calC}$ increases, $P_C$ converges to the probability of correct maximum likelihood decoding (the proportion of codewords near the boundary of the shaping region become small).
+The probability of error is $P_E = 1 - P_C$.  The probability of correct lattice decoding is smaller than the probability of correct maximum likelihood decoding, however, as the size of the code $\abs{\calC}$ increases, $P_C$ converges to the probability of correct maximum likelihood decoding (the proportion of codewords near the boundary of the shaping region becomes small).
 
 By expanding $e^x = 1  + x + \frac{x^2}{2} + \dots$ according to its Maclaurin series we obtain
 \begin{align}
@@ -196,8 +196,8 @@ The lattice has $n(n+1)$ minimal vectors, each of squared Euclidean length $2$, 
 
 \begin{figure}[tbp]
 	\centering
-		\includegraphics[width=\linewidth]{figs/hexlatfig-1.mps}
-		\caption{The hexagonal lattice $A_2$.  The Voronoi cell is a regular hexagon.}
+		\includegraphics{figs/hexlatfig-1.mps}
+		\caption{The hexagonal lattice $A_2$ with its sphere packing and Voronoi cell.  The Voronoi cell is a regular hexagon.}
 		\label{fig:hexlatfig}
 \end{figure}
 
@@ -244,11 +244,11 @@ also. It follows from Lemma~\ref{lem:QVorZnsubsetVorAn} that $\Qbf\vor(\ints^{n+
 		\label{fig:cuberothex}
 \end{figure*}
 
-This theorem asserts that the Voronoi cell of the lattice $A_n$ is the $n$-dimensional polytope that results from orthogonally projecting the $(n+1)$-dimensional into the zero sum plane.  Results of this type have been studied previously.  A polytope that is the orthogonal projection of a hypercube is called a \emph{zonotope}~\cite[p.~313]{surveys_combin_zonotopes_1997}~\cite{McMullen_space_tiling_zonotopes_1975}.  Figure~\ref{fig:cuberothex} depicts some 2-dimensional zonotopes.  A zonotope is \emph{unimodular} if it can be used to tiles (or tesselate) Euclidean space.  Such a tesselation naturally gives rise to a lattice, a so called \emph{zonotopal lattice}~\cite{Vallentin_space_tiling_zonotope_2004}.  The lattice $A_n$ is a zonotopol lattice.  The techniques in this paper can potentially be extended to other zonotopal lattices, but we do not consider such extentions here. 
+This theorem asserts that the Voronoi cell of the lattice $A_n$ is the $n$-dimensional polytope that results from orthogonally projecting the $(n+1)$-dimensional hypercube into the zero-sum plane.  Results of this type have been studied previously.  A polytope that is the orthogonal projection of a hypercube is called a \emph{zonotope}~\cite[p.~313]{surveys_combin_zonotopes_1997}~\cite{McMullen_space_tiling_zonotopes_1975}.  Figure~\ref{fig:cuberothex} depicts some 2-dimensional zonotopes.  A zonotope is \emph{unimodular} if it can be used to tile (or tesselate) Euclidean space.  Such a tesselation naturally gives rise to a lattice, a so called \emph{zonotopal lattice}~\cite{Vallentin_space_tiling_zonotope_2004}.  The lattice $A_n$ is a zonotopol lattice.  The techniques in this paper can potentially be extended to other zonotopal lattices, but we do not consider such extentions here. 
 
 \section{Integrating a function over $\vor(A_n)$}\label{sec:integr-funct-over}
 
-We would like to be able to integrate functions over the Voronoi cell of $A_n$.  Consider a function $f : \reals^{n+1} \mapsto \reals$.  The definition we have made for $A_n$ above places it in the $n$-dimensional zero-sum plane, lying in $\reals^{n+1}$.  The Voronoi cell is a subset of the zero-sum plane that has zero $(n+1)$-dimensional volume.  So, the volume integral $\int_{\vor(A_n)} f(\xbf) d \xbf$ is equal to zero.  This is not what we intend.  By an appropriate change of variables it would be possible to write the Voronoi cell $\vor(A_n)$ in an $n$-dimensional coordinate system, and then integrate.  However, we find the following approach simpler.  Given a set $S$ of vectors from the zero sum plane, let $S \times \onebf$ denote the set of elements that can be written as $\xbf + \ybf$ where $\xbf \in S$ and $\ybf = k\onebf$ for some $k \in [-\nicefrac{1}{2},\nicefrac{1}{2}]$.  If $S$ has $n$-volume $V$ then the $(n+1)$-volume of $S\times\onebf$ is $V \sqrt{n+1}$.  Now, the integral over the Voronoi cell can be written as
+We would like to be able to integrate functions over the Voronoi cell of $A_n$.  Consider a function $f : \reals^{n+1} \mapsto \reals$.  The definition we have made for $A_n$ in Section~\ref{sec:lattice-a_n} places it in the $n$-dimensional zero-sum plane, lying in $\reals^{n+1}$.  The Voronoi cell is a subset of the zero-sum plane that has zero $(n+1)$-dimensional volume.  So, the volume integral $\int_{\vor(A_n)} f(\xbf) d \xbf$ is equal to zero.  This is not what we intend.  By an appropriate change of variables it would be possible to write the Voronoi cell $\vor(A_n)$ in an $n$-dimensional coordinate system, and then integrate.  However, we find the following approach simpler.  Given a set $S$ of vectors from the zero-sum plane, let $S \times \onebf$ denote the set of elements that can be written as $\xbf + \ybf$ where $\xbf \in S$ and $\ybf = k\onebf$ for some $k \in [-\nicefrac{1}{2},\nicefrac{1}{2}]$.  If $S$ has $n$-volume equal to $V$ then the $(n+1)$-volume of $S\times\onebf$ is $V\|\onebf\| = V \sqrt{n+1}$.  Now, the integral over the Voronoi cell can be written as
 \begin{equation}\label{eq:vorfint}
 \frac{1}{\sqrt{n+1}} \int_{\vor(A_n) \times \onebf} f(\Qbf\xbf) d\xbf = \frac{1}{\sqrt{n+1}} \int_{\Qbf\vor(\ints^{n+1}) \times \onebf} f(\Qbf\xbf) d\xbf.
 \end{equation}
