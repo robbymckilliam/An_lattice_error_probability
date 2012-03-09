@@ -4,6 +4,7 @@ cd ..
 
 cd figs 
 mpost -interaction=nonstopmode cuberothex.mp 
+mpost -interaction=nonstopmode hexlatfig.mp 
 cd .. 
 
 pdflatex paper.tex
