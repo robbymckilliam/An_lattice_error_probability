@@ -85,7 +85,7 @@ where $\ybf \in \reals^n$, $\cbf \in \calC$ and $\wbf$ is a vector of independen
 \end{equation}
 that is, the receiver computes the codeword in $\calC$ nearest in Euclidean distance to the received signal $\ybf$.  Assuming that each codeword is transmitted with equal probability, then the probability of correct maximum likelihood decoding is
 \[
-P_{\text{ML}} = \sum_{\cbf \in \calC}\frac{1}{\abs{\calC}}\prob( \hat{\cbf}_{\text{ML}} = \cbf ).
+P_{\text{ML}} = \frac{1}{\abs{\calC}}\sum_{\cbf \in \calC}\prob( \hat{\cbf}_{\text{ML}} = \cbf ).
 \]
 
 Maximum likelihood decoding is typically computationally complex and it is preferable to use lattice decoding~\cite{Agrell2002,Erex2004_lattice_decoding}.  The estimator of $\cbf$ is then,
@@ -245,11 +245,7 @@ also. It follows from Lemma~\ref{lem:QVorZnsubsetVorAn} that $\Qbf\vor(\ints^{n+
 		\label{fig:cuberothex}
 \end{figure*}
 
-<<<<<<< HEAD
-This theorem asserts that the Voronoi cell of the lattice $A_n$ is the $n$-dimensional polytope that results from orthogonally projecting the $(n+1)$-dimensional hypercube into the zero-sum plane.  Results of this type have been studied previously.  A polytope that is the orthogonal projection of a hypercube is called a \emph{zonotope}~\cite[p.~313]{surveys_combin_zonotopes_1997}~\cite{McMullen_space_tiling_zonotopes_1975}.  Figure~\ref{fig:cuberothex} depicts some 2-dimensional zonotopes.  A zonotope is \emph{unimodular} if it can be used to tile (or tesselate) Euclidean space.  Such a tesselation naturally gives rise to a lattice, a so called \emph{zonotopal lattice}~\cite{Vallentin_space_tiling_zonotope_2004}.  The lattice $A_n$ is a zonotopal lattice.  The techniques in this paper can potentially be extended to other zonotopal lattices. 
-=======
-This theorem asserts that the Voronoi cell of the lattice $A_n$ is the $n$-dimensional polytope that results from orthogonally projecting the $(n+1)$-dimensional hypercube into the zero-sum plane.  Results of this type have been studied previously.  A polytope that is the orthogonal projection of a hypercube is called a \emph{zonotope}~\cite[p.~313]{surveys_combin_zonotopes_1997}~\cite{McMullen_space_tiling_zonotopes_1975}.  Figure~\ref{fig:cuberothex} depicts some 2-dimensional zonotopes.  A zonotope is \emph{unimodular} if it can be used to tile (or tessellate) Euclidean space.  Such a tessellation naturally gives rise to a lattice, a so called \emph{zonotopal lattice}~\cite{Vallentin_space_tiling_zonotope_2004}.  The lattice $A_n$ is a zonotopal lattice.  The techniques in this paper can potentially be extended to other zonotopal lattices, but we do not consider such extensions here. 
->>>>>>> 4f9ef417d8ec4588630365e1caf45f5142acc1de
+This theorem asserts that the Voronoi cell of the lattice $A_n$ is the $n$-dimensional polytope that results from orthogonally projecting the $(n+1)$-dimensional hypercube into the zero-sum plane.  Results of this type have been studied previously.  A polytope that is the orthogonal projection of a hypercube is called a \emph{zonotope}~\cite[p.~313]{surveys_combin_zonotopes_1997}~\cite{McMullen_space_tiling_zonotopes_1975}.  Figure~\ref{fig:cuberothex} depicts some 2-dimensional zonotopes.  A zonotope is \emph{unimodular} if it can be used to tile (or tesselate) Euclidean space.  Such a tesselation naturally gives rise to a lattice, a so called \emph{zonotopal lattice}~\cite{Vallentin_space_tiling_zonotope_2004}.  The lattice $A_n$ is a zonotopal lattice and the techniques in this paper can potentially be extended to other zonotopal lattices. 
 
 \section{Integrating a function over $\vor(A_n)$}\label{sec:integr-funct-over}
 
@@ -526,11 +522,11 @@ We have observed the following property.  The formula for $M_n(m)$ appears to al
 \[
 \frac{p(n)}{(1+n)^{m-1/2} d}
 \] 
-where $p(n) = a_0 + a_1n + \dots a_{2m} n^{2m}$ is a polynomial of order $2m$ and $d \in \ints$ is the denominator.  The following appears to be true
+where $p(n) = a_0 + a_1n + \dots a_{2m} n^{2m}$ is a polynomial of degree $2m$ and $d$ is a positive integer.  The following appears to be true
 \[
 \frac{d}{a_{2m}} = 12^m,
 \]
-that is, the integer on the denominator $d$ is equal to the highest order coefficient $a_{2m}$ of the numerator polynomial $p(n)$ multiplied by $12^m$.  This leads us to make the following conjecture about the moments of $A_n$ when the dimension $n$ gets large.
+that is, the integer in the denominator $d$ is equal to the highest order coefficient $a_{2m}$ of the numerator polynomial $p(n)$ multiplied by $12^m$.  This leads us to make the following conjecture about the moments of $A_n$ when the dimension $n$ gets large.
 
 \begin{conjecture}
 For any fixed $m$,
