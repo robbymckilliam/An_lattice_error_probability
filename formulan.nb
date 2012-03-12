@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       157,          7]
-NotebookDataLength[     88231,       2192]
-NotebookOptionsPosition[     87048,       2145]
-NotebookOutlinePosition[     87385,       2160]
-CellTagsIndexPosition[     87342,       2157]
+NotebookDataLength[     90912,       2281]
+NotebookOptionsPosition[     89610,       2230]
+NotebookOutlinePosition[     89947,       2245]
+CellTagsIndexPosition[     89904,       2242]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -492,7 +492,9 @@ Construct a table with formula for the moments\
 
 Cell[CellGroupData[{
 
-Cell[BoxData[
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"maxm", "=", "40"}], ";"}], "\[IndentingNewLine]", 
  RowBox[{"Table", "[", 
   RowBox[{
    RowBox[{"FullSimplify", "[", 
@@ -506,14 +508,15 @@ Cell[BoxData[
          RowBox[{"2", "*", "m"}]}], ")"}]}]}], ",", 
      RowBox[{"n", ">", "1"}]}], "]"}], ",", " ", 
    RowBox[{"{", 
-    RowBox[{"m", ",", "0", ",", "40"}], "}"}]}], "]"}]], "Input",
+    RowBox[{"m", ",", "0", ",", "maxm"}], "}"}]}], "]"}]}], "Input",
  CellChangeTimes->{{3.522964472926499*^9, 3.522964499296987*^9}, {
   3.522964735474152*^9, 3.522964770161623*^9}, {3.522965675850828*^9, 
   3.522965675985194*^9}, {3.5229663921304617`*^9, 3.522966392467906*^9}, {
   3.5229688079629097`*^9, 3.522968809138438*^9}, {3.523054846905982*^9, 
   3.523054857892083*^9}, {3.5232233348941803`*^9, 3.523223341119938*^9}, {
   3.532028002951386*^9, 3.5320280047932453`*^9}, {3.532028174567019*^9, 
-  3.532028174638711*^9}, {3.5362751477983847`*^9, 3.536275147909299*^9}}],
+  3.532028174638711*^9}, {3.5362751477983847`*^9, 3.536275147909299*^9}, {
+  3.540242374719586*^9, 3.540242380298521*^9}}],
 
 Cell[BoxData[
  RowBox[{"{", 
@@ -2140,11 +2143,93 @@ Cell[BoxData[
  CellChangeTimes->{3.523223449210639*^9, 3.5320280960558434`*^9, 
   3.532029689334577*^9}]
 }, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Check numerator/denominator conjecture\
+\>", "Section",
+ CellChangeTimes->{{3.540242341013311*^9, 3.540242343269389*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"T", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"FullSimplify", "[", 
+      RowBox[{
+       RowBox[{"n", "*", 
+        RowBox[{
+         RowBox[{"Mform", "[", 
+          RowBox[{"n", ",", "m"}], "]"}], "/", 
+         RowBox[{"(", 
+          RowBox[{"n", "+", 
+           RowBox[{"2", "*", "m"}]}], ")"}]}]}], ",", 
+       RowBox[{"n", ">", "1"}]}], "]"}], ",", " ", 
+     RowBox[{"{", 
+      RowBox[{"m", ",", "0", ",", "maxm"}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Tnum", "=", 
+   RowBox[{"Map", "[", 
+    RowBox[{
+     RowBox[{"Function", "[", 
+      RowBox[{"x", ",", 
+       RowBox[{"Numerator", "[", "x", "]"}]}], "]"}], ",", "T"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Tden", "=", 
+   RowBox[{"Map", "[", 
+    RowBox[{
+     RowBox[{"Function", "[", 
+      RowBox[{"x", ",", 
+       RowBox[{"Denominator", "[", "x", "]"}]}], "]"}], ",", "T"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"numcoef", "=", 
+  RowBox[{"Table", "[", 
+   RowBox[{
+    RowBox[{"Coefficient", "[", 
+     RowBox[{
+      RowBox[{"Tnum", "[", 
+       RowBox[{"[", 
+        RowBox[{"m", "+", "1"}], "]"}], "]"}], ",", "n", ",", 
+      RowBox[{"2", "*", "m"}]}], "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"m", ",", "0", ",", "maxm"}], "}"}]}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"dencoef", "=", 
+  RowBox[{"Table", "[", 
+   RowBox[{
+    RowBox[{"Coefficient", "[", 
+     RowBox[{
+      RowBox[{"Tden", "[", 
+       RowBox[{"[", 
+        RowBox[{"m", "+", "1"}], "]"}], "]"}], ",", 
+      RowBox[{"1", "+", "n"}], ",", "m"}], "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"m", ",", "0", ",", "maxm"}], "}"}]}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"test", " ", "=", " ", 
+  RowBox[{"Table", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{"dencoef", "[", 
+       RowBox[{"[", 
+        RowBox[{"m", "+", "1"}], "]"}], "]"}], "/", 
+      RowBox[{"numcoef", "[", 
+       RowBox[{"[", 
+        RowBox[{"m", "+", "1"}], "]"}], "]"}]}], "\[Equal]", 
+     RowBox[{"12", "^", "m"}]}], ",", 
+    RowBox[{"{", 
+     RowBox[{"m", ",", "0", ",", "maxm"}], "}"}]}], "]"}]}]}], "Input",
+ CellChangeTimes->{{3.540242359179799*^9, 3.540242362638796*^9}}]
 }, Open  ]]
 }, Open  ]]
 },
 WindowSize->{830, 1073},
-WindowMargins->{{Automatic, 33}, {Automatic, 0}},
+WindowMargins->{{Automatic, 25}, {Automatic, 0}},
 FrontEndVersion->"8.0 for Linux x86 (64-bit) (February 23, 2011)",
 StyleDefinitions->"Default.nb"
 ]
@@ -2189,9 +2274,13 @@ Cell[17475, 463, 637, 18, 30, "Output"]
 Cell[CellGroupData[{
 Cell[18161, 487, 141, 3, 74, "Section"],
 Cell[CellGroupData[{
-Cell[18327, 494, 951, 21, 30, "Input"],
-Cell[19281, 517, 67727, 1623, 7964, "Output"]
+Cell[18327, 494, 1076, 24, 50, "Input"],
+Cell[19406, 520, 67727, 1623, 7964, "Output"]
 }, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[87182, 2149, 131, 3, 74, "Section"],
+Cell[87316, 2154, 2266, 72, 126, "Input"]
 }, Open  ]]
 }, Open  ]]
 }
