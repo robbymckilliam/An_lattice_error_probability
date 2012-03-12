@@ -244,7 +244,7 @@ also. It follows from Lemma~\ref{lem:QVorZnsubsetVorAn} that $\Qbf\vor(\ints^{n+
 		\label{fig:cuberothex}
 \end{figure*}
 
-This theorem asserts that the Voronoi cell of the lattice $A_n$ is the $n$-dimensional polytope that results from orthogonally projecting the $(n+1)$-dimensional hypercube into the zero-sum plane.  Results of this type have been studied previously.  A polytope that is the orthogonal projection of a hypercube is called a \emph{zonotope}~\cite[p.~313]{surveys_combin_zonotopes_1997}~\cite{McMullen_space_tiling_zonotopes_1975}.  Figure~\ref{fig:cuberothex} depicts some 2-dimensional zonotopes.  A zonotope is \emph{unimodular} if it can be used to tile (or tesselate) Euclidean space.  Such a tesselation naturally gives rise to a lattice, a so called \emph{zonotopal lattice}~\cite{Vallentin_space_tiling_zonotope_2004}.  The lattice $A_n$ is a zonotopol lattice.  The techniques in this paper can potentially be extended to other zonotopal lattices, but we do not consider such extentions here. 
+This theorem asserts that the Voronoi cell of the lattice $A_n$ is the $n$-dimensional polytope that results from orthogonally projecting the $(n+1)$-dimensional hypercube into the zero-sum plane.  Results of this type have been studied previously.  A polytope that is the orthogonal projection of a hypercube is called a \emph{zonotope}~\cite[p.~313]{surveys_combin_zonotopes_1997}~\cite{McMullen_space_tiling_zonotopes_1975}.  Figure~\ref{fig:cuberothex} depicts some 2-dimensional zonotopes.  A zonotope is \emph{unimodular} if it can be used to tile (or tesselate) Euclidean space.  Such a tesselation naturally gives rise to a lattice, a so called \emph{zonotopal lattice}~\cite{Vallentin_space_tiling_zonotope_2004}.  The lattice $A_n$ is a zonotopal lattice.  The techniques in this paper can potentially be extended to other zonotopal lattices. 
 
 \section{Integrating a function over $\vor(A_n)$}\label{sec:integr-funct-over}
 
@@ -518,47 +518,8 @@ where the sum $\sum_{ (c',d') \neq (0,0)}$ is over all $0 \leq c' \leq c$ and $0
 \]
 So the $z$-transform $\calG(z,c,d)$ satisfies this recursive equation.  The initial condition is $\calG(z,0,0) = \frac{z^{-1}}{1 - z^{-1}}$.  By inverting this $z$-transform and using the resultant expressions in~\eqref{eq:theCmformula} we obtain formulae in $n$ for the moment $\calM_n(m)$.  This procedure was used to generate the formula described in Section~\ref{sec:main-result}.  Mathematica 8.0 was used to perform these calculations.
 
-
-
-% \section{Conclusion}
-% \begin{itemize}
-% \item We can use these techniques to compute other things about the Voronoi cell, i.e. the average $L_p$ norms.
-% \item Not restricted to Gaussian noise.  Any noise pdf that can be described by the moments will work.
-% \item Can other lattices be done?
-% \end{itemize}
-
 \small
 \bibliography{bib}
-
-
-
-
-% \section{Notable references}
-% \begin{itemize}
-% \item Conway and Sloane compute the second moment of all the root lattices and there duals~\cite{Conway1982VoronoiRegions}.  This is really \emph{the} paper on this topic.  The approach is to break the Voronoi cells into simplicies and compute the second moment of the simplicies.
-
-% \begin{quotation}
-% In the second application, the same Euclidean code
-% $y_1,\dots ,y_n$ is used as a code for the Gaussian channel. Now
-% the Voronoi regions are the decoding regions: all points $x$
-% in the interior of $V(y_i)$ are decoded as $y_i$. If the codewords
-% are equally likely and all the Voronoi regions $V(y_i)$ are
-% congruent to a polytope P, the probability of correct decoding is proportional to
-% \[
-% \int_P e^{x^\prime x} dx.
-% \]
-% The description of the Voronoi regions given in Section III
-% thus makes it possible to calculate this probability exactly
-% for many Euclidean codes. These results will be described
-% elsewhere.
-% \end{quotation}
-
-% But it doesn't appear to be published elsewhere.  I'm not really sure how you would go about doing it either, because I think integrating $e^{x^\prime x}$ over an arbitray simplex is hard.
-
-% \item Baldoni \emph{et. al.}~\cite{Baldoni_how_to_integrate_poly_over_simplex_2008} claim to show that in general integrating a polynomial under a simplex is NP-hard.  However, if you fix the degree of the polynomial then it can be done in polynomial time.
-
-% \end{itemize}
-
 
 
 \end{document}
