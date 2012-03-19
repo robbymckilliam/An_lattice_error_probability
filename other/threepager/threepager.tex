@@ -1,38 +1,37 @@
 %\documentclass[a4paper,10pt]{article}
 %\documentclass[draftcls, onecolumn, 11pt]{IEEEtran}
 %\documentclass[journal, onecolumn, 10pt]{IEEEtran}
-\documentclass[journal]{../../IEEEtran}
+%\documentclass[journal]{../../IEEEtran}
+
+\documentclass[final]{proceedings}
 %\documentclass[correspondence,9pt]{IEEEtran}
 
+\usepackage{crop}
+\crop
+%\makeindex
 
 \usepackage{../../mathbf-abbrevs}
-\usepackage{amsmath}
-\DeclareMathOperator{\argmin}{\arg\!\min}
+%\usepackage{amsmath}
+\newcommand{\argmin}{\arg\!\min}
 
 \input{defs}
 
-%opening
-\title{On the error performance of the $A_n$ lattices}
-\author{Robby McKilliam, Ramanan Subramanian, Emanuele Viterbo, I. Vaughan L. Clarkson
- \thanks{Robby~McKilliam and Ramanan Subramanian are with the Institute for Telecommunications Research, The University of South Australia, SA, 5095.  Emanuele Viterbo is with the Department of Electrical and Computer Systems Engineering, Monash University, Melbourne, VIC, Australia.   Vaughan~Clarkson is with the School of Information Technology \& Electrical Engineering, The University of Queensland, QLD., 4072, Australia.  A preliminary full version of this paper is available at http://arxiv.org/abs/1111.6334.}
-}
+%\title{On the error performance of the $A_n$ lattices}
+%\author{Robby McKilliam, Ramanan Subramanian, Emanuele Viterbo, I. Vaughan L. Clarkson
+ %\thanks{Robby~McKilliam and Ramanan Subramanian are with the Institute for Telecommunications Research, The University of South Australia, SA, 5095.  Emanuele Viterbo is %with the Department of Electrical and Computer Systems Engineering, Monash University, Melbourne, VIC, Australia.   Vaughan~Clarkson is with the School of Information %Technology \& Electrical Engineering, The University of Queensland, QLD., 4072, Australia.  A preliminary full version of this paper is available at http://arxiv.org/abs/1111.6334.}
+%}
 
 \begin{document}
 
+%opening
+\chapter[On the error performance of the $A_n$ lattices]{On the error performance of the $A_n$ lattices}
+
+\begin{authorline}
+Robby McKilliam, Ramanan Subramanian, Emanuele Viterbo and I. Vaughan L. Clarkson\thanks{Robby~McKilliam and Ramanan Subramanian are with the Institute for Telecommunications Research, The University of South Australia, SA, 5095.  Emanuele Viterbo is with the Department of Electrical and Computer Systems Engineering, Monash University, Melbourne, VIC, Australia.   Vaughan~Clarkson is with the School of Information Technology \& Electrical Engineering, The University of Queensland, QLD., 4072, Australia.  A preliminary full version of this paper is available at http://arxiv.org/abs/1111.6334.}
+\end{authorline}
+
 \newcommand{\calR}{\mathcal{R}}
 \newcommand{\hist}{\operatorname{hist}}
-
-\maketitle
-
-\begin{abstract}
-We consider the root lattice $A_n$ and derive explicit formulae for the moments of its Voronoi cell.  These formulae enable accurate prediction of the error probability of lattice codes constructed from $A_n$.
-\end{abstract}
-
-\begin{keywords}
-Lattices, lattice decoding, root lattice, probability of error, Voronoi cell.
-\end{keywords}
-
-\section{Introduction}\label{sec:introduction}
 
 The \emph{root lattices} $A_n$, $D_n$, $E_6$, $E_7$ and $E_8$ have attracted particular attention as structured codes for the AWGN channel~\cite{SPLAG}. The highly symmetric structure of these lattices provides the grounds for extremely efficient encoding and decoding algorithms~\cite{Conway1982FastQuantDec,McKilliam2009CoxeterLattices}.  In this paper we consider codes constructed from the root lattice $A_n$ and derive formulae for accurately predicting the performance of these codes.  This is achieved by deriving formulae for the \emph{moments} of the \emph{Voronoi cell} of $A_n$.  Conway and Sloane suggested this approach to compute the quantizing constants (second order moments) of the root lattices~\cite{Conway1982VoronoiRegions}.  In this paper we extend their technique to compute the moments of any order for $A_n$.
 
@@ -173,14 +172,14 @@ Equivalently, $A_n$ consists of all of those points in $\ints^{n+1}$ with coordi
 % 0 & 0 & 0 & \cdots & 0 & -1  \\
 % \end{array} \right].
 % \]
-In two dimensions $A_2$ is the hexagonal lattice (Figure~\ref{fig:hexlatfig}), and in three dimension $A_3$ is the body centered cubic lattice~\cite[p. 108]{SPLAG}.  These are the densest known sphere packings in dimensions two and three.
+In two dimensions $A_2$ is the hexagonal lattice, and in three dimension $A_3$ is the body centered cubic lattice~\cite[p. 108]{SPLAG}.  These are the densest known sphere packings in dimensions two and three.
 
-\begin{figure}[tbp]
-	\centering
-		\includegraphics[width=\linewidth]{hexlatfig-1.mps}
-		\caption{The hexagonal lattice $A_2$.  The Voronoi cell is a regular hexagon.}
-		\label{fig:hexlatfig}
-\end{figure}
+%\begin{figure}[tbp]
+%	\centering
+%		\includegraphics[width=\linewidth]{hexlatfig-1.mps}
+%		\caption{The hexagonal lattice $A_2$.  The Voronoi cell is a regular hexagon.}
+%		\label{fig:hexlatfig}
+%\end{figure}
 
 
 \section{The main result}\label{sec:main-result}
@@ -267,9 +266,9 @@ where $\erfc(x) = 1 - \erf(x)$ is the complementary error function.  For the $E_
 % The second moment of this representation of $\Lambda_{24}$ is approximately $24 \times 0.065771$.  This was computed numerically by Conway and Sloane~\cite[p. 61]{SPLAG}.  The relationship between SNR and $\sigma^2$ is $\text{SNR} = 4 \times 0.065771 \sigma^{-2}$.
 
 
-\section{Conclusion}
+%\section{Conclusion}
 
-Recursive formulae for the moments of the Voronoi cell of the lattice $A_n$ were found.  These enable accurate prediction of the performance of codes constructed from $A_n$.  In two dimensions $A_2$ is the hexagonal lattice and in three dimensions $A_3$ is the face-centered cubic lattice.  Our results include codes constructed using these packings as a special case.  %The lattice $A_n$ does not produce good codes in large dimension, but we are hopeful that the techniques developed here can be applied to other lattices.  In particular similar techniques might apply to the family Coxeter lattices, which contains the root lattice $E_8$.
+%Recursive formulae for the moments of the Voronoi cell of the lattice $A_n$ were found.  These enable accurate prediction of the performance of codes constructed from $A_n$.  In two dimensions $A_2$ is the hexagonal lattice and in three dimensions $A_3$ is the face-centered cubic lattice.  Our results include codes constructed using these packings as a special case.  %The lattice $A_n$ does not produce good codes in large dimension, but we are hopeful that the techniques developed here can be applied to other lattices.  In particular similar techniques might apply to the family Coxeter lattices, which contains the root lattice $E_8$.
 
 
 
