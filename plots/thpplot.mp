@@ -54,8 +54,8 @@ draw dot shifted 1/2[(sx,sh + ups),(1cm,sh + ups)];
 
 legend := currentpicture; currentpicture := ORIGINAL_PICTURE;
 
-plotheight = 10cm;
-plotwidth = 11cm;
+plotheight = 15cm;
+plotwidth = 11.5cm;
 
 legendx = plotwidth - 4cm;
 legendy = plotheight - 1cm;
@@ -67,7 +67,7 @@ draw begingraph(plotwidth, plotheight);
  glabel.lft(btex $P_E$ etex, OUT) rotated 90 shifted(1.6cm,0);
  
   %setrange(whatever,"1e-6", whatever,0.05);
-  setrange(9.7,"1e-12", 17.5,0.01);
+  setrange(9.7,"5e-13", 17.5,0.01);
 
 %  gdraw (0, "1e-13")--(0, 2) dashed evenly; %glabel.bot(btex AWGN channel capacity etex, 0) rotated 90;
 
@@ -79,7 +79,7 @@ draw begingraph(plotwidth, plotheight);
   
   gdraw "pe1"; glabel.rt(btex $A_1$ etex, 1000);
   gdraw "pe2"; glabel.rt(btex $A_2$ etex, 1000);
-  gdraw "pe3"; glabel.lrt(btex $A_3$ etex, 1000);
+  gdraw "pe3"; glabel.bot(btex $A_3$ etex, 1000);
   gdraw "pe4"; glabel.bot(btex $A_4$ etex, 1000);
   gdraw "pe5"; glabel.lft(btex $A_5$ etex, 1000);
   gdraw "pe8"; glabel.lft(btex $A_8$ etex, 1000);
@@ -91,8 +91,8 @@ draw begingraph(plotwidth, plotheight);
   gdraw "pemontecarlo5" plot(dot);
   gdraw "pemontecarlo8" plot(dot);
 
-  %gdraw "pemontecarlo_E8" plot(dot); 
-  %gdraw "E8UnionBound" dashed evenly; glabel.rt(btex $E_8$ etex, 1000);
+  gdraw "pemontecarlo_E8" plot(dot); 
+  gdraw "E8UnionBound" dashed evenly; glabel.rt(btex $E_8$ etex, 1000);
 
  %gdraw "pemontecarlo_Leech" plot(dot);
  % gdraw "LeechUnionBound" dashed evenly; glabel.lrt(btex $\Lambda_{24}$ etex, 1000);

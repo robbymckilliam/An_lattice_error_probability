@@ -3,11 +3,11 @@
 %\documentclass[journal, onecolumn, 10pt]{IEEEtran}
 %\documentclass[journal]{../../IEEEtran}
 
-\documentclass[final]{proceedings}
+\documentclass[final]{siamltex}
 %\documentclass[correspondence,9pt]{IEEEtran}
 
-\usepackage{crop}
-\crop
+%\usepackage{crop}
+%\crop
 %\makeindex
 
 \usepackage{../../mathbf-abbrevs}
@@ -16,25 +16,37 @@
 
 \input{defs}
 
-%\title{On the error performance of the $A_n$ lattices}
-%\author{Robby McKilliam, Ramanan Subramanian, Emanuele Viterbo, I. Vaughan L. Clarkson
- %\thanks{Robby~McKilliam and Ramanan Subramanian are with the Institute for Telecommunications Research, The University of South Australia, SA, 5095.  Emanuele Viterbo is %with the Department of Electrical and Computer Systems Engineering, Monash University, Melbourne, VIC, Australia.   Vaughan~Clarkson is with the School of Information %Technology \& Electrical Engineering, The University of Queensland, QLD., 4072, Australia.  A preliminary full version of this paper is available at http://arxiv.org/abs/1111.6334.}
-%}
+\title{On the error performance of the $A_n$ lattices}
+\author{Robby McKilliam, Ramanan Subramanian, Emanuele Viterbo, I. Vaughan L. Clarkson\thanks{Robby~McKilliam and Ramanan Subramanian are with the Institute for Telecommunications Research, The University of South Australia, SA, 5095.  Emanuele Viterbo is with the Department of Electrical and Computer Systems Engineering, Monash University, Melbourne, VIC, Australia.   Vaughan~Clarkson is with the School of Information Technology \& Electrical Engineering, The University of Queensland, QLD., 4072, Australia.  A preliminary full version of this paper is available at http://arxiv.org/abs/1111.6334.}
+}
 
 \begin{document}
 
 %opening
-\chapter[On the error performance of the $A_n$ lattices]{On the error performance of the $A_n$ lattices}
+%\chapter[On the error performance of the $A_n$ lattices]{On the error performance of the $A_n$ lattices}
 
-\begin{authorline}
-Robby McKilliam, Ramanan Subramanian, Emanuele Viterbo and I. Vaughan L. Clarkson\thanks{Robby~McKilliam and Ramanan Subramanian are with the Institute for Telecommunications Research, The University of South Australia, SA, 5095.  Emanuele Viterbo is with the Department of Electrical and Computer Systems Engineering, Monash University, Melbourne, VIC, Australia.   Vaughan~Clarkson is with the School of Information Technology \& Electrical Engineering, The University of Queensland, QLD., 4072, Australia.  A preliminary full version of this paper is available at http://arxiv.org/abs/1111.6334.}
-\end{authorline}
+%\begin{authorline}
+%Robby McKilliam, Ramanan Subramanian, Emanuele Viterbo and I. Vaughan L. Clarkson\thanks{Robby~McKilliam and Ramanan Subramanian are with the Institute for Telecommunications Research, The University of South Australia, SA, 5095.  Emanuele Viterbo is with the Department of Electrical and Computer Systems Engineering, Monash University, Melbourne, VIC, Australia.   Vaughan~Clarkson is with the School of Information Technology \& Electrical Engineering, The University of Queensland, QLD., 4072, Australia.  A preliminary full version of this paper is available at http://arxiv.org/abs/1111.6334.}
+%\end{authorline}
+
+\maketitle
+
+\begin{keywords} 
+Lattices, lattice decoding, root lattice, probability of error, Voronoi cell.
+\end{keywords}
+
+%\begin{AMS}
+%15A15, 15A09, 15A23
+%\end{AMS}
 
 \newcommand{\calR}{\mathcal{R}}
 \newcommand{\hist}{\operatorname{hist}}
 
+\section*{EXTENDED ABSTRACT}
 The \emph{root lattices} $A_n$, $D_n$, $E_6$, $E_7$ and $E_8$ have attracted particular attention as structured codes for the  additive white Gaussian noise (AWGN) channel.  %~\cite{SPLAG}. 
-The highly symmetric structure of these lattices provides the grounds for extremely efficient encoding and decoding algorithms.  In this paper we derive formulae for accurately predicting the performance of lattice codes constructed from $A_n$.  This is achieved by deriving formulae for the \emph{moments} of the \emph{Voronoi cell} of $A_n$.  %Conway and Sloane suggested this approach to compute the quantizing constants (second order moments) of the root lattices~\cite{Conway1982VoronoiRegions}.  Here, we extend their technique to compute the moments of any order for $A_n$.
+The highly symmetric structure of these lattices provides the grounds for extremely efficient encoding and decoding algorithms.  In this paper we derive formulae for accurately predicting the performance of lattice codes constructed from $A_n$.  This is achieved by deriving formulae for the \emph{moments} of the \emph{Voronoi cell} of $A_n$.  
+
+%Conway and Sloane suggested this approach to compute the quantizing constants (second order moments) of the root lattices~\cite{Conway1982VoronoiRegions}.  Here, we extend their technique to compute the moments of any order for $A_n$.
 
 %In two dimensions $A_2$ is the hexagonal lattice and in three dimensions $A_3$ is the face-centered cubic lattice.  These are the densest sphere packings in dimensions two and three and our results automatically include low dimensional codes constructed using these packings.  In general, the lattice $A_n$ does not produce asymptotically good codes in large dimensions, but does offer a coding gain in small dimensions.  For these cases, we provide an error probability expression that can be computed to any degree of accuracy at any finite signal-to-noise ratio.
 %We are hopeful that the techniques developed here may be applied to other lattices that do produce good codes.  In particular our techniques might apply to the Coxeter lattices $A_n^m$ of which the root lattice $E_8 \simeq A_8^3$ is a member~\cite{Coxeter1951,Martinet2003,McKilliam2009CoxeterLattices}.
@@ -45,7 +57,7 @@ The highly symmetric structure of these lattices provides the grounds for extrem
 %An advantage of the analytical results is that the probability of error can calculated at high SNR, when the probabilty of error is small.  This is in contrast to Monte-Carlo simulations that are computationally infeasible at when the probability of error is small.  We display the performance of these lattice codes
 
 
-\section{Lattices, lattice codes, and lattice decoding} \label{sec:latt-latt-codes}
+\section*{Lattices, lattice codes, and lattice decoding} \label{sec:latt-latt-codes}
 
 
 A \term{lattice}\index{lattice}, $\Lambda$, is a discrete subset of points in $\reals^m$ such that
@@ -131,7 +143,7 @@ We call these the \emph{moments} of $\vor(\Lambda)$.
 % \end{equation*}
 % \end{figure*}
 
-\section{The lattice $A_n$}\label{sec:lattice-a_n}
+\section*{The lattice $A_n$}\label{sec:lattice-a_n}
 Let $H$ be the hyperplane orthogonal to the all ones vector of length $n+1$, denoted by $\onebf$, that is $\onebf = \left[ \begin{array}{cccc} 1 & 1 & \cdots & 1 \end{array} \right]^\prime$, where superscript $^\prime$ indicates the transpose.  The lattice $A_n$ is the intersection of $\ints^{n+1}$ with $H$, that is
 \begin{equation}
 \label{eq:An_sub_Zn}
@@ -191,19 +203,20 @@ We have explicitly tabulated these formula for $m=0$ to $40$. For larger $m$ dir
 \end{figure*}
 
 
-\section{Results and simulations}\label{sec:results-simulations}
+\section*{Results and simulations}\label{sec:results-simulations}
 
 We now plot the probability of coding error versus signal to noise ratio (SNR) for the lattices $A_1, A_2, A_3, A_4, A_5$ and $A_8$.  For these plots the SNR is related to noise variance according to $\text{SNR} = \frac{V^{2/n}}{4\sigma^2}$, where $V$ is the volume of the Voronoi cell and $n$ is the dimension of the lattice.  %~\cite[p. 167]{Viterbo_diamond_cutting_1996}.  
 Figure~\ref{fig:peplots} shows the `exact' probability of error (correct to 16 decimal places) computed using the moments $\calM_n(m)$ and~\eqref{eq:summomentproberror} (solid line).  The number of moments needed to ensure a certain number of decimal places accuracy depends on $n$ and also on the noise variance $\sigma^2$.  At most 321 moments where needed for Figure~\ref{fig:peplots}.  We also display the probability of error computed approximately by Monte-Carlo simulation (dots).  %We have used the fast nearest point algorithm for $A_n$ described in~\cite{McKilliam2009CoxeterLattices} and~\cite[p. 448]{SPLAG}.
 The simulations are iterated until 5000 error events occur.
 
-%The plot also displays an approximation for the probability of error for the 8-dimensional $E_8$ lattice.  The approximation is made in the usual way by applying the union bound to the minimal vectors of the lattice~\cite[p.~71]{SPLAG}.  The $E_8$ lattice has 240 minimal vectors of length $\sqrt{2}$.  The packing radius of $E_8$ is therefore $\rho = \sqrt{2}/2$.  Applying the union bound the probability of error satisfies
-%\newcommand{\erfc}{\operatorname{erfc}}
-%\newcommand{\erf}{\operatorname{erf}}
-%\[
-%P_E \leq 240\erfc\left( \frac{\rho}{\sqrt{2}\sigma} \right) = 240\erfc\left(\frac{1}{2\sigma}\right)
-%\]
-%where $\erfc(x) = 1 - \erf(x)$ is the complementary error function.  For the $E_8$ lattice this approximation is an upper bound because the relevant vectors of $E_8$ (those vectors that define the Voronoi cell) are precisely the 240 minimal vectors.  %The second moment of this representation of $E_8$ is $\frac{929}{1620}$ so SNR is related to $\sigma^2$ by $\text{SNR} = \frac{929}{3240\sigma^2}$.
+The plot also displays an approximation for the probability of error for the 8-dimensional $E_8$ lattice.  The approximation is made in the usual way by applying the union bound to the minimal vectors of the lattice.%~\cite[p.~71]{SPLAG}.  
+The $E_8$ lattice has 240 minimal vectors of length $\sqrt{2}$.  The packing radius of $E_8$ is therefore $\rho = \sqrt{2}/2$.  Applying the union bound the probability of error satisfies
+\newcommand{\erfc}{\operatorname{erfc}}
+\newcommand{\erf}{\operatorname{erf}}
+\[
+P_E \leq 240\erfc\left( \frac{\rho}{\sqrt{2}\sigma} \right) = 240\erfc\left(\frac{1}{2\sigma}\right)
+\]
+where $\erfc(x) = 1 - \erf(x)$ is the complementary error function.  For the $E_8$ lattice this approximation is an upper bound because the relevant vectors of $E_8$ (those vectors that define the Voronoi cell) are precisely the 240 minimal vectors.  %The second moment of this representation of $E_8$ is $\frac{929}{1620}$ so SNR is related to $\sigma^2$ by $\text{SNR} = \frac{929}{3240\sigma^2}$.
 
 %For $\Lambda_{24}$ there are $196560$ minimal vectors each of length $2$.  The packing radius is $\rho = 1$.  An approximation for the probability of error is
 %\[
