@@ -1,10 +1,10 @@
 prologues := 2;
 filenametemplate "%j-%c.mps";
-verbatimtex
-%&latex
-\documentclass{minimal}
-\begin{document}
-etex
+input TEX; 
+TEXPRE("%&latex" & char(10) & 
+"\documentclass{minimal}\begin{document}"); 
+TEXPOST("\end{document}"); 
+
 
 input graph;
 input sarith;
@@ -67,7 +67,7 @@ draw begingraph(plotwidth, plotheight);
  glabel.lft(btex $P_E$ etex, OUT) rotated 90 shifted(1.6cm,0);
  
   %setrange(whatever,"1e-6", whatever,0.05);
-  setrange(9.7,"5e-14", 17.5,0.01);
+  setrange(9.7,"1e-12", 17.5,0.01);
 
 %  gdraw (0, "1e-13")--(0, 2) dashed evenly; %glabel.bot(btex AWGN channel capacity etex, 0) rotated 90;
 
@@ -91,8 +91,8 @@ draw begingraph(plotwidth, plotheight);
   gdraw "pemontecarlo5" plot(dot);
   gdraw "pemontecarlo8" plot(dot);
 
-  gdraw "pemontecarlo_E8" plot(dot); 
-  gdraw "E8UnionBound" dashed evenly; glabel.rt(btex $E_8$ etex, 1000);
+  %gdraw "pemontecarlo_E8" plot(dot); 
+  %gdraw "E8UnionBound" dashed evenly; glabel.rt(btex $E_8$ etex, 1000);
 
  %gdraw "pemontecarlo_Leech" plot(dot);
  % gdraw "LeechUnionBound" dashed evenly; glabel.lrt(btex $\Lambda_{24}$ etex, 1000);
