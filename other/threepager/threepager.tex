@@ -36,7 +36,7 @@ Lattices, lattice decoding, root lattice, probability of error, Voronoi cell.
 \end{keywords}
 
 \begin{AMS}
-15A15, 15A09, 15A23, BLERG
+94B70
 \end{AMS}
 
 \newcommand{\calR}{\mathcal{R}}
@@ -171,7 +171,7 @@ Equivalently, $A_n$ is those points in $\ints^{n+1}$ with coordinate sum equal t
 %		\label{fig:hexlatfig}
 %\end{figure}
 \newcommand{\calM}{M}
-Let $\calM_n(m) = \int_{\vor(A_n)} \|\xbf\|^{2m} d\xbf$ be a moment of the Voronoi cell of $A_n$.  Our main results is as follows.  The moment $\calM_n(m)$ satisfies
+Let $\calM_n(m) = \int_{\vor(A_n)} \|\xbf\|^{2m} d\xbf$ be a moment of the Voronoi cell of $A_n$.  Our main result is as follows.  The moment $\calM_n(m)$ satisfies
 \begin{equation}\label{eq:theCmformula}
 \frac{\calM_n(m)}{m!} = \frac{n\sqrt{n+1}}{n+2m}\sum_{k=0}^{m}\sum_{a =0}^{k}\sum_{b=0}^{k-a} \frac{G(n-1,a,2k - 2a - b)}{H(n,m,k,a,b)},
 \end{equation}
@@ -209,8 +209,7 @@ We now plot the probability of coding error versus signal to noise ratio (SNR) f
 Figure~\ref{fig:peplots} shows the `exact' probability of error (correct to 16 decimal places) computed using the moments $\calM_n(m)$ and~\eqref{eq:summomentproberror} (solid line).  The number of moments needed to ensure a certain number of decimal places accuracy depends on $n$ and also on the noise variance $\sigma^2$.  At most 321 moments where needed for Figure~\ref{fig:peplots}.  We also display the probability of error computed approximately by Monte-Carlo simulation (dots).  %We have used the fast nearest point algorithm for $A_n$ described in~\cite{McKilliam2009CoxeterLattices} and~\cite[p. 448]{SPLAG}.
 The simulations are iterated until 5000 error events occur.
 
-The plot also displays an approximation for the probability of error for the 8-dimensional $E_8$ lattice.  The approximation is made in the usual way by applying the union bound to the minimal vectors of the lattice.%~\cite[p.~71]{SPLAG}.  
-The $E_8$ lattice has 240 minimal vectors of length $\sqrt{2}$.  The packing radius of $E_8$ is therefore $\rho = \sqrt{2}/2$.  Applying the union bound the probability of error satisfies
+The plot also displays an approximation for the probability of error for the 8-dimensional $E_8$ lattice.  The approximation is made in the usual way by applying the union bound to the minimal vectors of the lattice.  The $E_8$ lattice has 240 minimal vectors of length $\sqrt{2}$.  The packing radius of $E_8$ is therefore $\rho = \sqrt{2}/2$.  Applying the union bound the probability of error satisfies
 \newcommand{\erfc}{\operatorname{erfc}}
 \newcommand{\erf}{\operatorname{erf}}
 \[
