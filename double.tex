@@ -13,8 +13,8 @@
 
 %opening
 \title{On the error performance of the $A_n$ lattices}
-\author{Copyright (c) 2012 IEEE. Personal use of this material is permitted.  However, permission to use this material for any other purposes must be obtained from the IEEE by sending a request to pubs-permissions@ieee.org.  Robby McKilliam, Ramanan Subramanian, Emanuele Viterbo, I. Vaughan L. Clarkson
- \thanks{Robby~McKilliam and Ramanan Subramanian are with the Institute for Telecommunications Research, The University of South Australia, SA, 5095.  Emanuele Viterbo is with the Department of Electrical and Computer Systems Engineering, Monash University, Melbourne, VIC, Australia.   Vaughan~Clarkson is with the School of Information Technology \& Electrical Engineering, The University of Queensland, QLD., 4072, Australia.}
+\author{Robby McKilliam, Ramanan Subramanian, Emanuele Viterbo, I. Vaughan L. Clarkson
+ \thanks{Copyright (c) 2012 IEEE. Personal use of this material is permitted.  However, permission to use this material for any other purposes must be obtained from the IEEE by sending a request to pubs-permissions@ieee.org.  Robby~McKilliam and Ramanan Subramanian are with the Institute for Telecommunications Research, The University of South Australia, SA, 5095.  Emanuele Viterbo is with the Department of Electrical and Computer Systems Engineering, Monash University, Melbourne, VIC, Australia.   Vaughan~Clarkson is with the School of Information Technology \& Electrical Engineering, The University of Queensland, QLD., 4072, Australia.}
 }
 
 \begin{document}
@@ -251,7 +251,10 @@ This theorem asserts that the Voronoi cell of the lattice $A_n$ is the $n$-dimen
 
 We would like to be able to integrate functions over the Voronoi cell of $A_n$.  Consider a function $f : \reals^{n+1} \mapsto \reals$.  The definition we have made for $A_n$ in Section~\ref{sec:lattice-a_n} places it in the $n$-dimensional zero-sum plane, lying in $\reals^{n+1}$.  The Voronoi cell is a subset of the zero-sum plane that has zero $(n+1)$-dimensional volume.  So, the volume integral $\int_{\vor(A_n)} f(\xbf) d \xbf$ is equal to zero.  This is not what we intend.  By an appropriate change of variables it would be possible to write the Voronoi cell $\vor(A_n)$ in an $n$-dimensional coordinate system, and then integrate.  However, we find the following approach simpler.  Given a set $S$ of vectors from the zero-sum plane, let $S \times \onebf$ denote the set of elements that can be written as $\xbf + \ybf$ where $\xbf \in S$ and $\ybf = k\onebf$ for some $k \in [-\nicefrac{1}{2},\nicefrac{1}{2}]$.  If $S$ has $n$-volume equal to $V$ then the $(n+1)$-volume of $S\times\onebf$ is equal to $V\|\onebf\| = V \sqrt{n+1}$.  Now, the integral over the Voronoi cell can be written as
 \begin{equation}\label{eq:vorfint}
-\frac{1}{\sqrt{n+1}} \int_{\vor(A_n) \times \onebf} f(\Qbf\xbf) d\xbf = \frac{1}{\sqrt{n+1}} \int_{\Qbf\vor(\ints^{n+1}) \times \onebf} f(\Qbf\xbf) d\xbf.
+\begin{split}
+\frac{1}{\sqrt{n+1}} &\int_{\vor(A_n) \times \onebf} f(\Qbf\xbf) d\xbf \\
+&= \frac{1}{\sqrt{n+1}} \int_{\Qbf\vor(\ints^{n+1}) \times \onebf} f(\Qbf\xbf) d\xbf.
+\end{split}
 \end{equation}
 It is not immediately clear how an integral over $\vor(A_n) \times \onebf$ should be performed.  Consider the following simpler integral over the hypercube $\vor(\ints^{n+1})$,
 \begin{equation}\label{eq:unormalised}
@@ -263,20 +266,25 @@ This integral is not equal to~\eqref{eq:vorfint} because, although $\Qbf\xbf$ is
 \]
 The integral~\eqref{eq:vorfint} can be obtained by normalising~\eqref{eq:unormalised} by this length, that is,
 \begin{equation}\label{eq:vorfintafternorm}
-\frac{1}{\sqrt{n+1}} \int_{\vor(A_n) \times \onebf} f(\Qbf\xbf) d\xbf =  \int_{\vor(\ints^{n+1})} \frac{f(\Qbf\xbf)}{\sqrt{n+1}(1 - x_{\text{max}} + x_{\text{min}})}  d\xbf.
+\begin{split}
+\frac{1}{\sqrt{n+1}} &\int_{\vor(A_n) \times \onebf} f(\Qbf\xbf) d\xbf \\
+&=  \int_{\vor(\ints^{n+1})} \frac{f(\Qbf\xbf)}{\sqrt{n+1}(1 - x_{\text{max}} + x_{\text{min}})}  d\xbf.
+\end{split}
 \end{equation}
 The primary advantage of this integral is that the bounds are given by the $(n+1)$-dimensional hypercube $\vor(\ints^{n+1})$.\footnote{A caveat applies when $x_{\text{max}} = \nicefrac{1}{2}$ and $x_{\text{min}} = -\nicefrac{1}{2}$ and the denominator in the integral in~\eqref{eq:vorfintafternorm} is equal to zero.  In this case the interval $[-\nicefrac{1}{2} - x_{\text{min}}, \nicefrac{1}{2} - x_{\text{max}})$ is empty and we specify that these points do not contribute to the integral.}
 
 Let us now restrict $f(\xbf)$ so that it depends only on the magnitude $\|\xbf\|$, for example $f(\xbf) = \|\xbf\|^{2m}$ could be a power of the Euclidean norm of $\xbf$.  Now $f(\xbf)$ is invariant to permutation of $\xbf$.  Let $\xbf$ be such that $x_1$ is the maximum element and $x_2$ is the minimum element.  Our integral is now equal to
-\[
-\frac{n (n+1)}{\sqrt{n+1}} \int^{1/2}_{-1/2} \int^{x_1}_{-1/2}  \int^{x_1}_{x_2} \cdots \int^{x_1}_{x_2} \frac{f(\Qbf\xbf)}{1 - x_{1} + x_{2}}  dx_{n+1} \, \dots \, dx_2 \, dx_1.
-\]
+\begin{align*}
+\frac{n (n+1)}{\sqrt{n+1}} \int^{1/2}_{-1/2} \int^{x_1}_{-1/2}  \int^{x_1}_{x_2} \cdots \int^{x_1}_{x_2} &\frac{f(\Qbf\xbf)}{1 - x_{1} + x_{2}}  \\
+&\hspace{0.5cm} dx_{n+1} \, \dots \, dx_2 \, dx_1.
+\end{align*}
 The factor $n(n+1)$ arises because there are $n(n+1)$ ways to place two elements (i.e. $x_1$ and $x_2$) into $n+1$ positions.
 
 We can make further simplifications.  Letting $t = x_1 - x_2$ and $y = x_1 + 1/2$ and changing variables, gives
-\[
-n \sqrt{n+1} \int^{1}_{0} \int^{y}_{0}  \int^{y - 1/2}_{y - t - 1/2} \cdots \int^{y-1/2}_{y-t-1/2} \frac{f(\Qbf\xbf )}{1 - t}  dx_{n+1} \, \dots \, dx_3 \, dt \, dy,
-\]
+\begin{align*}
+n \sqrt{n+1} \int^{1}_{0} \int^{y}_{0}  \int^{y - 1/2}_{y - t - 1/2} \cdots \int^{y-1/2}_{y-t-1/2} &\frac{f(\Qbf\xbf )}{1 - t}  \\
+&dx_{n+1} \, \dots \, dx_3 \, dt \, dy,
+\end{align*}
 and letting $w_{i-2} = x_i - y + 1/2 + t$ for $i = 3,\dots,n+1$ gives
 \begin{equation}\label{eq:intwewilluse}
 n \sqrt{n+1} \int^{1}_{0} \int^{y}_{0}  \int^{t}_{0} \cdots \int^{t}_{0} \frac{f(\Qbf\xbf )}{1 - t}  dw_{n-1} \, \dots \, dw_1 \, dt \, dy.
@@ -288,9 +296,13 @@ Observe that $\xbf = \wbf + (y - t - \nicefrac{1}{2})\onebf$ where $\wbf$ is the
 Projecting orthogonal to $\onebf$ gives $\Qbf\xbf = \Qbf \wbf$.  Interestingly $\wbf$ does not contain $y$ so the term inside the integral~\eqref{eq:intwewilluse} does not depend on $y$.  This is the integral we will use to compute the moments of $A_n$.
 
 \begin{example}\emph{\textbf{(The volume of the Voronoi cell)}
-In order to demonstrate this approach we will derive the $0$th moment (i.e. the volume) of the Voronoi cell using~(\ref{eq:intwewilluse}).  Setting $f(\Qbf\wbf) = \|\Qbf\wbf\|^0 = 1$ we obtain,
+In order to demonstrate this approach we will derive the $0$th moment (i.e. the volume) of the Voronoi cell using~(\ref{eq:intwewilluse}).  Setting 
+\[
+f(\Qbf\wbf) = \|\Qbf\wbf\|^0 = 1
+\] 
+we obtain,
 \begin{align*}
-M_n(0) &= n\sqrt{n+1} \int^{1}_{0} \int^{y}_{0} \int^{t}_{0} \cdots \int^{t}_{0} \frac{1}{1 - t} \,dw_{n-1}\dots dw_1 \, dt  \, dy\\
+M_n(0) &= n\sqrt{n+1} \int^{1}_{0} \int^{y}_{0} \int^{t}_{0} \cdots \int^{t}_{0} \frac{dw_{n-1}\dots dw_1 \, dt  \, dy}{1 - t}\\
  &= n\sqrt{n+1} \int_{0}^{1} \int^{y}_{0} \frac{t^{n-1}}{1 - t} \, dt  \, dy \\
 &= n\sqrt{n+1}  \int^{1}_{0} \beta(y, n, 0) \, dy = \sqrt{n+1},
 \end{align*}
@@ -338,32 +350,36 @@ as required.  Here $\beta(x,a,b) =  \int_{0}^{x}  t^{a-1}(1 - t)^{b-1} \,dt$ is 
 \section{The moments of $A_n$}\label{sec:powers-eucl-norm}
 
 We now derive expressions for the $\calM_n(m)$.  Setting $f(\Qbf\xbf) = \left(\|\Qbf\wbf\|^{2}\right)^m$ in~\eqref{eq:intwewilluse} we obtain,
-\[
-\frac{\calM_n(m)}{n\sqrt{n+1}} = \int_0^1 \int_0^y \int_0^t \cdots \int_0^t \frac{\left(\|\Qbf\wbf\|^2\right)^m}{1 - t} \,dw_{n-1} \, \dots \, dw_1 \, dt \, dy.
-\]
+\begin{align*}
+\frac{\calM_n(m)}{n\sqrt{n+1}} = \int_0^1 \int_0^y \int_0^t \cdots \int_0^t &\frac{\left(\|\Qbf\wbf\|^2\right)^m}{1 - t} \\
+&dw_{n-1} \, \dots \, dw_1 \, dt \, dy.
+\end{align*}
 Now $\|\Qbf\wbf\|^2 = \|\wbf\|^2 - \frac{1}{n+1}(\wbf^\prime \onebf)^2$ and recalling that $\wbf = [t,0,w_1,\dots,w_{n-1}]'$ we can write
 \begin{align*}
-\|\Qbf\wbf\|^2 &= \|\wbf\|^2 - \frac{1}{n+1}(\wbf^\prime \onebf)^2 \\
+&\|\Qbf\wbf\|^2 \\
+&= \|\wbf\|^2 - \frac{1}{n+1}(\wbf^\prime \onebf)^2 \\
 &= t^2 + \sum_{i=1}^{n-1}w_i^2 - \frac{1}{n+1}\left( t + \sum_{i=1}^{n-1}w_i \right)^2 \\
 &= t^2 + \sum_{i=1}^{n-1}w_i^2 - \frac{1}{n+1}\left( t^2 + 2 t \sum_{i=1}^{n-1}w_i + \left(\sum_{i=1}^{n-1}w_i \right)^2 \right)\\
 &= C + D,
 \end{align*}
 say, where
 \[
-C = \left(\frac{n}{n+1} \right) t^2 \qquad \text{and} \qquad D = A - \frac{2t}{n+1}B - \frac{1}{n+1}B^2,
+C = \left(\frac{n}{n+1} \right) t^2 \;\;\;\; \text{and} \;\;\;\; D = A - \frac{2t}{n+1}B - \frac{1}{n+1}B^2,
 \]
 and where,
 \[
  A = \sum_{i=1}^{n-1}w_i^2 \qquad \text{and} \qquad B = \sum_{i=1}^{n-1}w_i.
 \]
 Now,
-\[
- \frac{\calM_n(m)}{n\sqrt{n+1}} =  \int_0^1 \int_0^y \int_0^t \cdots \int_0^t \frac{(C+D)^m}{1 - t} \,dw_{n-1} \, \dots \, dw_1 \, dt \, dy,
-\]
+\begin{align*}
+ \frac{\calM_n(m)}{n\sqrt{n+1}} =  \int_0^1 \int_0^y \int_0^t \cdots \int_0^t &\frac{(C+D)^m}{1 - t} \\
+&dw_{n-1} \, \dots \, dw_1 \, dt \, dy,
+\end{align*}
 and by expanding the binomial $(C+D)^m$ we get
-\[
-\frac{\calM_n(m)}{n\sqrt{n+1}} =  \int_0^1 \int_0^y \frac{1}{1 - t}\sum_{k=0}^{m}\binom{m}{k} C^{m-k} \int_0^t \cdots \int_0^t \, D^{k} \,dw_{n-1} \, \dots \, dw_1 \, dt \, dy.
-\]
+\begin{align*}
+\frac{\calM_n(m)}{n\sqrt{n+1}} =  \int_0^1 \int_0^y \frac{1}{1 - t}\sum_{k=0}^{m}\binom{m}{k} &C^{m-k} \int_0^t \cdots \int_0^t \, D^{k} \\
+&dw_{n-1} \, \dots \, dw_1 \, dt \, dy.
+\end{align*}
 Expanding $D^k$ as a trinomial gives
 \begin{align*}
 D^k &= \sum_{k_1+k_2+k_3=k} \frac{k! A^{k_1} B^{2k_3 + k_2}}{k_1! k_2! k_3!} \left(\frac{-1}{n+1}\right)^{k_2+k_3}2^{k_2}t^{k_2}  \\
@@ -371,7 +387,10 @@ D^k &= \sum_{k_1+k_2+k_3=k} \frac{k! A^{k_1} B^{2k_3 + k_2}}{k_1! k_2! k_3!} \le
 \end{align*}
 where the second line follows by setting $k_1 = a$, $k_2 = b$ and $k_3 = k - a - b$.  In Appendix~\ref{sec:mult-type-integr} we show that the integral of $A^{a} B^{2k - 2a - b}$ over $w_1,\dots w_{n-1}$ is
 \begin{equation} \label{eq:recurseint}
-\int_0^t \cdots \int_0^t A^{a} B^{2k-2a-b} dw_{n-1} \, \dots \, dw_1 = t^{n-1+2k - b} G(n-1,a,2k - 2a - b).
+\begin{split}
+  \int_0^t \cdots \int_0^t &A^{a} B^{2k-2a-b} dw_{n-1} \, \dots \, dw_1 \\
+&= t^{n-1+2k - b} G(n-1,a,2k - 2a - b).
+\end{split}
 \end{equation}
 where $G(n,c,d)$ satisfies the recursion given by~\eqref{eq:theGrecursion}.  So, let $P$ satisfy
 \begin{align*}
@@ -380,7 +399,8 @@ P &= t^{1 - n - 2k}\int_0^t \cdots \int_0^t D^k dw_{n-1} \, \dots \, dw_1 \\
 \end{align*}
 Now $C^{m-k} = \left(\frac{n}{n+1} \right)^{m-k} t^{2(m-k)}$ and
 \begin{align*}
-\frac{\calM_n(m)}{n\sqrt{n+1}} &= \sum_{k=0}^{m} \binom{m}{k} \left(\frac{n}{n+1} \right)^{m-k} P \int_0^1 \int_0^y \frac{t^{n - 1 + 2m}}{1 - t} \, dt \, dy \\
+&\frac{\calM_n(m)}{n\sqrt{n+1}} \\
+&= \sum_{k=0}^{m} \binom{m}{k} \left(\frac{n}{n+1} \right)^{m-k} P \int_0^1 \int_0^y \frac{t^{n - 1 + 2m}}{1 - t} \, dt \, dy \\
 &= \sum_{k=0}^{m} \binom{m}{k} \left(\frac{n}{n+1} \right)^{m-k} P \int_0^1 \beta(y,n+2m,0) dy \\
 &= \frac{1}{n+2m} \sum_{k=0}^{m} \binom{m}{k} \left(\frac{n}{n+1} \right)^{m-k} P.
 \end{align*}
@@ -458,41 +478,51 @@ Recursive formulae for the moments of the Voronoi cell of the lattice $A_n$ were
 \subsection{A multinomial type integral over a hypercube}\label{sec:mult-type-integr}
 
 In~(\ref{eq:recurseint}) we required to evaluate integrals of the form
-\[
-F(n-1,a,2k - 2a - b) = \int^{t}_{0} \cdots \int^{t}_{0} A^a B^{2k - 2a - b} \,dw_{n-1}\cdots dw_{1},
-\]
+\begin{align*}
+F(n-1,a,&2k - 2a - b) \\
+&= \int^{t}_{0} \cdots \int^{t}_{0} A^a B^{2k - 2a - b} \,dw_{n-1}\cdots dw_{1},
+\end{align*}
 or equivalently, integrals of the form
 \[
 F(n,c,d) = \int^{t}_{0} \cdots \int^{t}_{0} \left(\sum_{j=1}^{n} x_j^2\right)^c \left( \sum_{i=1}^{n} x_i \right)^d \,dx_1\cdots dx_{n}
 \]
-where $n,c$ and $d$ are integers.  We will find a recursion describing this integral.  Write
-\[
-F(n,c,d) = \int^t_0 \cdots \int^t_0 \left(x_n^2 + \sum_{j=1}^{n-1} x_j^2\right)^c \left( x_n + \sum_{i=1}^{n-1} x_i \right)^d \,dx_1\cdots dx_n.
-\]
+where $n, c$ and $d$ are integers.  We will find a recursion describing this integral.  Write
+\begin{align*}
+&F(n,c,d) \\
+&= \int^t_0 \cdots \int^t_0 \left(x_n^2 + \sum_{j=1}^{n-1} x_j^2\right)^c \left( x_n + \sum_{i=1}^{n-1} x_i \right)^d \,dx_1\cdots dx_n.
+\end{align*}
 Expanding the two binomials gives
 \begin{align*}
-F(n,c,d) &=  \int^t_0 \cdots \int^t_0 \sum_{c'=0}^{c} \binom{c}{c'} x_n^{2c'} \left(\sum_{j=1}^{n-1} x_j^2\right)^{c-c'}  \sum_{d'=0}^{d}\binom{d}{d'} x_n^{d'} \left(\sum_{i=1}^{n-1} x_i \right)^{d-d'} \,dx_1\cdots dx_{n} \\
-&=  \sum_{c'=0}^{c} \sum_{d'=0}^d \int^t_0 \cdots \int^t_0 \binom{c}{c'} \binom{d}{d'} x_n^{2c'+d'} \left(\sum_{j=1}^{n-1} x_j^2\right)^{c-c'} \left(\sum_{i=1}^{n-1} x_i \right)^{d-d'} \,dx_1\cdots dx_{n}.
+&F(n,c,d) \\
+&=  \int^t_0 \cdots \int^t_0  \sum_{c'=0}^{c} \binom{c}{c'} x_n^{2c'} \left(\sum_{j=1}^{n-1} x_j^2\right)^{c-c'}  \\
+& \hspace{2.6cm}  \sum_{d'=0}^{d}\binom{d}{d'} x_n^{d'} \left(\sum_{i=1}^{n-1} x_i \right)^{d-d'} \,dx_1\cdots dx_{n}  \\
+&= \sum_{c'=0}^{c} \sum_{d'=0}^d \int^t_0 \cdots \int^t_0 \binom{c}{c'} \binom{d}{d'} x_n^{2c'+d'} \\ 
+& \hspace{2.6cm} \left(\sum_{j=1}^{n-1} x_j^2\right)^{c-c'} \left(\sum_{i=1}^{n-1} x_i \right)^{d-d'} \,dx_1\cdots dx_{n}.
 \end{align*}
 Integrating the $x_n$ term gives
-\[
-F(n,c,d) = \sum_{c'=0}^{c} \sum_{d'=0}^{d} \binom{c}{c'}\binom{d}{d'} \frac{t^{2c'+d'+1}}{2c'+d'+1} \int^t_0 \cdots \int^t_0 \left(\sum_{j=1}^{n-1}x_j^2\right)^{c-c'}\left(\sum_{i=1}^{n-1} x_i \right)^{d-d'} \,dx_1\cdots dx_{n-1}.
-\]
+\begin{align*}
+F(&n,c,d) \\
+&= \sum_{c'=0}^{c} \sum_{d'=0}^{d} \binom{c}{c'}\binom{d}{d'} \frac{t^{2c'+d'+1}}{2c'+d'+1} \int^t_0 \cdots \int^t_0 \\
+& \hspace{1cm} \left(\sum_{j=1}^{n-1}x_j^2\right)^{c-c'}\left(\sum_{i=1}^{n-1} x_i \right)^{d-d'} \,dx_1\cdots dx_{n-1}.
+\end{align*}
 Note that
-\[
-F(n-1,c-c',d-d')  = \int^t_0 \cdots \int^t_0 \left(\sum_{j=1}^{n-1}x_j^2\right)^{c-c'}\left(\sum_{i=1}^{n-1} x_i \right)^{d-d'} \,dx_1\cdots dx_{n-1}.
-\]
+\begin{align*}
+&F(n-1,c-c',d-d')  \\
+&= \int^t_0 \cdots \int^t_0 \left(\sum_{j=1}^{n-1}x_j^2\right)^{c-c'}\left(\sum_{i=1}^{n-1} x_i \right)^{d-d'} \,dx_1\cdots dx_{n-1}.
+\end{align*}
 So $F(n,c,d)$ satisfies the recursion
-\[
-F(n,c,d) = \sum_{c'=0}^{c} \sum_{d'=0}^{d} \binom{c}{c'}\binom{d}{d'} \frac{t^{2c'+d'+1}}{2c'+d'+1}F(n-1,c-c',d-d')
-\]
+\begin{align*}
+&F(n,c,d) \\
+&= \sum_{c'=0}^{c} \sum_{d'=0}^{d} \binom{c}{c'}\binom{d}{d'} \frac{t^{2c'+d'+1}}{2c'+d'+1}F(n-1,c-c',d-d')
+\end{align*}
 with the initial conditions
 \[
 F(1,c,d) = \frac{t^{2c+d+1}}{2c+d+1} \qquad \text{and} \qquad F(n,0,0) = t^n.
 \]
 The $F(n,c,d)$ can be written as $t^{n+2c+d}G(n,c,d)$ where $G(n,c,d)$ is rational.  To see this write
 \begin{align*}
-F(n,c,d) &=  \sum_{c'=0}^{c} \sum_{d'=0}^{d} \binom{c}{c'}\binom{d}{d'} \frac{t^{2c'+d'+1}}{2c'+d'+1}t^{n-1+2(c-c')+d-d'}G(n-1,c-c',d-d') \\
+&F(n,c,d) \\
+&=  \sum_{c'=0}^{c} \sum_{d'=0}^{d} \binom{c}{c'}\binom{d}{d'} \frac{G(n-1,c-c',d-d') t^{2c'+d'+1}}{(2c'+d'+1) t^{1-n-2(c-c')-d+d'}} \\
 &=  t^{n+2c+d}\sum_{c'=0}^{c} \sum_{d'=0}^{d} \binom{c}{c'}\binom{d}{d'} \frac{G(n-1,c-c',d-d')}{2c'+d'+1} \\
 &=  t^{n+2c+d}G(n,c,d).
 \end{align*}
@@ -509,13 +539,15 @@ G(1,c,d) = \frac{1}{2c+d+1} \qquad \text{and} \qquad G(n,0,0) = 1.
 \newcommand{\calG}{\mathcal G}
 
 For fixed $d$ and $c$ this recursion can be solved explicitly.  Write
-\[
-G(n,c,d) = G(n-1,c,d) + \sum_{ (c',d') \neq (0,0)} \binom{c}{c'}\binom{d}{d'} \frac{G(n-1,c-c',d-d')}{2c'+d'+1}
-\]
+\begin{align*}
+G(n,c,d) &= G(n-1,c,d) \\
+&\hspace{0.2cm}+ \sum_{ (c',d') \neq (0,0)} \binom{c}{c'}\binom{d}{d'} \frac{G(n-1,c-c',d-d')}{2c'+d'+1}
+\end{align*}
 where the sum $\sum_{ (c',d') \neq (0,0)}$ is over all $0 \leq c' \leq c$ and $0 \leq d' \leq d$ except when both $d$ and $c$ are zero.  Denote by $\calG(z,c,d)$ the $z$-transform of $G(n,c,d)$.  Taking the $z$-transform of both sides in the equation above gives
-\[
-\calG(z,c,d) = \frac{z^{-1}}{1-z^{-1}} \sum_{ (c',d') \neq (0,0)} \binom{c}{c'}\binom{d}{d'} \frac{\calG(z,c-c',d-d')}{2c'+d'+1}.
-\]
+\begin{align*}
+&\calG(z,c,d) \\
+&= \frac{z^{-1}}{1-z^{-1}} \sum_{ (c',d') \neq (0,0)} \binom{c}{c'}\binom{d}{d'} \frac{\calG(z,c-c',d-d')}{2c'+d'+1}.
+\end{align*}
 So the $z$-transform $\calG(z,c,d)$ satisfies this recursive equation.  The initial condition is $\calG(z,0,0) = \frac{z^{-1}}{1 - z^{-1}}$.  By inverting this $z$-transform and using the resultant expressions in~\eqref{eq:theCmformula} we obtain formulae in $n$ for the moment $\calM_n(m)$.  This procedure was used to generate the formula described in Section~\ref{sec:main-result}.  Mathematica 8.0 was used to perform these calculations.  We have computed formula for $m = 0, 1, \dots, 40$ this way, but it becomes computationally infeasible for large $m$.
 
 We have observed the following property.  The formula for $M_n(m)$ appears to always be in the form
