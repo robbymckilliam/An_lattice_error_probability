@@ -138,6 +138,30 @@ These can be summed in (\ref{eq:summomentproberror}) to give arbitrarily accurat
 
 % Given a lattice code $C = \Lambda \cap R$ and a recieved codeword $\ybf = \xbf + \wbf$ where $\xbf \in C$ and $\wbf$ is a vector of independent and identically distributioned Gaussian random variables with variance $\sigma^2$, the maximum likelihood decoder returns the lattice point in $C$ that is nearest to $\ybf$ in Euclidean distance.  A difficult
 
+\begin{figure*}[bt]
+% ensure that we have normalsize text
+%\normalsize
+\small
+% Store the current equation number.
+%\setcounter{MYtempeqncnt}{\value{equation}}
+% Set the equation number to one less than the one
+% desired for the first equation here.
+% The value here will have to changed if equations
+% are added or removed prior to the place these
+% equations are referenced in the main text.
+%\setcounter{equation}{5}
+\begin{align*}
+\calM_n(3) &= \frac{1960 n + 2142 n^2 + 2681 n^3 + 1423 n^4 + 399 n^5 + 35 n^6}{60480 (1 + n)^{5/2}} \\
+\calM_n(4) &= \frac{93744 n + 34356 n^2 + 112172 n^3 + 89343 n^4 + 53224 n^5 + 17246 n^6 + 2940 n^7 + 175 n^8}{3628800 (1 + n)^{7/2}} \\
+\calM_n(5) &= \frac{3577728 n - 1825648 n^2 + 2410804 n^3 + 1569392 n^4 + 1644423 n^5 + 906105 n^6+341550 n^7+75526 n^8+8855 n^9+385 n^{10}}{95800320 (1 + n)^{9/2}}
+\end{align*}
+% Restore the current equation number.
+%\setcounter{equation}{\value{MYtempeqncnt}}
+% IEEE uses as a separator
+\hrulefill
+% The spacer can be tweaked to stop underfull vboxes.
+\vspace*{4pt}
+\end{figure*}
 
 
 \section{The main result}\label{sec:main-result}
@@ -162,12 +186,11 @@ For fixed $m$ it is possible to solve this recursion in $n$ and obtain formula f
 \begin{align*}
 \calM_n(0) &= \sqrt{n+1} \qquad \text{the volume of~}\vor(A_n),\\
 \calM_n(1) &= \frac{n(n+3)}{12\sqrt{n+1}} \qquad \text{the 2nd moment~ \cite[p. 462]{SPLAG}}, \\
-\calM_n(2) &=  \frac{50 n + 55 n^2 + 34 n^3 + 5 n^4}{720 (1 + n)^{3/2}}.
+\calM_n(2) &=  \frac{50 n + 55 n^2 + 34 n^3 + 5 n^4}{720 (1 + n)^{3/2}}
 %\calM_n(3) &= \frac{1960 n + 2142 n^2 + 2681 n^3 + 1423 n^4 + 399 n^5 + 35 n^6}{60480 (1 + n)^{5/2}}, \\
 %\calM_n(4) &= \frac{93744 n + 34356 n^2 + 112172 n^3 + 89343 n^4 + 53224 n^5 + 17246 n^6 + 2940 n^7 + 175 n^8}{3628800 (1 + n)^{7/2}}.
 \end{align*}
-We have explicitly tabulated these formula for $m=0$ to $40$. For larger $m$ direct evaluation for specific $n$ from the recursive formula is preferable.  We will derive these results in Section~\ref{sec:powers-eucl-norm}, but first need some properties of the lattice $A_n$.
-
+and the next three formula are displayed at the top of this page.  We have explicitly tabulated these formula for $m=0$ to $40$. For larger $m$ direct evaluation for specific $n$ from the recursive formula is preferable.  We will derive these results in Section~\ref{sec:powers-eucl-norm}, but first need some properties of the lattice $A_n$.
 
 \section{The lattice $A_n$}\label{sec:lattice-a_n}
 Let $H$ be the hyperplane orthogonal to the all ones vector of length $n+1$, denoted by $\onebf$, that is
@@ -578,6 +601,7 @@ was born in Brisbane, Queensland, Australia in 1983. He received the B.Sc. degre
 \end{IEEEbiographynophoto}
 
 \begin{IEEEbiographynophoto}{Ramanan Subramanian}
+received the Bachelor of Technology degree in Electrical Engineering from the Indian Institute of Technology, Madras in 2003, the Master of Science and PhD degrees in Electrical and Computer Engineering from the Georgia Institute of Technology, Atlanta, USA in 2006 and 2009 respectively. Since late 2009, he has been working as a research fellow at the Institute for Telecommunications Research (ITR) at the University of South Australia in Adelaide. His research interests include wireless networking, information theory, queuing theory, and statistics.
 \end{IEEEbiographynophoto}
 
 \begin{IEEEbiographynophoto}{Emanuele Viterbo}
