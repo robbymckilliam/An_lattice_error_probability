@@ -4,7 +4,7 @@
 import pubsim.lattices.util.PowerOfEuclideanNorm
 import pubsim.lattices.An.AnFastSelect
 import pubsim.lattices.An.MomentComputer
-import pubsim.BigRational
+import bignums.BigRational
 import pubsim.Util
 
 val ns = List(2,3,4,5)
