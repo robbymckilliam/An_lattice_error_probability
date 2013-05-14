@@ -1,8 +1,8 @@
 /**
 * Probability of error plots for the lattice Zn.
 */
-import java.math.BigInteger
-import pubsim.BigRational
+import bignums.BigInteger
+import bignums.BigRational
 import pubsim.lattices.E8
 import pubsim.Util
 import pubsim.lattices.util.ProbabilityOfCodingError

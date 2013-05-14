@@ -6,6 +6,8 @@ do
 CP=$CP:${f}
 done
 
+echo $CP
+
 scala -cp $CP montecarlo.scala
 scala -cp $CP znsim.scala
 scala -cp $CP e8sim.scala
